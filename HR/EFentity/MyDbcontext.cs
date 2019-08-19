@@ -20,6 +20,6 @@ namespace EFentity
             base.OnModelCreating(modelBuilder);
             modelBuilder.Configurations.AddFromAssembly(Assembly.GetExecutingAssembly());
         }
-        public DbSet<Student> Students { set; get; }
+        public DbSet<user> user { set; get; }
     }
 }
