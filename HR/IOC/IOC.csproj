@@ -66,6 +66,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserIOC.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{8FEA02ED-FFDA-48D7-B5C9-95B35350ABCA}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IFBLL\IFBLL.csproj">
+      <Project>{9C5CE1D3-479F-4500-9EC6-6EAFCF1A6273}</Project>
+      <Name>IFBLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IFDAL\IFDAL.csproj">
+      <Project>{396C6934-7985-41FB-934D-729E14F933E4}</Project>
+      <Name>IFDAL</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

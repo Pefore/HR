@@ -40,7 +40,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLLUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IFBLL\IFBLL.csproj">
+      <Project>{9C5CE1D3-479F-4500-9EC6-6EAFCF1A6273}</Project>
+      <Name>IFBLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IFDAL\IFDAL.csproj">
+      <Project>{396C6934-7985-41FB-934D-729E14F933E4}</Project>
+      <Name>IFDAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IOC\IOC.csproj">
+      <Project>{02C2405A-F156-4238-86E2-A82972A65289}</Project>
+      <Name>IOC</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{87f5ea99-ff0d-4c27-8da1-a6ff9aa488a6}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
