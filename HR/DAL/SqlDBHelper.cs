@@ -35,7 +35,6 @@ namespace DAL
             }
             catch (Exception ex)
             {
-                LogHelper.WriteLog();
             }
             finally
             {
