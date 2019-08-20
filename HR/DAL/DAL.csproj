@@ -49,13 +49,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DALLogin.cs" />
     <Compile Include="DaoBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SqlDBHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EFentity\EFentity.csproj">
       <Project>{FCBBB9E0-1A8A-495B-BA40-1C909488D389}</Project>
       <Name>EFentity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IFDAL\IFDAL.csproj">
+      <Project>{396C6934-7985-41FB-934D-729E14F933E4}</Project>
+      <Name>IFDAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{87f5ea99-ff0d-4c27-8da1-a6ff9aa488a6}</Project>
+      <Name>Model</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
