@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Tool;
 
 namespace DAL
 {
@@ -34,7 +35,7 @@ namespace DAL
             }
             catch (Exception ex)
             {
-                
+                LogHelper.WriteLog();
             }
             finally
             {

@@ -67,6 +67,10 @@
       <Project>{87f5ea99-ff0d-4c27-8da1-a6ff9aa488a6}</Project>
       <Name>Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Tool\Tool.csproj">
+      <Project>{EF19C23E-7A12-4ADC-95D8-2A6A6092839D}</Project>
+      <Name>Tool</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
