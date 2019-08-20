@@ -6,13 +6,14 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Tool;
 
 namespace DAL
 {
    public class SqlDBHelper
     {
         //连接对象
-        static SqlConnection con = new SqlConnection("Data Source=.;Initial Catalog=HR;User ID=sa;Password=123");
+        static SqlConnection con = new SqlConnection("Data Source =.; Initial Catalog = HR; User ID = sa; Password=123");
         /// <summary>
         /// 查询单个值，适用于聚合函数
         /// </summary>
@@ -34,7 +35,6 @@ namespace DAL
             }
             catch (Exception ex)
             {
-                
             }
             finally
             {
