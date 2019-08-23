@@ -40,7 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IFBLLconfig_major.cs" />
+    <Compile Include="IFBLLPosition_Name_Set.cs" />
     <Compile Include="IFBLLUser.cs" />
+    <Compile Include="IFBLLconfig_major_kind.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

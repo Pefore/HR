@@ -14,9 +14,9 @@ namespace BLL
     {
         IFDALUser u = UserIOC.CreateStudenDAO();
 
-        public int ADDUser(users s)
+        public int ADDUser()
         {
-            return u.ADDUser(s);
+            return u.ADDUser();
         }
 
         public int Login(users s)
