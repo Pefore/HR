@@ -43,6 +43,7 @@
     <Compile Include="BLLconfig_major.cs" />
     <Compile Include="BLLconfig_major_kind.cs" />
     <Compile Include="BLLPosition_Name_Set.cs" />
+    <Compile Include="BLLClient.cs" />
     <Compile Include="BLLUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

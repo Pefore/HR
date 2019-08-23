@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IFDALClient.cs" />
     <Compile Include="IFDALconfig_major.cs" />
     <Compile Include="IFDALconfig_major_kind.cs" />
     <Compile Include="IFDALPosition_Name_Set.cs" />

@@ -27,6 +27,12 @@ namespace IOC
             UnityContainer ioc = GetBLLSeciton();
             return ioc.Resolve<IFBLLUser>("BLLUser");
         }
+        public static IFDALClient CreateClientDAO()
+        {
+            UnityContainer ioc = new UnityContainer();
+            ioc.RegisterType<IFDALClient, DALClient>();
+            return ioc.Resolve<IFDALClient>();
+        }
         #endregion
         #region 职称名称ioc
         public static IFDALPosition_Name_Set Position_Name_SetDAO()
@@ -74,7 +80,7 @@ namespace IOC
         {
             UnityContainer ioc = new UnityContainer();
             ExeConfigurationFileMap ecf = new ExeConfigurationFileMap();
-            ecf.ExeConfigFilename = @"C:\Users\asus\Source\Repos\HR4\HR\UI\Unity.config";
+            ecf.ExeConfigFilename = @"E:\y2\HR\HR\UI\Unity.config";
             Configuration cf = ConfigurationManager.OpenMappedExeConfiguration(ecf, ConfigurationUserLevel.None);
             UnityConfigurationSection cfs = cf.GetSection("unity") as UnityConfigurationSection;
             ioc.LoadConfiguration(cfs, "containerTwo");

@@ -16,7 +16,7 @@ namespace DAL
             SelectBy(e=>e.Id.Equals(1));
             return 1;
         }
-
+        
         public int Login(users s)
         {
             string sql = string.Format(@"select count(*) from [user] where [user_name]='{0}' and user_password='{1}'", s.user_name, s.user_password);

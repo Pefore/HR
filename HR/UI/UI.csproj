@@ -227,6 +227,8 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\Public_charController.cs" />
+    <Compile Include="Controllers\Salary_itemController.cs" />
     <Compile Include="Controllers\MianController.cs" />
     <Compile Include="Controllers\Position\PositionController.cs" />
     <Compile Include="Global.asax.cs">
@@ -255,6 +257,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\cwcalendar.css" />
     <Content Include="Scripts\comm.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -268,6 +271,8 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\table.css" />
+    <Content Include="Scripts\vue.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -305,6 +310,10 @@
     <Content Include="Views\Mian\TOP.cshtml" />
     <Content Include="Views\Mian\LEFT.cshtml" />
     <Content Include="Views\Mian\Main.cshtml" />
+    <Content Include="Views\Salary_item\Index.cshtml" />
+    <Content Include="Views\Salary_item\Create.cshtml" />
+    <Content Include="Views\Public_char\Index.cshtml" />
+    <Content Include="Views\Public_char\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

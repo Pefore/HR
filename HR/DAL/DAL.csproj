@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DALClient.cs" />
     <Compile Include="DALconfig_major.cs" />
     <Compile Include="DALconfig_major_kind.cs" />
     <Compile Include="DALLogin.cs" />

@@ -18,6 +18,14 @@ namespace UI.Controllers
         {
            // Database.SetInitializer(new DropCreateDatabaseIfModelChanges<MyDbcontext>());
             b.ADDUser();
+            //users u = new users()
+            //{
+            //    user_name = "hr",
+            //    user_true_name = "su",
+            //    user_password = "123456"
+            //};
+            //b.ADDUser(u);
+
             return View();
         }
         public ActionResult login(FormCollection frm)
