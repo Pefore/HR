@@ -11,6 +11,7 @@ namespace DAL
 {
     public class DALLogin : DaoBase<user>, IFDALUser
     {
+        
         public int ADDUser(users s)
         {
             user u = new user()
@@ -21,7 +22,7 @@ namespace DAL
             };
             return Add(u);
         }
-
+        
         public int Login(users s)
         {
             string sql = string.Format(@"select count(*) from [user] where [user_name]='{0}' and user_password='{1}'", s.user_name, s.user_password);

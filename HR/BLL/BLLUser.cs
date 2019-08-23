@@ -13,7 +13,7 @@ namespace BLL
     public class BLLUser : IFBLLUser
     {
         IFDALUser u = UserIOC.CreateStudenDAO();
-
+        
         public int ADDUser(users s)
         {
             return u.ADDUser(s);

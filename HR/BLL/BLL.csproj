@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLLClient.cs" />
     <Compile Include="BLLUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

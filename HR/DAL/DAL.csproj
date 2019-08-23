@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DALClient.cs" />
     <Compile Include="DALLogin.cs" />
     <Compile Include="DaoBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

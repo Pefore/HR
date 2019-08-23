@@ -12,6 +12,7 @@ namespace EFentity
     {
         public MyDbcontext():base("name=sql")
         {
+
             Database.SetInitializer<MyDbcontext>(null);
         }
 
@@ -21,5 +22,6 @@ namespace EFentity
             modelBuilder.Configurations.AddFromAssembly(Assembly.GetExecutingAssembly());
         }
         public DbSet<user> user { set; get; }
+        public DbSet<config_public_char> config_public_char { get; set; }
     }
 }

@@ -14,6 +14,14 @@ namespace UI.Controllers
         IFBLLUser b = UserIOC.CreateStudentBLL();
         public ActionResult Index()
         {
+            //users u = new users()
+            //{
+            //    user_name = "hr",
+            //    user_true_name = "su",
+            //    user_password = "123456"
+            //};
+            //b.ADDUser(u);
+
             return View();
         }
         public ActionResult login(FormCollection frm)
