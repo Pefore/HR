@@ -10,6 +10,6 @@ namespace IFBLL
    public interface IFBLLUser
     {
         int Login(users s);
-        int ADDUser(users s);
+        int ADDUser();
     }
 }
