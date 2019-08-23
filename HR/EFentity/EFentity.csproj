@@ -64,12 +64,10 @@
     <Compile Include="Config\config_major_kindConfig.cs" />
     <Compile Include="Config\Position_Name_SetConfig.cs" />
     <Compile Include="Config\config_public_charConfig.cs" />
-    <Compile Include="Config\UserConfig.cs" />
     <Compile Include="config_public_char.cs" />
     <Compile Include="config_major.cs" />
     <Compile Include="config_major_kind.cs" />
     <Compile Include="Position_Name_Set .cs" />
-    <Compile Include="user.cs" />
     <Compile Include="MyDbcontext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
