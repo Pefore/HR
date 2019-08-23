@@ -11,10 +11,15 @@ namespace DAL
 {
     public class DALLogin : DaoBase<user>, IFDALUser
     {
-        public int ADDUser()
+        public int ADDUser(users s)
         {
-            SelectBy(e=>e.Id.Equals(1));
-            return 1;
+            user u = new user()
+            {
+                user_name = s.user_name,
+                user_password = s.user_password,
+                user_true_name = s.user_true_name
+            };
+            return Add(u);
         }
 
         public int Login(users s)

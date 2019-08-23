@@ -10,6 +10,6 @@ namespace IFDAL
    public interface IFDALUser
     {
         int Login(users s);
-        int ADDUser();
+        int ADDUser(users s);
     }
 }

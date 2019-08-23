@@ -7,7 +7,6 @@ using System.Data.Entity;
 using System.Linq.Expressions;
 using System.Runtime.Remoting.Messaging;
 using EFentity;
-using System.Data.Entity.Infrastructure;
 
 namespace DAL
 {
@@ -15,22 +14,7 @@ namespace DAL
     {
 
        static MyDbcontext db = CreateDbContext();
-        private Boolean RemoveHoldingEntityInContext(T entity)
-        {
-            var objContext = ((IObjectContextAdapter)db).ObjectContext;
-            var objSet = objContext.CreateObjectSet<T>();
-            var entityKey = objContext.CreateEntityKey(objSet.EntitySet.Name, entity);
 
-            Object foundEntity;
-            var exists = objContext.TryGetObjectByKey(entityKey, out foundEntity);
-
-            if (exists)
-            {
-                objContext.Detach(foundEntity);
-            }
-
-            return (exists);
-        }
         private static MyDbcontext CreateDbContext()
         {
             //从当前请求的线程取值
@@ -51,13 +35,11 @@ namespace DAL
         }
         public int Update(T t)
         {
-            RemoveHoldingEntityInContext(t);
-            db.Entry<T>(t).State = EntityState.Modified;
+               db.Entry<T>(t).State = EntityState.Modified;
                return db.SaveChanges();
             
         }
         public int Delete(T t) {
-            RemoveHoldingEntityInContext(t);
             db.Entry<T>(t).State = EntityState.Deleted;
             return db.SaveChanges();
           

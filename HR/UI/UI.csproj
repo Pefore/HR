@@ -227,8 +227,6 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="Controllers\MianController.cs" />
-    <Compile Include="Controllers\Position\PositionController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -241,8 +239,6 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\cwcalendar.css" />
-    <Content Include="Content\table.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -255,7 +251,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\comm.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -296,19 +291,9 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Unity.config" />
     <Content Include="Views\Login\Index.cshtml" />
-    <Content Include="Views\Position\profession_design.cshtml" />
-    <Content Include="Views\Position\config_major_kind.cshtml" />
-    <Content Include="Views\Position\config_major_kindAdd.cshtml" />
-    <Content Include="Views\Position\config_major.cshtml" />
-    <Content Include="Views\Position\config_major_Add.cshtml" />
-    <Content Include="Views\Mian\Index.cshtml" />
-    <Content Include="Views\Mian\TOP.cshtml" />
-    <Content Include="Views\Mian\LEFT.cshtml" />
-    <Content Include="Views\Mian\Main.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="HTML\" />
     <Folder Include="images\" />
     <Folder Include="javascript\" />
   </ItemGroup>
@@ -324,10 +309,6 @@
     <ProjectReference Include="..\BLL\BLL.csproj">
       <Project>{93d018f2-23ea-4038-95cc-7e9b1e2e4fab}</Project>
       <Name>BLL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\EFentity\EFentity.csproj">
-      <Project>{FCBBB9E0-1A8A-495B-BA40-1C909488D389}</Project>
-      <Name>EFentity</Name>
     </ProjectReference>
     <ProjectReference Include="..\IFBLL\IFBLL.csproj">
       <Project>{9C5CE1D3-479F-4500-9EC6-6EAFCF1A6273}</Project>

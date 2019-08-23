@@ -49,10 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DALconfig_major.cs" />
-    <Compile Include="DALconfig_major_kind.cs" />
     <Compile Include="DALLogin.cs" />
-    <Compile Include="DALPosition_Name_Set.cs" />
     <Compile Include="DaoBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlDBHelper.cs" />
