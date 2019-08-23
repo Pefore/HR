@@ -16,7 +16,7 @@ namespace UI.Controllers
         IFBLLUser b = UserIOC.CreateStudentBLL();
         public ActionResult Index()
         {
-           // Database.SetInitializer(new DropCreateDatabaseIfModelChanges<MyDbcontext>());
+           //Database.SetInitializer(new DropCreateDatabaseIfModelChanges<MyDbcontext>());
             b.ADDUser();
             //users u = new users()
             //{

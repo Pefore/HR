@@ -12,8 +12,7 @@ namespace EFentity
     {
         public MyDbcontext():base("name=sql")
         {
-
-            Database.SetInitializer<MyDbcontext>(null);
+           Database.SetInitializer<MyDbcontext>(null);
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
