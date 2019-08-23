@@ -1,0 +1,131 @@
+﻿@model Model.config_file_third_kindModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create</title>
+    <link href="~/Content/table.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $("#YJJG").change(function () {
+                var id = $("#YJJG").val();
+                $("#EJJG").remove();
+                $.ajax({
+                    url: "quz",
+                    type: "post",
+                    data: "id=" + id,
+                    success: function (msg) {
+                        var dt = eval("(" + msg + ")");
+                        var $select = $("<select name='EJJG' id='EJJG' class='INPUT_STYLE1'></select>");
+                        for (var i = 0; i < dt.length; i++) {
+                            var $option = $("<option value=" + dt[i]["second_kind_id"] + ">" + dt[i]["second_kind_name"] + "</option>")
+                            $select.append($option);
+                            $("#td1").append($select);
+                        }
+                    }
+                })
+            })
+        });
+    </script>
+</head>
+<body>
+    @using (Ajax.BeginForm("Create", new AjaxOptions() { HttpMethod = "Post" })) 
+    {
+        <table width="100%">
+            <tr>
+                <td>
+                    <font color="black">
+                        您正在做的业务是：人力资源--客户化设置--人力资源档案管理设置--III级机构设置--III级机构添加
+                    </font>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    <input type="submit" value="提交" class="BUTTON_STYLE1">
+                    @Html.ActionLink("返回", "Index", "", new { @class = "BUTTON_STYLE1" });
+                </td>
+            </tr>
+        </table>
+        <div id="diva">
+            <table width="100%" border="1" cellpadding=0 cellspacing=1
+                   bordercolorlight=#848284 bordercolordark=#eeeeee
+                   class="TABLE_STYLE1">
+                <tr>
+                    <td width="19%" class="TD_STYLE1">
+                        I级机构名称
+                    </td>
+                    <td width="81%" class="TD_STYLE2">
+                        @*@*<select name="cftk.firstKindId" onchange="change1()" id="firstKindId" class="INPUT_STYLE1">
+                                <option value="0">
+                                    请选择I机构名称
+                                </option>
+
+                                <option value="1353318953319">Ⅰ级结构</option>
+
+                                <option value="1353318929919">集团</option>
+
+                                <option value="1353318937391">总部</option>
+
+                            </select>*@
+                        @Html.DropDownList("first_kind_id", @ViewBag.dt as IEnumerable<SelectListItem>, "请选择I级机构名称", new {@id="YJJG",@name= "YJJG",@class= "INPUT_STYLE1" })
+                    </td>
+                </tr>
+                <tr>
+                    <td width="19%" class="TD_STYLE1">
+                        II级机构名称
+                    </td>
+                    <td width="81%" class="TD_STYLE2" id="td1">
+                     @*@Html.DropDownList("EJ", @ViewBag.dt2 as IEnumerable<SelectListItem>, new { @class = "dropdown", @id = "EJJG", @name = "EJJG" })*@
+                    </td>
+                </tr>
+                <tr>
+                    <td width="19%" class="TD_STYLE1">
+                        III级机构编号
+                    </td>
+                    <td width="81%" class="TD_STYLE2"></td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        III级机构名称
+                    </td>
+                    <td class="TD_STYLE2">
+                        @*<input type="text" class="INPUT_STYLE1" name="cftk.thirdKindName" />*@
+                        @Html.EditorFor(model => model.third_kind_name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.third_kind_name, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        销售责任人编号（多个编号之间请用"半角逗号"加"一个空格"隔开，如", "）
+                    </td>
+                    <td class="TD_STYLE2">
+                        @*<textarea rows="4" cols="120" class="TEXTAREA_STYLE1" name="cftk.thirdKindSaleId"></textarea>*@
+                        @Html.TextAreaFor(model => model.third_kind_sale_id, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.third_kind_sale_id, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        是否为零售店（是/否）
+                    </td>
+                    <td class="TD_STYLE2">
+                      @* <select name="cftk.thirdKindIsRetail">
+       <option selected="selected">是</option>
+        <option>否</option>
+    </select>*@
+                        @Html.DropDownList("SF", @ViewBag.dt1 as IEnumerable<SelectListItem>, new { @class = "dropdown"})
+                    </td>
+                </tr>
+            </table>
+        </div>
+    }
+</body>
+</html>

@@ -49,17 +49,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\BundleConfig.cs" />
-    <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\IdentityConfig.cs" />
-    <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Config\config_file_first_kindConfig.cs" />
     <Compile Include="Config\config_file_second_kindConfig.cs" />
+    <Compile Include="Config\config_file_third_kindConfig.cs" />
     <Compile Include="Config\UsersConfig.cs" />
     <Compile Include="config_file_first_kind.cs" />
     <Compile Include="config_file_second_kind.cs" />
-    <Compile Include="users.cs" />
+    <Compile Include="config_file_third_kind.cs" />
+    <Compile Include="user.cs" />
     <Compile Include="MyDbcontext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

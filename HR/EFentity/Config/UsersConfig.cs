@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace EFentity.Config
 {
-   public class UsersConfig: EntityTypeConfiguration<users>
+   public class UsersConfig: EntityTypeConfiguration<user>
     {
         public UsersConfig()
         {
-            this.ToTable(nameof(users));
+            this.ToTable(nameof(user));
             this.Property(e => e.user_name).HasMaxLength(60).IsRequired();
             this.Property(e => e.user_true_name).HasMaxLength(60).IsRequired();
             this.Property(e => e.user_password).HasMaxLength(60).IsRequired();

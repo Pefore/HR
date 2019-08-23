@@ -20,6 +20,9 @@ namespace EFentity
             base.OnModelCreating(modelBuilder);
             modelBuilder.Configurations.AddFromAssembly(Assembly.GetExecutingAssembly());
         }
-        public DbSet<users> user { set; get; }
+        public DbSet<user> user { set; get; }
+        public DbSet<config_file_first_kind> config_file_first_kind { set; get; }
+        public DbSet<config_file_second_kind> config_file_second_kind { set; get; }
+        public DbSet<config_file_third_kind> config_file_third_kind { set; get; }
     }
 }
