@@ -33,14 +33,14 @@ namespace UI.Controllers
 
         // POST: Public_char/Create
         [HttpPost]
-        public ActionResult Create(config_public_charModel cm)
+        public ActionResult Create(config_public_charModel cm)  
         {
             if (ModelState.IsValid)
             {
                 IFBLLClient ibc = UserIOC.CreateClientBLL();
                 int result = ibc.ADDPublic_char(cm);
                 if (result > 0)
-                {
+                { 
                     //return RedirectToAction("Index");
 
                     return Content("<script>alert('新增成功');window.location.href='/Public_char/index'</script>");
