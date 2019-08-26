@@ -21,6 +21,10 @@ namespace EFentity
             base.OnModelCreating(modelBuilder);
             modelBuilder.Configurations.AddFromAssembly(Assembly.GetExecutingAssembly());
         }
+        public DbSet<user> user { set; get; }
+        public DbSet<config_file_first_kind> config_file_first_kind { set; get; }
+        public DbSet<config_file_second_kind> config_file_second_kind { set; get; }
+        public DbSet<config_file_third_kind> config_file_third_kind { set; get; }
         public DbSet<config_public_char> config_public_char { get; set; }
         public DbSet<config_major_kind> config_major_kind { set; get; }
         public DbSet<config_major> config_major { set; get; }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EFentity
 {
-    public class users
+    public class user
     {
         public int Id { get; set; }//主键名
         public string user_name { get; set; }//用户名

@@ -40,6 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IFDALconfig_file_first_kind.cs" />
+    <Compile Include="IFDALconfig_file_second_kind.cs" />
+    <Compile Include="IFDALconfig_file_third_kind.cs" />
     <Compile Include="IFDALClient.cs" />
     <Compile Include="IFDALconfig_major.cs" />
     <Compile Include="IFDALconfig_major_kind.cs" />

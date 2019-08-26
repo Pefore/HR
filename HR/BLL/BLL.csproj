@@ -40,11 +40,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLLConfig_file_second_kind.cs" />
+    <Compile Include="BLLConfig_file_third_kind.cs" />
     <Compile Include="BLLconfig_major.cs" />
     <Compile Include="BLLconfig_major_kind.cs" />
     <Compile Include="BLLPosition_Name_Set.cs" />
     <Compile Include="BLLClient.cs" />
     <Compile Include="BLLUser.cs" />
+    <Compile Include="BLLConfig_file_first_kind.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

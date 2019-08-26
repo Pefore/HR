@@ -75,6 +75,32 @@ namespace IOC
             return ioc.Resolve<IFDALconfig_major>();
         }
 
+        public static IFBLLConfig_file_first_kind CreateConfig_file_first_kindBLL()
+        {
+            UnityContainer ioc = GetBLLSeciton();
+            return ioc.Resolve<IFBLLConfig_file_first_kind>("BLLconfig_file_first_kind");
+        }
+        /// <summary>
+        /// config_file_second_kind
+        /// </summary>
+        /// <returns></returns>
+        public static IFDALconfig_file_second_kind CreateConfig_file_second_kindDAO()
+        {
+            UnityContainer ioc = new UnityContainer();
+            ioc.RegisterType<IFDALconfig_file_second_kind, DALConfig_file_second_kind>();
+            return ioc.Resolve<IFDALconfig_file_second_kind>();
+        }
+
+        public static IFBLLConfig_file_second_kind CreateConfig_file_second_kindBLL()
+        {
+            UnityContainer ioc = GetBLLSeciton();
+            return ioc.Resolve<IFBLLConfig_file_second_kind>("BLLconfig_file_second_kind");
+        }
+        /// <summary>
+        /// config_file_third_kind
+        /// </summary>
+        /// <returns></returns>
+        public static IFDALconfig_file_third_kind CreateConfig_file_third_kindDAO()
         public static IFBLLconfig_major config_majorBLL()
         {
             UnityContainer ioc = GetBLLSeciton();
@@ -84,6 +110,14 @@ namespace IOC
         private static UnityContainer GetBLLSeciton()
         {
             UnityContainer ioc = new UnityContainer();
+            ioc.RegisterType<IFDALconfig_file_third_kind, DALConfig_file_third_kind>();
+            return ioc.Resolve<IFDALconfig_file_third_kind>();
+        }
+
+        public static IFBLLConfig_file_third_kind CreateConfig_file_third_kindBLL()
+        {
+            UnityContainer ioc = GetBLLSeciton();
+            return ioc.Resolve<IFBLLConfig_file_third_kind>("BLLconfig_file_third_kind");
             ExeConfigurationFileMap ecf = new ExeConfigurationFileMap();
             ecf.ExeConfigFilename = @"C:\Users\asus\Source\Repos\HR\HR\UI\Unity.config";
             Configuration cf = ConfigurationManager.OpenMappedExeConfiguration(ecf, ConfigurationUserLevel.None);
