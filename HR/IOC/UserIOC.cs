@@ -12,22 +12,9 @@ using Unity;
 
 namespace IOC
 {
-   public class UserIOC
+    public class UserIOC
     {
-        private static UnityContainer GetBLLSeciton()
-        {
-            UnityContainer ioc = new UnityContainer();
-            ExeConfigurationFileMap ecf = new ExeConfigurationFileMap();
-            ecf.ExeConfigFilename = @"D:\ASP.NET\项目\HR项目\HR动态\HR\UI\Unity.config";
-            Configuration cf = ConfigurationManager.OpenMappedExeConfiguration(ecf, ConfigurationUserLevel.None);
-            UnityConfigurationSection cfs = cf.GetSection("unity") as UnityConfigurationSection;
-            ioc.LoadConfiguration(cfs, "containerTwo");
-            return ioc;
-        }
-        /// <summary>
-        /// User
-        /// </summary>
-        /// <returns></returns>
+        #region 用户ioc
         public static IFDALUser CreateStudenDAO()
         {
             UnityContainer ioc = new UnityContainer();
@@ -40,15 +27,52 @@ namespace IOC
             UnityContainer ioc = GetBLLSeciton();
             return ioc.Resolve<IFBLLUser>("BLLUser");
         }
-        /// <summary>
-        /// config_file_first_kind
-        /// </summary>
-        /// <returns></returns>
-        public static IFDALconfig_file_first_kind CreateConfig_file_first_kindDAO()
+        public static IFDALClient CreateClientDAO()
         {
             UnityContainer ioc = new UnityContainer();
-            ioc.RegisterType<IFDALconfig_file_first_kind, DALConfig_file_first_kind>();
-            return ioc.Resolve<IFDALconfig_file_first_kind>();
+            ioc.RegisterType<IFDALClient, DALClient>();
+            return ioc.Resolve<IFDALClient>();
+        }
+        public static IFBLLClient CreateClientBLL()
+        {
+            UnityContainer ioc = GetBLLSeciton();
+            return ioc.Resolve<IFBLLClient>("BLLClient");
+        }
+        #endregion
+        #region 职称名称ioc
+        public static IFDALPosition_Name_Set Position_Name_SetDAO()
+        {
+            UnityContainer ioc = new UnityContainer();
+            ioc.RegisterType<IFDALPosition_Name_Set, DALPosition_Name_Set>();
+            return ioc.Resolve<IFDALPosition_Name_Set>();
+        }
+
+        public static IFBLLPosition_Name_Set Position_Name_SetBLL()
+        {
+            UnityContainer ioc = GetBLLSeciton();
+            return ioc.Resolve<IFBLLPosition_Name_Set>("BLLPosition_Name_Set");
+        }
+        #endregion
+        #region 职称分类ioc
+        public static IFDALconfig_major_kind config_major_kindDAO()
+        {
+            UnityContainer ioc = new UnityContainer();
+            ioc.RegisterType<IFDALconfig_major_kind, DALconfig_major_kind>();
+            return ioc.Resolve<IFDALconfig_major_kind>();
+        }
+
+        public static IFBLLconfig_major_kind config_major_kindBLL()
+        {
+            UnityContainer ioc = GetBLLSeciton();
+            return ioc.Resolve<IFBLLconfig_major_kind>("BLLconfig_major_kind");
+        }
+        #endregion
+        #region 职称设置ioc
+        public static IFDALconfig_major config_majorDAO()
+        {
+            UnityContainer ioc = new UnityContainer();
+            ioc.RegisterType<IFDALconfig_major, DALconfig_major>();
+            return ioc.Resolve<IFDALconfig_major>();
         }
 
         public static IFBLLConfig_file_first_kind CreateConfig_file_first_kindBLL()
@@ -56,6 +80,13 @@ namespace IOC
             UnityContainer ioc = GetBLLSeciton();
             return ioc.Resolve<IFBLLConfig_file_first_kind>("BLLconfig_file_first_kind");
         }
+        public static IFDALconfig_file_first_kind CreateConfig_file_first_kindDAO()
+        {
+            UnityContainer ioc = new UnityContainer();
+            ioc.RegisterType<IFDALconfig_file_first_kind, DALConfig_file_first_kind>();
+            return ioc.Resolve<IFDALconfig_file_first_kind>();
+        }
+
         /// <summary>
         /// config_file_second_kind
         /// </summary>
@@ -82,11 +113,42 @@ namespace IOC
             ioc.RegisterType<IFDALconfig_file_third_kind, DALConfig_file_third_kind>();
             return ioc.Resolve<IFDALconfig_file_third_kind>();
         }
-
         public static IFBLLConfig_file_third_kind CreateConfig_file_third_kindBLL()
         {
             UnityContainer ioc = GetBLLSeciton();
             return ioc.Resolve<IFBLLConfig_file_third_kind>("BLLconfig_file_third_kind");
+
         }
+        public static IFBLLconfig_major config_majorBLL()
+        {
+            UnityContainer ioc = GetBLLSeciton();
+            return ioc.Resolve<IFBLLconfig_major>("BLLconfig_major");
+        }
+        #endregion
+        private static UnityContainer GetBLLSeciton()
+        {
+            UnityContainer ioc = new UnityContainer();
+            ExeConfigurationFileMap ecf = new ExeConfigurationFileMap();
+            ecf.ExeConfigFilename = @"D:\ASP.NET\项目\HR项目\HR动态项目\HR\HR\UI\Unity.config";
+            Configuration cf = ConfigurationManager.OpenMappedExeConfiguration(ecf, ConfigurationUserLevel.None);
+            UnityConfigurationSection cfs = cf.GetSection("unity") as UnityConfigurationSection;
+            ioc.LoadConfiguration(cfs, "containerTwo");
+            return ioc;
+        }
+        #region human_file_dig
+        public static IFDALhuman_file_dig Createhuman_file_digDAO()
+        {
+            UnityContainer ioc = new UnityContainer();
+            ioc.RegisterType<IFDALhuman_file_dig, DALhuman_file_dig>();
+            return ioc.Resolve<IFDALhuman_file_dig>();
+        }
+        public static IFBLLhuman_file_dig human_file_digBLL()
+        {
+            UnityContainer ioc = GetBLLSeciton();
+            return ioc.Resolve<IFBLLhuman_file_dig>("BLLhuman_file_dig");
+        }
+        #endregion
+
     }
+
 }

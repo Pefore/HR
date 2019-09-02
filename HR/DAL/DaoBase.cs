@@ -15,7 +15,6 @@ namespace DAL
     {
 
        static MyDbcontext db = CreateDbContext();
-        //用于监测Context中的Entity是否存在，如果存在，将其Detach，防止出现问题。
         private Boolean RemoveHoldingEntityInContext(T entity)
         {
             var objContext = ((IObjectContextAdapter)db).ObjectContext;
@@ -32,7 +31,6 @@ namespace DAL
 
             return (exists);
         }
-
         private static MyDbcontext CreateDbContext()
         {
             //从当前请求的线程取值
@@ -49,13 +47,21 @@ namespace DAL
         public int Add(T t)  {          
                 //Set<T>()等于Students
                 db.Set<T>().Add(t);
-               return db.SaveChanges();
+               //return db.SaveChanges();
+            try
+            {
+                return db.SaveChanges();
+            }
+            catch(Exception e)
+            {
+                throw e.InnerException;
+            }
         }
         public int Update(T t)
         {
             RemoveHoldingEntityInContext(t);
             db.Entry<T>(t).State = EntityState.Modified;
-            return db.SaveChanges();
+               return db.SaveChanges();
             
         }
         public int Delete(T t) {

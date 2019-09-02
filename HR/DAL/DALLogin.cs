@@ -11,17 +11,12 @@ namespace DAL
 {
     public class DALLogin : DaoBase<user>, IFDALUser
     {
-        public int ADDUser(users s)
+        public int ADDUser()
         {
-            user u = new user()
-            {
-                user_name = s.user_name,
-                user_password = s.user_password,
-                user_true_name = s.user_true_name
-            };
-            return Add(u);
+            SelectBy(e=>e.Id.Equals(1));
+            return 1;
         }
-
+        
         public int Login(users s)
         {
             string sql = string.Format(@"select count(*) from [user] where [user_name]='{0}' and user_password='{1}'", s.user_name, s.user_password);

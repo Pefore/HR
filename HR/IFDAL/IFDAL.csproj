@@ -43,6 +43,11 @@
     <Compile Include="IFDALconfig_file_first_kind.cs" />
     <Compile Include="IFDALconfig_file_second_kind.cs" />
     <Compile Include="IFDALconfig_file_third_kind.cs" />
+    <Compile Include="IFDALClient.cs" />
+    <Compile Include="IFDALconfig_major.cs" />
+    <Compile Include="IFDALconfig_major_kind.cs" />
+    <Compile Include="IFDALhuman_file_dig.cs" />
+    <Compile Include="IFDALPosition_Name_Set.cs" />
     <Compile Include="IFDALUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
