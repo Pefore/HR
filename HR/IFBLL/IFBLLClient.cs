@@ -15,5 +15,6 @@ namespace IFBLL
         int UPDATEClient(config_public_charModel cm);
         int DELETEClient(config_public_charModel cm);
         List<config_public_charModel> SELECTClient();
+        List<config_public_charModel> SelectWhere(string name);
     }
 }

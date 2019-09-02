@@ -16,22 +16,15 @@ namespace UI.Controllers
         IFBLLUser b = UserIOC.CreateStudentBLL();
         public ActionResult Index()
         {
-           //Database.SetInitializer(new DropCreateDatabaseIfModelChanges<MyDbcontext>());
+            //Database.SetInitializer(new DropCreateDatabaseIfModelChanges<MyDbcontext>());
             b.ADDUser();
-            //users u = new users()
-            //{
-            //    user_name = "hr",
-            //    user_true_name = "su",
-            //    user_password = "123456"
-            //};
-            //b.ADDUser(u);
-
             return View();
         }
         public ActionResult login(FormCollection frm)
         {
             string username =frm["userName"];
             string userPassword = frm["userPassword"];
+            string trueName = null;
             users u = new users()
             {
                 user_name = username,
@@ -39,8 +32,11 @@ namespace UI.Controllers
             };
             if (b.Login(u) > 0)
             {
-                return Content("<script>alert('登录成功');window.location.href='/Mian/Index'</script>");
-            }else
+                users u1 = b.Select(new users() { user_name = username });
+                trueName = u1.user_true_name;
+                return Content(trueName);
+            }
+            else
             {
                 return Content("<script>alert('登录失败');window.location.href='/Login/Index'</script>");
             }

@@ -31,11 +31,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\工具\项目引用\EF\EntityFramework.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\HR4\HR\DAL\bin\Debug\EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\工具\项目引用\EF\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\HR\DAL\bin\Debug\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -55,9 +55,11 @@
     <Compile Include="DALConfig_file_first_kind.cs" />
     <Compile Include="DALConfig_file_second_kind.cs" />
     <Compile Include="DALConfig_file_third_kind.cs" />
+    <Compile Include="DALengage_resume.cs" />
     <Compile Include="DALLogin.cs" />
     <Compile Include="DALPosition_Name_Set.cs" />
     <Compile Include="DaoBase.cs" />
+    <Compile Include="DALengage_major_release.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlDBHelper.cs" />
   </ItemGroup>

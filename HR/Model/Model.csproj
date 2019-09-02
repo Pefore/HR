@@ -41,11 +41,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CaoZuoLei\LikeFenYe.cs" />
     <Compile Include="config_file_first_kindModel.cs" />
     <Compile Include="config_file_second_kindModel.cs" />
     <Compile Include="config_file_third_kindModel.cs" />
     <Compile Include="config_major_Model.cs" />
     <Compile Include="config_major_kind_Model.cs" />
+    <Compile Include="engage_interviewModel.cs" />
+    <Compile Include="engage_major_release_Model.cs" />
+    <Compile Include="engage_resume_Model.cs" />
     <Compile Include="Position_Name_Set_Model .cs" />
     <Compile Include="config_public_charModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

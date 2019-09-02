@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data.Entity;
 using System.Linq.Expressions;
 using System.Runtime.Remoting.Messaging;
 using EFentity;
 using System.Data.Entity.Infrastructure;
+using System.Data.Entity;
 
 namespace DAL
 {
@@ -44,9 +44,10 @@ namespace DAL
             return db;
         }
 
-        public int Add(T t)  {          
-                //Set<T>()等于Students
-                db.Set<T>().Add(t);
+        public int Add(T t)  {
+            //Set<T>()等于Students
+            RemoveHoldingEntityInContext(t);
+            db.Set<T>().Add(t);
                return db.SaveChanges();
         }
         public int Update(T t)

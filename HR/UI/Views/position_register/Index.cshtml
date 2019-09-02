@@ -1,0 +1,314 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/Content/cwcalendar.css" rel="stylesheet" />
+    <link href="~/Content/table.css" rel="stylesheet" />
+    <script src="~/Scripts/comm.js"></script>
+    <script src="~/Scripts/list.js"></script>
+    <script src="~/Scripts/calendar-ch.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/DatePicker/WdatePicker.js"></script>
+    <script src="~/Scripts/locate.js"></script>
+    @*<script src="~/Scripts/select.js"></script>*@
+    @*<script type="text/javascript" src="../../../javascript/select.js">
+    </script>*@
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+
+    <script type="text/javascript">
+ 			window.onload=check;
+		function tick() {
+			var now = new Date();
+			var hours, minutes, seconds, noon;
+			var intHours, intMinutes, intSeconds;
+			intHours = now.getHours();
+			intMinutes = now.getMinutes();
+			intSeconds = now.getSeconds();
+			if (intHours < 24) {
+				hours = intHours+":";
+				noon = "A.M.";
+			} else {
+				intHours = intHours - 24;
+				hours = intHours + ":";
+				noon = "P.M.";
+			}
+			if (intMinutes < 10) {
+				minutes = "0"+intMinutes+":";
+			} else {
+				minutes = intMinutes+":";
+			}
+			if (intSeconds < 10) {
+				seconds = "0"+intSeconds+" ";
+			} else {
+				seconds = intSeconds+" ";
+			}
+			timeString = hours+minutes+seconds;
+			var now = new Date();
+		  	document.getElementById("nowTime").value=now.getFullYear()+"-"+(now.getMonth()+1)+"-"+now.getDate()+" "+timeString;
+			window.setTimeout("tick();", 1000);
+		}
+
+		//load事件
+		function check(){
+			//获得系统当前时间的方法
+		  	tick();
+		}
+    </script>
+</head>
+<body>
+    @using (Ajax.BeginForm("Add", new AjaxOptions() { HttpMethod = "Post" }))
+    {
+        <table width="100%">
+            <tr>
+                <td>
+                    <font color="black">您正在做的业务是：人力资源--招聘管理--职位发布管理--职位发布登记 </font>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    <input type="button" value="提交" class="BUTTON_STYLE1" onclick="mysubmit()">
+                    <input type="reset" value="清除" class="BUTTON_STYLE1">
+                </td>
+            </tr>
+        </table>
+        <table width="100%" border="1" cellpadding=0 cellspacing=1
+               bordercolorlight=#848284 bordercolordark=#eeeeee
+               class="TABLE_STYLE1">
+            <tr>
+                <td class="TD_STYLE1" width="11%">
+                    I级机构
+                </td>
+                <td width="14%" class="TD_STYLE2">
+                    @Html.DropDownList("first_kind_id", @ViewBag.dtI as IEnumerable<SelectListItem>, "--请选择I级机构--", new { @id = "firstKindId" ,@class="SELECT_STYLE1" })
+                </td>
+                <td width="11%" class="TD_STYLE1">
+                    II级机构
+                </td>
+                <td width="14%" class="TD_STYLE2">
+                    <select id = "secondKindId" class="SELECT_STYLE1" name="second_kind_id" onchange="III()">
+                        <option value="">--请选择II级机构--</option>
+                    </select>
+                </td>
+                <td width="11%" class="TD_STYLE1">
+                    III级机构
+                </td>
+                <td class="TD_STYLE2">
+                    <select id = "thirdKindId" class="SELECT_STYLE1" name="third_kind_id" >
+                        <option value="">--请选择III级机构--</option>
+                    </select>
+                </td>
+                <td width="11%" class="TD_STYLE1">
+                    招聘类型
+                </td>
+                <td class="TD_STYLE2" colspan="2">
+                    @Html.DropDownList("engage_type", @ViewBag.engagetype as IEnumerable<SelectListItem>, "--请选择招聘类型--", new { @id = "engageType",@class="SELECT_STYLE1" })
+                </td>
+            </tr>
+            <tr>
+                <td class="TD_STYLE1">
+                    职位分类
+                </td>
+                <td class="TD_STYLE2">
+                    @Html.DropDownList("major_kind_id", @ViewBag.major_kind_name as IEnumerable<SelectListItem>, "--请选择职位分类--", new { @id = "majorKindId",@class="SELECT_STYLE1" })
+                <td class="TD_STYLE1">
+                    职位名称
+                </td>
+                <td class="TD_STYLE2">
+                    <select id="majorId" class="SELECT_STYLE1" name="major_id">
+                        <option value="">--请选择职位名称--</option> 
+                    </select>
+                </td>
+                <td class="TD_STYLE1">
+                    招聘人数
+                </td>
+                <td class="TD_STYLE2">
+                    @Html.TextBox("human_amount", null,new { @id = "humanAmount" ,@class="INPUT_STYLE2"})
+                </td>
+                <td class="TD_STYLE1">
+                    截止日期
+                </td>
+                <td class="TD_STYLE2">
+                    @Html.TextBox("deadline", null ,new { @id = "date_start", @class = "INPUT_STYLE2"})
+                </td>
+            </tr>
+            <tr>
+                <td class="TD_STYLE1">
+                    登记人
+                </td>
+                <td class="TD_STYLE2">
+                    @Html.TextBox("register", null,new {@class = "INPUT_STYLE2", @id = "register",@readonly= "readonly"})
+                </td>
+                <td class="TD_STYLE1">
+                    登记时间
+                </td>
+                <td class="TD_STYLE2">
+
+                    <input type="text" name="regist_time"
+                           id="nowTime" readonly="readonly"
+                           class="INPUT_STYLE2">
+                </td>
+
+                <td>&nbsp; </td>
+                <td>&nbsp; </td>
+                <td>&nbsp; </td>
+                <td>&nbsp; </td>
+
+            </tr>
+            <tr>
+                <td class="TD_STYLE1">
+                    职位描述
+                </td>
+                <td class="TD_STYLE2" colspan="8">
+                    @Html.TextArea("major_describe", new { @rows = "4",@cols = "80",@class="TEXTAREA_STYLE1"})
+                </td>
+
+            </tr>
+            <tr>
+                <td class="TD_STYLE1">
+                    招聘要求
+                </td>
+                <td class="TD_STYLE2" colspan="8">
+                    @Html.TextArea("engage_required", new { @rows = "4", @cols = "80", @class = "TEXTAREA_STYLE1" })
+                </td>
+            </tr>
+        </table>
+    }
+    <script type="text/javascript">
+        function mysubmit() {
+            if ($("#firstKindId").val()=="") {
+                alert("请选择一级机构");
+                return;
+            }
+            if ($("#secondKindId").val() == "") {
+                alert("请选择二级机构");
+                return;
+            }
+            if ($("#thirdKindId").val() == "") {
+                alert("请选择三级机构");
+                return;
+            }
+            if ($("#engageType").val() == "") {
+                alert("请选择招聘类型");
+                return;
+            }
+            if ($("#majorKindId").val() == "") {
+                alert("请选择职位分类");
+                return;
+            }
+            if ($("#majorId").val() == "") {
+                alert("请选择职位名称");
+                return;
+            }
+            var zz = new RegExp("^([1-9]|[1-9]\\d|100)$");
+            if ($("#humanAmount").val() == "") {
+                alert("请填写招聘人数");
+                return;
+            }
+            if (!zz.test($("#humanAmount").val())) {
+                alert("请填写正常数字");
+                return;
+            }
+            if ($("#date_start").val() == "") {
+                alert("请选择截止日期");
+                return;
+            }
+            var first_kind_name = $("#firstKindId option:selected").text();
+            var second_kind_name = $("#secondKindId option:selected").text();
+            var third_kind_name = $("#thirdKindId option:selected").text();
+            var major_kind_name = $("#majorKindId option:selected").text();
+            var major_name = $("#majorId option:selected").text();
+            $.ajax({
+                url: "/position_register/Add",
+                type: "post",
+                data:$("form").serialize()+"&first_kind_name=" + first_kind_name + "&second_kind_name=" + second_kind_name + "&third_kind_name=" + third_kind_name + "&major_kind_name=" + major_kind_name + "&major_name=" + major_name,
+                success: function (msg) {
+                    if (msg == 0) {
+                        alert("新增失败");
+                    } else {
+                        alert("新增成功");
+                        window.location.href = "/position_register/Index";
+                    }
+                }
+            });
+        }
+        function III() {
+            var emajorRelease = $("#secondKindId option:selected").text();
+            var value = $("#secondKindId").val();
+            $("#thirdKindId option:gt(0)").remove();
+            if (value.trim().length == 0 && value == null) {
+
+            } else {
+                $.ajax({
+                    url: "/position_register/dtIII",
+                    type:"post",
+                    data: "id=" + value,
+                    success: function (dt) {
+                        var dt1 = eval("(" + dt + ")");
+                        for (var i = 0; i < dt1.length; i++) {
+                            $option = $("<option value=" + dt1[i].third_kind_id + ">" + dt1[i].third_kind_name + "</option>");
+                            $("#thirdKindId").append($option);
+                        }
+                    }
+                });
+            }
+        }
+        $(function () {
+            $("#register").val(localStorage.getItem("user"));
+            $("#firstKindId").change(function () {
+                var emajorRelease = $("#firstKindId option:selected").text();
+                var value = $("#firstKindId").val();
+                $("#thirdKindId option:gt(0)").remove();
+                $("#secondKindId option:gt(0)").remove();
+                if (value.trim().length == 0 && value == null) {
+
+                } else {
+                    $.ajax({
+                        url: "/position_register/dtII",
+                        type:"post",
+                        data: "id=" + value,
+                        success: function (dt) {
+                            var dt1 = eval("(" + dt + ")");
+                            for (var i = 0; i < dt1.length; i++) {
+                                $option = $("<option value=" + dt1[i].second_kind_id + ">" + dt1[i].second_kind_name + "</option>");
+                                $("#secondKindId").append($option);
+                            }
+                        }
+                    });
+                }
+            });
+            $("#majorKindId").change(function () {
+                var emajorRelease = $("#majorKindId option:selected").text();
+                var value = $("#majorKindId").val();
+                $("#majorId option:gt(0)").remove();
+                if (value.length == 0 || value == null) {
+                   
+                } else {
+                    $.ajax({
+                        url: "/position_register/major_kind_nameSelect",
+                        type: "post",
+                        data: "id=" + value,
+                        success: function (dt) {
+                            var dt1 = eval("(" + dt + ")");
+                            for (var i = 0; i < dt1.length; i++) {
+                                $option = $("<option value=" + dt1[i].Position_Name_id + ">" + dt1[i].Position_Name + "</option>");
+                                $("#majorId").append($option);
+                            }
+                        }
+                    });
+                }
+            });
+            $("#date_start").focus(function () {
+                    WdatePicker();
+                })
+            });
+    </script>
+</body>
+</html>

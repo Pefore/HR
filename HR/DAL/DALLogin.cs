@@ -22,5 +22,16 @@ namespace DAL
             string sql = string.Format(@"select count(*) from [user] where [user_name]='{0}' and user_password='{1}'", s.user_name, s.user_password);
             return (int)SqlDBHelper.DGZ(sql);
         }
+
+        public users Select(users s)
+        {
+            List<user> list = SelectBy(e => e.user_name.Equals(s.user_name));
+            user u= list[0];
+            users u1 = new users()
+            {
+                user_true_name = u.user_true_name
+            };
+            return u1;
+        }
     }
 }

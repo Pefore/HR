@@ -15,5 +15,6 @@ namespace IFDAL
         List<config_file_first_kindModel> Select();
         string BH();
         config_file_first_kindModel XGCX(int id);
+
     }
 }

@@ -30,9 +30,16 @@
             src="~/javascript/login.js">
     </script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script type="text/javascript">
+        function ts(mes) {
+            alert("登陆成功");
+            localStorage.setItem("user", mes);
+            location.href = "/Mian/Index";
+        }
+    </script>
 </head>
 <body>
-@using (Html.BeginForm("login", "Login", FormMethod.Post))
+@using (Ajax.BeginForm("login", new AjaxOptions() { HttpMethod = "Post", OnSuccess = "ts" }))
 {
         <div>
             <table cellspacing=0 cellpadding=0 width=900 align=center border=0>

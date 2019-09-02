@@ -14,6 +14,7 @@ namespace IFDAL
         int Deleteconfig_major(config_major_Model cn);
         int Addconfig_major(config_major_Model cn);
         string SelectMaxconfig_major();
+        List<config_major_Model> SelectwWhere(string id);
         #endregion
     }
 }

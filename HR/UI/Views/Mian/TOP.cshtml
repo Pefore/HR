@@ -10,6 +10,7 @@
     <meta name="viewport" content="width=device-width" />
     <title>TOP</title>
     <link href="~/Content/table.css" rel="stylesheet" />
+    <script src="~/javascript/jquery-1.7.2.js"></script>
     <style type="text/css">
         body {
             margin: 0;
@@ -29,9 +30,14 @@
             </td>
             <td style="text-align: right;font-size:17px;width:35%;color:black;">
                 <br />
-                欢迎你：谢鹏(人事经理)&nbsp;
-                <input type="button" value="退出系统" class="BUTTON_STYLE1" onclick="parent.location.href='../login.html'" />&nbsp;&nbsp;&nbsp;&nbsp;
+                欢迎你：<span id="sp" style="font-weight:bolder"></span>(人事经理)&nbsp;
+                <input type="button" value="退出系统" class="BUTTON_STYLE1" onclick="parent.location.href='/Login/login'" />&nbsp;&nbsp;&nbsp;&nbsp;
             </td>
         </tr>
     </table>
+    <script type="text/javascript">
+        $(function () {
+            $("#sp").text(localStorage.getItem("user"));
+        })
+    </script>
 </html>

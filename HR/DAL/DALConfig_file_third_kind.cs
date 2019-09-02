@@ -90,6 +90,23 @@ namespace DAL
             }
             return list2;
         }
+
+        public List<config_file_third_kindModel> SelectIII(string id)
+        {
+            List<config_file_third_kind> list1 = SelectBy(e => e.second_kind_id.Equals(id));
+            List<config_file_third_kindModel> list2 = new List<config_file_third_kindModel>();
+            foreach (var item in list1)
+            {
+                config_file_third_kindModel c = new config_file_third_kindModel()
+                {
+                    third_kind_id=item.third_kind_id,
+                    third_kind_name=item.third_kind_name,
+                };
+                list2.Add(c);
+            }
+            return list2;
+        }
+
         /// <summary>
         /// 修改
         /// </summary>

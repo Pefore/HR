@@ -10,27 +10,32 @@ using IFDAL;
 
 namespace BLL
 {
-    public class BLLconfig_major_kind : IFBLLconfig_major_kind
+    public class BLLconfig_major : IFBLLconfig_major
     {
-        IFDALconfig_major_kind C = UserIOC.config_major_kindDAO();
-        public int Addconfig_major_kind(config_major_kind_Model cn)
+        IFDALconfig_major C = UserIOC.config_majorDAO();
+        public int Addconfig_major(config_major_Model cn)
         {
-            return C.Addconfig_major_kind(cn);
+            return C.Addconfig_major(cn);
         }
 
-        public int Deleteconfig_major_kind(config_major_kind_Model cn)
+        public int Deleteconfig_major(config_major_Model cn)
         {
-            return C.Deleteconfig_major_kind(cn);
+            return C.Deleteconfig_major(cn);
         }
 
-        public List<config_major_kind_Model> listconfig_major_kind()
+        public List<config_major_Model> listconfig_major()
         {
-            return C.listconfig_major_kind();
+            return C.listconfig_major();
         }
 
-        public string SelectMaxconfig_major_kind()
+        public string SelectMaxconfig_major()
         {
-            return C.SelectMaxconfig_major_kind();
+            return C.SelectMaxconfig_major();
+        }
+
+        public List<config_major_Model> SelectwWhere(string id)
+        {
+            return C.SelectwWhere(id);
         }
     }
 }

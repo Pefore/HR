@@ -56,6 +56,23 @@ namespace DAL
             return list2;
         }
 
+        public List<config_public_charModel> SelectWhere(string name)
+        {
+            List<config_public_char> list = SelectBy(e => e.attribute_kind.Equals(name));
+            List<config_public_charModel> list1 = new List<config_public_charModel>();
+            foreach (var item in list)
+            {
+                config_public_charModel c = new config_public_charModel()
+                {
+                    Id = item.Id,
+                    attribute_name = item.attribute_name,
+                    attribute_kind = item.attribute_kind,
+                };
+                list1.Add(c);
+            }
+            return list1;
+        }
+
         public int UPDATEClient(config_public_charModel cm)
         {
             throw new NotImplementedException();

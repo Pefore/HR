@@ -38,7 +38,6 @@ namespace DAL
             }
             return list;
         }
-
         #endregion
     }
 }

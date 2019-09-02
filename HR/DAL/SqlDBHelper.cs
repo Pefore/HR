@@ -35,6 +35,7 @@ namespace DAL
             }
             catch (Exception ex)
             {
+                LogHelper.WriteLog(typeof(SqlDBHelper), ex);
             }
             finally
             {

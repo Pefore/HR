@@ -31,6 +31,11 @@ namespace BLL
             return ifc.SELECTClient();
         }
 
+        public List<config_public_charModel> SelectWhere(string name)
+        {
+            return ifc.SelectWhere(name);
+        }
+
         public int UPDATEClient(config_public_charModel cm)
         {
             return ifc.UPDATEClient(cm);

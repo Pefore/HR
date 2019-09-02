@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data.Entity;
 using System.Reflection;
 using EFentity.Config;
+using EFentity.position_register;
 
 namespace EFentity
 {
@@ -13,7 +14,7 @@ namespace EFentity
     {
         public MyDbcontext():base("name=sql")
         {
-           Database.SetInitializer<MyDbcontext>(null);
+          Database.SetInitializer<MyDbcontext>(null);
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -29,9 +30,8 @@ namespace EFentity
         public DbSet<config_major_kind> config_major_kind { set; get; }
         public DbSet<config_major> config_major { set; get; }
         public DbSet<Position_Name_Set> Position_Name_Set { set; get; }
-        public DbSet<users> user { set; get; }
-        public DbSet<config_file_first_kind> config_file_first_kind{ set; get; }
-        public DbSet<config_file_second_kind> config_file_second_kind { set; get; }
-        public DbSet<users> users { set; get; }
+        public DbSet<engage_major_release> engage_major_release { set; get; }
+        public DbSet<engage_resume> engage_resume { set; get; }
+        public DbSet<engage_interview> engage_interview { set; get; }
     }
 }

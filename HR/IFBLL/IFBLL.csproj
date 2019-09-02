@@ -44,6 +44,8 @@
     <Compile Include="IFBLLConfig_file_third_kind.cs" />
     <Compile Include="IFBLLClient.cs" />
     <Compile Include="IFBLLconfig_major.cs" />
+    <Compile Include="IFBLLengage_major_release.cs" />
+    <Compile Include="IFBLLint engage_resume.cs" />
     <Compile Include="IFBLLPosition_Name_Set.cs" />
     <Compile Include="IFBLLUser.cs" />
     <Compile Include="IFBLLConfig_file_first_kind.cs" />

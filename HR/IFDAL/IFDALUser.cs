@@ -11,5 +11,6 @@ namespace IFDAL
     {
         int Login(users s);
         int ADDUser();
+        users Select(users s);
     }
 }

@@ -34,6 +34,11 @@ namespace BLL
             return ist.Select();
         }
 
+        public List<config_file_third_kindModel> SelectIII(string id)
+        {
+            return ist.SelectIII(id);
+        }
+
         public int Update(config_file_third_kindModel st)
         {
             return ist.Update(st);

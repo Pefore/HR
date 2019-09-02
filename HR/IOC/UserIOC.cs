@@ -101,23 +101,56 @@ namespace IOC
         /// </summary>
         /// <returns></returns>
         public static IFDALconfig_file_third_kind CreateConfig_file_third_kindDAO()
+        {
+            UnityContainer ioc = new UnityContainer();
+            ioc.RegisterType<IFDALconfig_file_third_kind, DALConfig_file_third_kind>();
+            return ioc.Resolve<IFDALconfig_file_third_kind>();
+        }
+        public static IFDALconfig_file_first_kind CreateConfig_file_first_kindDAO()
+        {
+            UnityContainer ioc = new UnityContainer();
+            ioc.RegisterType<IFDALconfig_file_first_kind, DALConfig_file_first_kind>();
+            return ioc.Resolve<IFDALconfig_file_first_kind>();
+        }
         public static IFBLLconfig_major config_majorBLL()
         {
             UnityContainer ioc = GetBLLSeciton();
             return ioc.Resolve<IFBLLconfig_major>("BLLconfig_major");
         }
         #endregion
-        private static UnityContainer GetBLLSeciton()
-        {
-            UnityContainer ioc = new UnityContainer();
-            ioc.RegisterType<IFDALconfig_file_third_kind, DALConfig_file_third_kind>();
-            return ioc.Resolve<IFDALconfig_file_third_kind>();
-        }
 
         public static IFBLLConfig_file_third_kind CreateConfig_file_third_kindBLL()
         {
             UnityContainer ioc = GetBLLSeciton();
             return ioc.Resolve<IFBLLConfig_file_third_kind>("BLLconfig_file_third_kind");
+        }
+        public static IFDALengage_major_release engage_major_releaseDAO()
+        {
+            UnityContainer ioc = new UnityContainer();
+            ioc.RegisterType<IFDALengage_major_release, DALengage_major_release>();
+            return ioc.Resolve<IFDALengage_major_release>();
+        }
+
+        public static IFBLLengage_major_release engage_major_releaseBLL()
+        {
+            UnityContainer ioc = GetBLLSeciton();
+            return ioc.Resolve<IFBLLengage_major_release>("BLLengage_major_release");
+        }
+        public static IFDALengage_resume engage_resumeDAO()
+        {
+            UnityContainer ioc = new UnityContainer();
+            ioc.RegisterType<IFDALengage_resume, DALengage_resume>();
+            return ioc.Resolve<IFDALengage_resume>();
+        }
+
+        public static IFBLLint_engage_resume engage_resumeBLL()
+        {
+            UnityContainer ioc = GetBLLSeciton();
+            return ioc.Resolve<IFBLLint_engage_resume>("BLLint_engage_resume");
+        }
+        private static UnityContainer GetBLLSeciton()
+        {
+            UnityContainer ioc = new UnityContainer();
             ExeConfigurationFileMap ecf = new ExeConfigurationFileMap();
             ecf.ExeConfigFilename = @"C:\Users\asus\Source\Repos\HR\HR\UI\Unity.config";
             Configuration cf = ConfigurationManager.OpenMappedExeConfiguration(ecf, ConfigurationUserLevel.None);
