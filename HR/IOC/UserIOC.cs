@@ -12,7 +12,7 @@ using Unity;
 
 namespace IOC
 {
-   public class UserIOC
+    public class UserIOC
     {
         #region 用户ioc
         public static IFDALUser CreateStudenDAO()
@@ -80,6 +80,13 @@ namespace IOC
             UnityContainer ioc = GetBLLSeciton();
             return ioc.Resolve<IFBLLConfig_file_first_kind>("BLLconfig_file_first_kind");
         }
+        public static IFDALconfig_file_first_kind CreateConfig_file_first_kindDAO()
+        {
+            UnityContainer ioc = new UnityContainer();
+            ioc.RegisterType<IFDALconfig_file_first_kind, DALConfig_file_first_kind>();
+            return ioc.Resolve<IFDALconfig_file_first_kind>();
+        }
+
         /// <summary>
         /// config_file_second_kind
         /// </summary>
@@ -123,6 +130,7 @@ namespace IOC
         {
             UnityContainer ioc = GetBLLSeciton();
             return ioc.Resolve<IFBLLConfig_file_third_kind>("BLLconfig_file_third_kind");
+
         }
         public static IFDALengage_major_release engage_major_releaseDAO()
         {
@@ -147,6 +155,17 @@ namespace IOC
         {
             UnityContainer ioc = GetBLLSeciton();
             return ioc.Resolve<IFBLLint_engage_resume>("BLLint_engage_resume");
+        }
+        public static IFBLLhuman_file_dig human_file_digBLL()
+        {
+            UnityContainer ioc = GetBLLSeciton();
+            return ioc.Resolve<IFBLLhuman_file_dig>("BLLhuman_file_dig");
+        }
+        public static IFDALhuman_file_dig Createhuman_file_digDAO()
+        {
+            UnityContainer ioc = new UnityContainer();
+            ioc.RegisterType<IFDALhuman_file_dig, DALhuman_file_dig>();
+            return ioc.Resolve<IFDALhuman_file_dig>();
         }
         private static UnityContainer GetBLLSeciton()
         {

@@ -47,6 +47,7 @@
     <Compile Include="IFBLLengage_major_release.cs" />
     <Compile Include="IFBLLint engage_resume.cs" />
     <Compile Include="IFBLLPosition_Name_Set.cs" />
+	 <Compile Include="IFBLLhuman_file_dig.cs" />
     <Compile Include="IFBLLUser.cs" />
     <Compile Include="IFBLLConfig_file_first_kind.cs" />
     <Compile Include="IFBLLconfig_major_kind.cs" />

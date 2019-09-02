@@ -45,7 +45,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CommonServiceLocator">
-      <HintPath>D:\。Net\复习课\三大模式\Unity\Unity.5.8.11\lib\net45\CommonServiceLocator.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\工具\项目引用\UI\CommonServiceLocator.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
@@ -146,25 +146,25 @@
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Abstractions">
-      <HintPath>D:\。Net\复习课\三大模式\Unity\Unity.5.8.11\lib\net45\Unity.Abstractions.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\工具\项目引用\IOCUnity\Unity.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Configuration">
-      <HintPath>D:\。Net\复习课\三大模式\Unity\Unity.5.8.11\lib\net45\Unity.Configuration.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\工具\项目引用\IOCUnity\Unity.Configuration.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Container">
-      <HintPath>D:\。Net\复习课\三大模式\Unity\Unity.5.8.11\lib\net45\Unity.Container.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\工具\项目引用\IOCUnity\Unity.Container.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Interception">
-      <HintPath>D:\。Net\复习课\三大模式\Unity\Unity.5.8.11\lib\net45\Unity.Interception.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\工具\项目引用\IOCUnity\Unity.Interception.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Interception.Configuration">
-      <HintPath>D:\。Net\复习课\三大模式\Unity\Unity.5.8.11\lib\net45\Unity.Interception.Configuration.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\工具\项目引用\IOCUnity\Unity.Interception.Configuration.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RegistrationByConvention">
-      <HintPath>D:\。Net\复习课\三大模式\Unity\Unity.5.8.11\lib\net45\Unity.RegistrationByConvention.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\工具\项目引用\IOCUnity\Unity.RegistrationByConvention.dll</HintPath>
     </Reference>
     <Reference Include="Unity.ServiceLocation">
-      <HintPath>D:\。Net\复习课\三大模式\Unity\Unity.5.8.11\lib\net45\Unity.ServiceLocation.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\工具\项目引用\IOCUnity\Unity.ServiceLocation.dll</HintPath>
     </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
@@ -229,6 +229,7 @@
     <Compile Include="Controllers\clientfirstkindController.cs" />
     <Compile Include="Controllers\configfilesecondkindController.cs" />
     <Compile Include="Controllers\configfilethirdkindController.cs" />
+    <Compile Include="Controllers\human_file_digController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\Public_charController.cs" />
     <Compile Include="Controllers\Recruitment_M\Job_release_m\position_change_updateController.cs" />
@@ -288,7 +289,9 @@
     <Content Include="Scripts\table.css" />
     <Content Include="Scripts\vue.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -355,6 +358,7 @@
     <Content Include="Views\validresume\Index.cshtml" />
     <Content Include="Views\validresume\Like.cshtml" />
     <Content Include="Views\validresume\XianXi.cshtml" />
+	 <Content Include="Views\human_file_dig\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

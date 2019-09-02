@@ -52,6 +52,7 @@
     <Compile Include="engage_resume_Model.cs" />
     <Compile Include="Position_Name_Set_Model .cs" />
     <Compile Include="config_public_charModel.cs" />
+	<Compile Include="human_file_digModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="users.cs" />
   </ItemGroup>
