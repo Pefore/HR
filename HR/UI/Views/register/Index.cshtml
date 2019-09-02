@@ -256,8 +256,8 @@
                 <td class="TD_STYLE1">
                     生日
                 </td>
-                <td width="13%" colspan="2" class="TD_STYLE2" onclick="qikj()">
-                    @Html.TextBox("humanbirthday", null, new { @id = "humanBirthday", @class = "INPUT_STYLE2", @onchange = "age(this)" })
+                <td width="13%" colspan="2" class="TD_STYLE2">
+                    @Html.TextBox("humanbirthday", null, new { @id = "humanBirthday", @class = "INPUT_STYLE2",@readonly= "readonly" })
                 </td>
 
             </tr>
@@ -389,26 +389,18 @@
             $("#humanAge").val(Age);
         };
         $(function () {
-            //$("#humanMajorKindName").change(function () {
-            //    var value = $("#humanMajorKindName").val();
-            //    $("#majorId option:gt(0)").remove();
-            //    if (value.trim().length == 0 && value == null) {
-
-            //    } else {
-            //        $.ajax({
-            //            url: "/register/major_kind_nameSelect",
-            //            type: "post",
-            //            data: "id=" + value,
-            //            success: function (dt) {
-            //                var dt1 = eval("(" + dt + ")");
-            //                for (var i = 0; i < dt1.length; i++) {
-            //                    $option = $("<option value=" + dt1[i].Position_Name_id + ">" + dt1[i].Position_Name + "</option>");
-            //                    $("#humanMajorName").append($option);
-            //                }
-            //            }
-            //        });
-            //    }
-            //});
+            $("#humanIdcard").change(function () {
+               var sfz= $(this).val();
+               if (sfz.length == 18) {
+                   $("#humanBirthday").val($(this).val().substring(6,10) + "-" + $(this).val().substring(10, 12) + "-" + $(this).val().substring(12, 14));
+                   var date1 = new Date($("#humanBirthday").val());
+                   var date2 = new Date();
+                   var date3 = date2.getTime() - date1.getTime();
+                   var day = Math.floor(date3 / (24 * 3600 * 1000));
+                   var Age = parseInt(parseFloat(day) / 365);
+                   $("#humanAge").val(Age);
+               }
+        })
         })
     </script>
 </body>

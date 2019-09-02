@@ -45,6 +45,7 @@
     <Compile Include="BLLconfig_major_kind.cs" />
     <Compile Include="BLLconfig_major.cs" />
     <Compile Include="BLLengage_major_release.cs" />
+    <Compile Include="BLLhuman_file_dig.cs" />
     <Compile Include="BLLint_engage_resume.cs" />
     <Compile Include="BLLPosition_Name_Set.cs" />
     <Compile Include="BLLClient.cs" />

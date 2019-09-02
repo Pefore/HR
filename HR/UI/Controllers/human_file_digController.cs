@@ -1,4 +1,5 @@
-﻿using IFBLL;
+﻿using BLL;
+using IFBLL;
 using IOC;
 using Model;
 using Newtonsoft.Json;
@@ -17,9 +18,10 @@ namespace UI.Controllers
         IFBLLConfig_file_third_kind ibt = UserIOC.CreateConfig_file_third_kindBLL();
         IFBLLconfig_major ibm = UserIOC.config_majorBLL();
         IFBLLconfig_major_kind ibmk = UserIOC.config_major_kindBLL();
+        IFBLLconfig_major IBM=UserIOC.config_majorBLL();
         //config_public_char
         IFBLLClient ibcl = UserIOC.CreateClientBLL();
-        IFBLLhuman_file_dig ibhf = UserIOC.human_file_digBLL();
+        BLLhuman_file_dig ibhf =new BLLhuman_file_dig();
         // GET: human_file_dig
         public ActionResult Index()
         {
@@ -105,7 +107,7 @@ namespace UI.Controllers
         public ActionResult ZWMC()
         {
             string b = Request["id"];
-            List<config_major_Model> list = ibm.cx(b);
+            List<config_major_Model> list = ibm.SelectwWhere(b);
             return Content(JsonConvert.SerializeObject(list));
         }
         /// <summary>
@@ -115,7 +117,7 @@ namespace UI.Controllers
         private List<SelectListItem> ZCXlk()
         {
             List<SelectListItem> list = new List<SelectListItem>();
-            List<config_public_charModel> list2 = ibcl.cx("职称");
+            List<config_public_charModel> list2 = ibcl.SelectWhere("职称");
             foreach (config_public_charModel item in list2)
             {
                 SelectListItem sl = new SelectListItem()
@@ -155,7 +157,7 @@ namespace UI.Controllers
         private List<SelectListItem> GJXlk()
         {
             List<SelectListItem> list = new List<SelectListItem>();
-            List<config_public_charModel> list2 = ibcl.cx("国籍");
+            List<config_public_charModel> list2 = ibcl.SelectWhere("国籍");
             foreach (config_public_charModel item in list2)
             {
                 SelectListItem sl = new SelectListItem()
@@ -174,7 +176,7 @@ namespace UI.Controllers
         private List<SelectListItem> MZXlk()
         {
             List<SelectListItem> list = new List<SelectListItem>();
-            List<config_public_charModel> list2 = ibcl.cx("民族");
+            List<config_public_charModel> list2 = ibcl.SelectWhere("民族");
             foreach (config_public_charModel item in list2)
             {
                 SelectListItem sl = new SelectListItem()
@@ -193,7 +195,7 @@ namespace UI.Controllers
         private List<SelectListItem> ZJXYXlk()
         {
             List<SelectListItem> list = new List<SelectListItem>();
-            List<config_public_charModel> list2 = ibcl.cx("宗教信仰");
+            List<config_public_charModel> list2 = ibcl.SelectWhere("宗教信仰");
             foreach (config_public_charModel item in list2)
             {
                 SelectListItem sl = new SelectListItem()
@@ -212,7 +214,7 @@ namespace UI.Controllers
         private List<SelectListItem> ZZMMXlk()
         {
             List<SelectListItem> list = new List<SelectListItem>();
-            List<config_public_charModel> list2 = ibcl.cx("政治面貌");
+            List<config_public_charModel> list2 = ibcl.SelectWhere("政治面貌");
             foreach (config_public_charModel item in list2)
             {
                 SelectListItem sl = new SelectListItem()
@@ -231,7 +233,7 @@ namespace UI.Controllers
         private List<SelectListItem> XLXlk()
         {
             List<SelectListItem> list = new List<SelectListItem>();
-            List<config_public_charModel> list2 = ibcl.cx("学历");
+            List<config_public_charModel> list2 = ibcl.SelectWhere("学历");
             foreach (config_public_charModel item in list2)
             {
                 SelectListItem sl = new SelectListItem()
@@ -250,7 +252,7 @@ namespace UI.Controllers
         private List<SelectListItem> JYNXXlk()
         {
             List<SelectListItem> list = new List<SelectListItem>();
-            List<config_public_charModel> list2 = ibcl.cx("教育年限");
+            List<config_public_charModel> list2 = ibcl.SelectWhere("教育年限");
             foreach (config_public_charModel item in list2)
             {
                 SelectListItem sl = new SelectListItem()
@@ -269,7 +271,7 @@ namespace UI.Controllers
         private List<SelectListItem> XLZYXlk()
         {
             List<SelectListItem> list = new List<SelectListItem>();
-            List<config_public_charModel> list2 = ibcl.cx("专业");
+            List<config_public_charModel> list2 = ibcl.SelectWhere("专业");
             foreach (config_public_charModel item in list2)
             {
                 SelectListItem sl = new SelectListItem()
@@ -288,7 +290,7 @@ namespace UI.Controllers
         private List<SelectListItem> XCSZXlk()
         {
             List<SelectListItem> list = new List<SelectListItem>();
-            List<config_public_charModel> list2 = ibcl.cx("薪酬设置");
+            List<config_public_charModel> list2 = ibcl.SelectWhere("薪酬设置");
             foreach (config_public_charModel item in list2)
             {
                 SelectListItem sl = new SelectListItem()
@@ -307,7 +309,7 @@ namespace UI.Controllers
         private List<SelectListItem> AHXlk()
         {
             List<SelectListItem> list = new List<SelectListItem>();
-            List<config_public_charModel> list2 = ibcl.cx("爱好");
+            List<config_public_charModel> list2 = ibcl.SelectWhere("爱好");
             foreach (config_public_charModel item in list2)
             {
                 SelectListItem sl = new SelectListItem()
@@ -326,7 +328,7 @@ namespace UI.Controllers
         private List<SelectListItem> TCXlk()
         {
             List<SelectListItem> list = new List<SelectListItem>();
-            List<config_public_charModel> list2 = ibcl.cx("特长");
+            List<config_public_charModel> list2 = ibcl.SelectWhere("特长");
             foreach (config_public_charModel item in list2)
             {
                 SelectListItem sl = new SelectListItem()

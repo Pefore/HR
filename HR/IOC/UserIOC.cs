@@ -113,12 +113,7 @@ namespace IOC
             ioc.RegisterType<IFDALconfig_file_third_kind, DALConfig_file_third_kind>();
             return ioc.Resolve<IFDALconfig_file_third_kind>();
         }
-        public static IFDALconfig_file_first_kind CreateConfig_file_first_kindDAO()
-        {
-            UnityContainer ioc = new UnityContainer();
-            ioc.RegisterType<IFDALconfig_file_first_kind, DALConfig_file_first_kind>();
-            return ioc.Resolve<IFDALconfig_file_first_kind>();
-        }
+        
         public static IFBLLconfig_major config_majorBLL()
         {
             UnityContainer ioc = GetBLLSeciton();

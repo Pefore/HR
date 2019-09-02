@@ -314,7 +314,7 @@
                 <td class="TD_STYLE2">
                     @*<input type="text" name="humanFile.register" value="谢鹏"
                            readonly="readonly" class="INPUT_STYLE2">*@
-                    @Html.EditorFor(model => model.register, new { htmlAttributes = new { @class = "INPUT_STYLE2"}  })
+                    @Html.EditorFor(model => model.register, new { htmlAttributes = new { @class = "INPUT_STYLE2",@id= "register",@readonly="readonly"}  })
                     @Html.ValidationMessageFor(model => model.register, "", new { @class = "text-danger" })
                 </td>
             </tr>
@@ -385,6 +385,9 @@
 </body>
 </html>
 <script type="text/javascript">
+    $(function () {
+        $("#register").val(localStorage.getItem("user"));
+    })
     function EJBSJ(s) {
         $("#SJJG").remove();
         $.ajax({
