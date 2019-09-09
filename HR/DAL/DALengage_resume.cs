@@ -54,6 +54,7 @@ namespace DAL
             er.test_check_time = Convert.ToDateTime("2000-01-01");
             er.human_educated_degree = e.human_educated_degree;
             er.check_status = e.check_status;
+            er.human_picture = e.human_picture;
             return Add(er);
         }
         public ArrayList engage_resumeLikeFenYe(LikeFenYe l)
@@ -82,7 +83,7 @@ namespace DAL
                     human_major_name = item.human_major_name,
                     human_telephone = item.human_telephone,
                     check_status = item.check_status,
-                    human_age = item.human_age
+                    human_age = item.human_age,
                 };
                 if (item.check_status == 1)
                 {
@@ -141,7 +142,10 @@ namespace DAL
             er.check_status = e.check_status;
             er.recomandation = e.recomandation;
             er.res_id = e.res_id;
-            er.interview_status = 1;
+            er.interview_status =e.interview_status;
+            er.human_picture = e.human_picture;
+            er.pass_checkComment = e.pass_checkComment;
+            er.pass_passComment = e.pass_passComment;
             return Update(er);
         }
 
@@ -189,6 +193,10 @@ namespace DAL
             er.checker = e.checker;
             er.recomandation = e.recomandation;
             er.res_id = e.res_id;
+            er.human_picture = e.human_picture;
+            er.interview_status = e.interview_status;
+            er.pass_checkComment = e.pass_checkComment;
+            er.pass_passComment = e.pass_passComment;
             return er;
         }
         public ArrayList engage_resumeYouXianFenYe(LikeFenYe l)
@@ -233,5 +241,90 @@ namespace DAL
             list2.Add((rows - 1) / l.PageSize + 1);
             return list2;
         }
+
+        public engage_interview_resume Selectengage_interview_resume(engage_interview_resume eir)
+        {
+            engage_resume e = SelectBy(el => el.res_id == eir.resume_id).FirstOrDefault();
+            engage_interview_resume er = eir;
+            er.human_name = e.human_name;
+            er.engage_type = e.engage_type;
+            er.human_address = e.human_address;
+            er.human_postcode = e.human_postcode;
+            er.human_major_kind_id = e.human_major_kind_id;
+            er.human_major_kind_name = e.human_major_kind_name;
+            er.human_major_id = e.human_major_id;
+            er.human_major_name = e.human_major_name;
+            er.human_telephone = e.human_telephone;
+            er.human_homephone = e.human_homephone;
+            er.human_mobilephone = e.human_mobilephone;
+            er.human_email = e.human_email;
+            er.human_hobby = e.human_hobby;
+            er.human_specility = e.human_specility;
+            er.human_sex = e.human_sex;
+            er.human_religion = e.human_religion;
+            er.human_party = e.human_party;
+            er.human_nationality = e.human_nationality;
+            er.human_race = e.human_race;
+            er.human_birthday = e.human_birthday;
+            er.human_age = e.human_age;
+            er.human_educated_years = e.human_educated_years;
+            er.human_educated_major = e.human_educated_major;
+            er.human_college = e.human_college;
+            er.human_idcard = e.human_idcard;
+            er.human_birthplace = e.human_birthplace;
+            er.demand_salary_standard = e.demand_salary_standard;
+            er.human_history_records = e.human_history_records;
+            er.remark = e.remark;
+            er.regist_time = e.regist_time;
+            er.register = e.register;
+            er.check_time = e.check_time;
+            er.pass_check_time = Convert.ToDateTime("2000-01-01");
+            er.pass_regist_time = Convert.ToDateTime("2000-01-01");
+            er.test_check_time = Convert.ToDateTime("2000-01-01");
+            er.human_educated_degree = e.human_educated_degree;
+            er.check_status = e.check_status;
+            er.checker = e.checker;
+            er.recomandation = e.recomandation;
+            er.human_picture = e.human_picture;
+            er.interview_status = e.interview_status;
+            return er;
+        }
+
+        public int engage_resumeDelete(engage_resume_Model e)
+        {
+            int i = Delete(new engage_resume() { res_id = e.res_id });
+            return i;
+        }
+        public ArrayList engage_resumeYouXianFenYe6(LikeFenYe l)
+        {
+            ArrayList list2 = new ArrayList();
+            int rows = 0;
+            List<engage_resume> list = null;
+            List<engage_resume_Model> list1 = new List<engage_resume_Model>();
+            list = FenYe<int>(e => e.res_id, e => (e.interview_status==6), ref rows, l.Dq, l.PageSize);
+            foreach (var item in list)
+            {
+                engage_resume_Model erm = new engage_resume_Model()
+                {
+                    human_name = item.human_name,
+                    res_id = item.res_id,
+                    human_sex = item.human_sex,
+                    human_major_kind_name = item.human_major_kind_name,
+                    human_major_name = item.human_major_name,
+                    human_educated_major=item.human_educated_major,
+                    human_telephone = item.human_telephone,
+                    human_age = item.human_age,
+                    human_college=item.human_college
+                };
+                list1.Add(erm);
+            }
+            list2.Add(list1);
+            list2.Add(rows);
+            list2.Add(l.Dq);
+            list2.Add(l.PageSize);
+            list2.Add((rows - 1) / l.PageSize + 1);
+            return list2;
+        }
+
     }
 }

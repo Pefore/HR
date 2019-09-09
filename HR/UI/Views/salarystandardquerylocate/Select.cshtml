@@ -1,0 +1,174 @@
+﻿@using Model.CaoZuoLei;
+@using Model.salaryCriterionModel;
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Select</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/table.css" rel="stylesheet" />
+    <script src="~/javascript/comm/comm.js"></script>
+    <script src="~/javascript/jquery-1.7.2.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <link href="~/Content/cwcalendar.css" rel="stylesheet" />
+    <script src="~/javascript/comm/list.js"></script>
+    <script src="~/javascript/calendar-ch.js"></script>
+    <script src="~/javascript/locate.js"></script>
+    <script src="~/javascript/comm/time.js"></script>
+    <script src="~/Scripts/vue.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/jquery.validate.js">
+    </script>
+</head>
+<body>
+    <div id="div1">
+        <form name="fm">
+            <input type="hidden" name="utilBean.currPage" id="page" />
+            <table width="100%">
+                <tr>
+                    <td>
+                        <font color="black">
+                            您正在做的业务是:人力资源管理--薪酬标准管理--薪酬标准登记复核
+                        </font>
+                    </td>
+                </tr>
+
+            </table>
+            当前等待复核的薪酬标准总数:<span>@ViewBag.ls[1]</span>例
+            <table width="100%" border="1" cellpadding=0 cellspacing=1
+                   bordercolorlight=#848284 bordercolordark=#eeeeee
+                   class="TABLE_STYLE1" id="a">
+                <tr>
+                    <td width="15%" class="TD_STYLE1">
+                        薪酬标准编号
+                    </td>
+                    <td width="20%" class="TD_STYLE1">
+                        薪酬标准名称
+                    </td>
+                    <td width="10%" class="TD_STYLE1">
+                        制定人
+                    </td>
+                    <td width="20%" class="TD_STYLE1">
+                        登记时间
+                    </td>
+                    <td width="20%" class="TD_STYLE1">
+                        薪酬总额
+                    </td>
+                </tr>
+                @{
+                    LikeFenYe lk = ViewBag.ls[5] as @LikeFenYe;
+                }
+                @foreach (salary_standardModel item in ViewBag.ls[0])
+            {
+                    <tr>
+                        <td class="TD_STYLE2">
+                            @item.standard_id
+                        </td>
+                        <td class="TD_STYLE2">
+                            @item.standard_name
+                        </td>
+                        <td class="TD_STYLE2">
+                            @item.designer
+                        </td>
+                        <td class="TD_STYLE2">
+                            @item.regist_time
+                        </td>
+                        <td class="TD_STYLE2">
+                            @item.salary_sum
+                        </td>
+                        <td hidden>
+                            <input type="text" value="@lk.endDate" name="endDate" />
+                            <input type="text" value="@lk.startDate" name="startDate" />
+                            <input type="text" value="@lk.primarKey" name="primarKey" />
+                            <input type="text" value="@lk.major_kind_id" name="major_kind_id" />
+                            <input type="text" value="@lk.humanMajorId" name="humanMajorId" />
+                        </td>
+                    </tr>
+                }
+            </table>
+            <p>
+                <div align="center" style="font-size: 18px;color: gray">
+                    &nbsp;&nbsp;总数：
+                    <font style="color: maroon;font-weight: bold;">@ViewBag.ls[1]</font>
+                    例
+                    &nbsp;&nbsp;&nbsp;
+                    每页显示 <font style="color: maroon;font-weight: bold;">@ViewBag.ls[3]</font>
+                    条
+                    &nbsp;&nbsp;&nbsp;
+                    当前第 <font style="color: maroon;font-weight: bold;">@ViewBag.ls[2]</font>
+                    页
+                    &nbsp;&nbsp;&nbsp;共
+                    <font style="color: maroon;font-weight: bold;"><span>@ViewBag.ls[4]</span></font>
+                    页
+                    <a style="color: navy;font-weight: bold" href="javascript:up1(@ViewBag.ls[2])">首页</a>
+
+                    <a style="color: navy;font-weight: bold"
+                       href="javascript:up(@ViewBag.ls[2])">上一页</a>
+
+                    <a style="color: navy;font-weight: bold"
+                       href="javascript:down(@ViewBag.ls[2],@ViewBag.ls[4])">下一页</a>
+
+                    <a style="color: navy;font-weight: bold"
+                       href="javascript:down1(@ViewBag.ls[2],@ViewBag.ls[4])">末页</a>
+                    &nbsp;&nbsp;&nbsp;跳到第
+                    <input id=page type=text value="1" class=input1 size=1 id="currPage">
+                    页&nbsp;&nbsp;
+                    <input type="image" onclick="tj(@ViewBag.ls[4])" src="../../images/go.bmp" width=18 height=18 border=0>
+                </div>
+            </p>
+        </form>
+    </div>
+    <script type="text/javascript">
+        function up1(currPage) {
+            if (currPage == 1) {
+                alert("已经是第一页了");
+                return;
+            } else {
+                currPage=1;
+                window.location.href = "/salarystandardquerylocate/Select?" + $("form").serialize() + "&Dq=" + currPage;
+            }
+        }
+        function up(currPage){
+            if(currPage==1){
+                alert("已经是第一页了");
+                return;
+            }else{
+                currPage--;
+                window.location.href = "/salarystandardquerylocate/Select?" + $("form").serialize() + "&Dq=" + currPage;
+            }
+        }
+        function down(currPage,row){
+            if(currPage==row){
+                alert("已经是最后一页了");
+                return;
+            }else{
+                currPage++;
+                window.location.href = "/salarystandardquerylocate/Select?" + $("form").serialize() + "&Dq=" + currPage;
+            }
+        }
+        function down1(currPage, row) {
+            if (currPage == row) {
+                alert("已经是最后一页了");
+                return;
+            } else {
+                currPage=row;
+                window.location.href = "/salarystandardquerylocate/Select?" + $("form").serialize() + "&Dq=" + currPage;
+            }
+        }
+        function tj(row){
+            if($("#currPage").val()>row){
+                alert("最大页数为"+row+",当前为第"+row+"页 ");
+                return false;
+            } else {
+                window.location.href = "/salarystandardquerylocate/Select?" + $("form").serialize() + "&Dq=" + $("#currPage").val();
+            }
+        }
+    </script>
+</body>
+</html>

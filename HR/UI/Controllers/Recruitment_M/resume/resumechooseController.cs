@@ -87,13 +87,14 @@ namespace UI.Controllers.Recruitment_M.resume
             erm.check_status = 2;
             erm.checker = Request["checker"];
             erm.check_time = DateTime.Now;
+            erm.interview_status = 1;
             int i = er.engage_resumeUpdate(erm);
             if (i > 0)
             {
-                return Content("<script>alert('推荐成功--跳转筛选页面'); window.location.href ='/resumechoose/Index';< script>");
+                return Content("<script>alert('推荐成功--跳转筛选页面');window.location.href ='/resumechoose/Index'</script>");
             }else
             {
-                return Content("<script>alert('推荐失败--请重试'); window.location.href ='/resumechoose/XianXi？id="+erm.res_id+"';< script>");
+                return Content("<script>alert('推荐失败--请重试');window.location.href ='/resumechoose/XianXi？id=" + erm.res_id + "'</script>");
             }
         }
         private dynamic major_kind_name()

@@ -24,6 +24,11 @@ namespace BLL
             return u.Login(s);
         }
 
+        public List<users> se()
+        {
+            return u.se();
+        }
+
         public users Select(users s)
         {
             return u.Select(s);

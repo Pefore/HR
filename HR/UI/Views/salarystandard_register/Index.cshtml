@@ -1,0 +1,279 @@
+﻿@using Model;
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>薪酬标准登记</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/table.css" rel="stylesheet" />
+    <script src="~/javascript/comm/comm.js"></script>
+    <script src="~/javascript/jquery-1.7.2.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <link href="~/Content/cwcalendar.css" rel="stylesheet" />
+    <script src="~/javascript/comm/list.js"></script>
+    <script src="~/javascript/calendar-ch.js"></script>
+    <script src="~/javascript/locate.js"></script>
+    <script src="~/javascript/comm/time.js"></script>
+    <script src="~/Scripts/vue.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/jquery.validate.js">
+    </script>
+</head>
+<body>
+
+    <form method="post" action="Add">
+        <table width="100%">
+            <tr>
+                <td>
+                    <font color="black">
+                        您正在做的业务是：人力资源--薪酬标准管理--薪酬标准登记
+                    </font>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    <input type="button" value="提 交" onclick="check()" class="BUTTON_STYLE1">
+                    <input type="button" value="选 择" onclick="show()" class="BUTTON_STYLE1">
+                    <input type="reset" value="返 回" class="BUTTON_STYLE1">
+
+                </td>
+            </tr>
+        </table>
+        <table id="stable" width="100%" border="1" cellpadding=0 cellspacing=1
+               bordercolorlight=#848284 bordercolordark=#eeeeee
+               class="TABLE_STYLE1">
+            <tr>
+                <td width="74" class="TD_STYLE1">
+                    薪酬标准编号
+                </td>
+                <td width="168" class="TD_STYLE2">
+                    <input type="text" name="standardId" value="" readonly="readonly" class="INPUT_STYLE2" id="standardId">
+                </td>
+                <td width="83" class="TD_STYLE1">
+                    薪酬标准名称
+                </td>
+                <td width="171" class="TD_STYLE2">
+                    <input type="text" name="standardName" id="standardName" class="INPUT_STYLE2" placeholder="请输入薪酬标准名称">
+                </td>
+                <td width="170" class="TD_STYLE1">
+                    薪酬总额
+                </td>
+                <td width="138" class="TD_STYLE2">
+                    <input type="text" name="salarySum" id="sumSalary" value="0.0" readonly class="INPUT_STYLE2" />
+                </td>
+                
+            </tr>
+            <tr>
+                <td class="TD_STYLE1">
+                    制定人
+                </td>
+                <td class="TD_STYLE2">
+                    @Html.DropDownList("designer", @ViewBag.user as IEnumerable<SelectListItem>, "--请选择制定人--", new { @id = "designer", @class = "SELECT_STYLE1" })
+                </td>
+                <td class="TD_STYLE1">
+                    登记人
+                </td>
+                <td class="TD_STYLE2">
+                    <input type="text" name="register" value="better_admin" readonly="readonly" class="INPUT_STYLE2" id="register">
+                </td>
+                <td class="TD_STYLE1">
+                    登记时间
+                </td>
+                <td class="TD_STYLE2">
+                    <input type="text" id="Tdate" name="registTime" readonly="readonly" class="INPUT_STYLE2">
+                </td>
+            </tr>
+            <tr>
+                <td class="TD_STYLE1">
+                    备注
+                </td>
+                <td colspan="7" class="TD_STYLE2">
+                    <textarea name="remark" rows="4" class="TEXTAREA_STYLE1"></textarea>
+                </td>
+            </tr>
+            @{ 
+                List<config_public_charModel> list = ViewBag.pub as List<config_public_charModel>;
+                List<config_public_charModel> list1 = ViewBag.pub1 as List<config_public_charModel>;
+            }
+            <tr class="TD_STYLE1">
+                <td align="center">
+                    序号
+                </td> 
+                <td colspan="3">
+                    薪酬项目名称
+                </td>
+                <td>
+                    金额
+                </td>
+            </tr>
+            <tbody>
+                @{
+                    if (list1.Count != 0)
+                    {
+                        for (int i = 0; i < list1.Count; i++)
+                        {
+                            config_public_charModel item = list1[i];
+                            <tr class="TD_STYLE2">
+                                <td align="center">
+                                    @item.Id
+                                    <input type="hidden" name="itemId" value="@item.Id">
+                                </td>
+                                <td colspan="3">
+                                    @item.attribute_name
+                                    <input type="hidden" id="details1" name="attribute_name" value="@item.attribute_name">
+                                </td>
+                                <td>
+                                    <input type="text" value="0.00" name="mon" id="id-@i"
+                                           onkeyup="countMoney(this)" class="INPUT_STYLE2" onblur="ss()">
+                                </td>
+                            </tr>
+                        }
+                    }
+                }
+            </tbody>
+        </table>
+    </form>
+    <form action="Index" method="post" id="f" hidden>
+        <div style="width:500px;height:160px;margin-left:586px">
+            <input type="checkbox" name="AllCheck" onclick="qx()" id="QXAN"/>全选<br />
+            <div style="width:350px;border:2px solid #cab4b4;height:55px;margin-top:4px">
+                @for (int i =0; i < list.Count; i++)
+                {
+                    config_public_charModel item = list[i];
+                    if (i == 3)
+                    {
+                        <input type="checkbox" name="checkboxFX" style="background-color:#ded0d0" value="@item.Id"/>@item.attribute_name<br/>
+                    }
+                    else
+                    {
+                        <input type="checkbox" name="checkboxFX" style="background-color:#ded0d0" value="@item.Id"/>@item.attribute_name<span>&nbsp;&nbsp;</span>
+                    }
+                }
+            </div>
+            <input type="submit" value="确认" onclick="qr(this)" class="btn-xs"/>&nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" value="重置" class="btn-xs" onclick="cz()"/>
+        </div>
+    </form>
+    <script type="text/javascript">
+        function ss(s){
+            var zhi=$(s).val();
+            if (isNaN(zhi) || parseFloat(zhi)<0){
+                $(s).val("0.00");
+            }
+        }
+        function show() {
+            $("#f").show();
+        }
+        function qr() {
+            $("#f").hide();
+        }
+        function cz() {
+            var fxZ = document.getElementsByName("checkboxFX");
+            for (var i = 0; i < fxZ.length; i++) {
+                var h = fxZ[i];
+                $(h).attr("checked", false)
+            }
+        }
+        function qx() {
+            var fxZ = document.getElementsByName("checkboxFX");
+            if ($("#QXAN").is(':checked')) {
+                for (var i = 0; i < fxZ.length; i++) {
+                    var h = fxZ[i];
+                    $(h).attr("checked",true)
+                }
+            } else {
+                for (var i = 0; i < fxZ.length; i++) {
+                    var h = fxZ[i];
+                    $(h).attr("checked", false)
+                }
+            }
+        };
+		function check(){
+
+				var designer=document.getElementById("designer");
+				var standardName=document.getElementById("standardName");
+				if(designer.value.length<=0){
+				alert("制定人不可为空!!!");
+						return ;
+				}
+				if(standardName.value.length<=0){
+				alert("薪酬标准名称不可为空!!!");
+					return ;
+				}
+			document.forms[0].submit();
+		}
+		function countMoney(obj) {
+		    var dq = $(obj).val();
+		    if (isNaN(dq) || dq< 0) {
+		        alert("金额填写错误!");
+		        $(obj).val("0.00");
+		        return;
+		    }
+		    var sum = 0;
+		    for (var i =0; i <@list1.Count; i++) {
+		        var salary =$("#id-"+i).val();
+		        if (salary == "") {
+		            salary = "0.00";
+		        }
+		        sum = Number(sum) + Number(salary);
+
+		    }
+		    $("#sumSalary").val(sum);
+		}
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            $("#register").val(localStorage.getItem("user"));
+            var dt = new Date();
+            $("#standardId").val(dt.getFullYear().toString() + "0" + (dt.getMonth() + 1).toString() + "0" + dt.getDate().toString() + dt.getHours().toString() + dt.getMinutes().toString() + dt.getSeconds());
+            function time(){
+                var tdate=document.getElementById("Tdate");					 
+                var d=new Date();
+                var y=d.getFullYear();
+                var moth=d.getMonth()+1;
+                var date=d.getDate();
+                var h=d.getHours();
+                var m=d.getMinutes();
+                var s=d.getSeconds();
+                var hh=20-1-h;
+                var mm=60-1-m;
+                var ss=60-s;
+                if(hh>0){
+                    mm=mm+60*hh;
+                }
+                if(moth<10){
+                    moth="0"+moth;
+                }
+                if(date<10){
+                    date="0"+date;
+                }
+                if(h<10){
+                    h="0"+h;
+                }
+                if(m<10){
+                    m="0"+m;
+                }
+                if(s<10){
+                    s="0"+s;
+                }
+                if(mm<10){
+                    mm="0"+mm;
+                }
+                if(ss<10){
+                    ss="0"+ss;
+                }	
+ 					 
+                tdate.value=y+"-"+moth+"-"+date+" "+h+":"+m+":"+s;
+					  
+            }
+            window.onload=time;
+            var out=window.setInterval(time, 1000);
+        })
+    </script>
+</body>
+</html>

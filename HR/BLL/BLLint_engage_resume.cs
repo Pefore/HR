@@ -20,6 +20,11 @@ namespace BLL
             return s.engage_resumeAdd(e);
         }
 
+        public int engage_resumeDelete(engage_resume_Model e)
+        {
+            return s.engage_resumeDelete(e);
+        }
+
         public ArrayList engage_resumeLikeFenYe(LikeFenYe l)
         {
             return s.engage_resumeLikeFenYe(l);
@@ -33,6 +38,16 @@ namespace BLL
         public ArrayList engage_resumeYouXianFenYe(LikeFenYe l)
         {
             return s.engage_resumeYouXianFenYe(l);
+        }
+
+        public ArrayList engage_resumeYouXianFenYe6(LikeFenYe l)
+        {
+            return s.engage_resumeYouXianFenYe6(l);
+        }
+
+        public engage_interview_resume Selectengage_interview_resume(engage_interview_resume eir)
+        {
+            return s.Selectengage_interview_resume(eir);
         }
 
         public engage_resume_Model SelectId(engage_resume_Model e)

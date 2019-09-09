@@ -45,7 +45,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CommonServiceLocator">
-      <HintPath>D:\。Net\HR\HR\UI\bin\CommonServiceLocator.dll</HintPath>
+      <HintPath>D:\。Net\复习课\三大模式\Unity\Unity.5.8.11\lib\net45\CommonServiceLocator.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
@@ -95,12 +95,24 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -145,30 +157,26 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
-    <Reference Include="UI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>D:\。Net\HR\HR\UI\bin\UI.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.Abstractions">
-      <HintPath>D:\。Net\HR\HR\UI\bin\Unity.Abstractions.dll</HintPath>
+      <HintPath>D:\。Net\复习课\三大模式\Unity\Unity.5.8.11\lib\net45\Unity.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Configuration">
-      <HintPath>D:\。Net\HR\HR\UI\bin\Unity.Configuration.dll</HintPath>
+      <HintPath>D:\。Net\复习课\三大模式\Unity\Unity.5.8.11\lib\net45\Unity.Configuration.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Container">
-      <HintPath>D:\。Net\HR\HR\UI\bin\Unity.Container.dll</HintPath>
+      <HintPath>D:\。Net\复习课\三大模式\Unity\Unity.5.8.11\lib\net45\Unity.Container.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Interception">
-      <HintPath>D:\。Net\HR\HR\UI\bin\Unity.Interception.dll</HintPath>
+      <HintPath>D:\。Net\复习课\三大模式\Unity\Unity.5.8.11\lib\net45\Unity.Interception.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Interception.Configuration">
-      <HintPath>D:\。Net\HR\HR\UI\bin\Unity.Interception.Configuration.dll</HintPath>
+      <HintPath>D:\。Net\复习课\三大模式\Unity\Unity.5.8.11\lib\net45\Unity.Interception.Configuration.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RegistrationByConvention">
-      <HintPath>D:\。Net\HR\HR\UI\bin\Unity.RegistrationByConvention.dll</HintPath>
+      <HintPath>D:\。Net\复习课\三大模式\Unity\Unity.5.8.11\lib\net45\Unity.RegistrationByConvention.dll</HintPath>
     </Reference>
     <Reference Include="Unity.ServiceLocation">
-      <HintPath>D:\。Net\HR\HR\UI\bin\Unity.ServiceLocation.dll</HintPath>
+      <HintPath>D:\。Net\复习课\三大模式\Unity\Unity.5.8.11\lib\net45\Unity.ServiceLocation.dll</HintPath>
     </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
@@ -233,15 +241,23 @@
     <Compile Include="Controllers\clientfirstkindController.cs" />
     <Compile Include="Controllers\configfilesecondkindController.cs" />
     <Compile Include="Controllers\configfilethirdkindController.cs" />
-    <Compile Include="Controllers\human_file_digController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\Public_charController.cs" />
+    <Compile Include="Controllers\Recruitment_M\employ\listController.cs" />
+    <Compile Include="Controllers\Recruitment_M\employ\registerLYController.cs" />
+    <Compile Include="Controllers\Recruitment_M\employ\registerSPController.cs" />
+    <Compile Include="Controllers\Recruitment_M\interview\interviewlistController.cs" />
+    <Compile Include="Controllers\Recruitment_M\interview\siftlistController.cs" />
     <Compile Include="Controllers\Recruitment_M\Job_release_m\position_change_updateController.cs" />
     <Compile Include="Controllers\Recruitment_M\Job_release_m\position_registerController.cs" />
     <Compile Include="Controllers\Recruitment_M\Job_release_m\position_release_searchController.cs" />
     <Compile Include="Controllers\Recruitment_M\resume\registerController.cs" />
     <Compile Include="Controllers\Recruitment_M\resume\resumechooseController.cs" />
     <Compile Include="Controllers\Recruitment_M\resume\validresumeController.cs" />
+    <Compile Include="Controllers\salaryCriterion\salarystandardchangelocateController.cs" />
+    <Compile Include="Controllers\salaryCriterion\salarystandardquerylocateController.cs" />
+    <Compile Include="Controllers\salaryCriterion\salarystandard_check_listController.cs" />
+    <Compile Include="Controllers\salaryCriterion\salarystandard_registerController.cs" />
     <Compile Include="Controllers\Salary_itemController.cs" />
     <Compile Include="Controllers\MianController.cs" />
     <Compile Include="Controllers\Position\PositionController.cs" />
@@ -258,12 +274,20 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\cwcalendar.css" />
+    <Content Include="Content\style.css" />
     <Content Include="Content\table.css" />
+    <Content Include="Content\webuploader.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="javascript\jquery.js" />
     <Content Include="javascript\table.css" />
+    <Content Include="javascript\webuploader.js" />
+    <Content Include="Phone\2019\09\03\0ECDECB86A0CE22CB4985EDFA45F1552.jpg" />
+    <Content Include="Phone\2019\09\03\37154289918C9CF9C03BC23CAD54A401.jpg" />
+    <Content Include="Phone\2019\09\03\DBD89272D71115BA563B168AED3498D8.jpg" />
+    <Content Include="Phone\2019\09\03\FCF6B7FF9080A60869B0BA5ABAD32A07.jpg" />
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -293,9 +317,7 @@
     <Content Include="Scripts\table.css" />
     <Content Include="Scripts\vue.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -362,7 +384,26 @@
     <Content Include="Views\validresume\Index.cshtml" />
     <Content Include="Views\validresume\Like.cshtml" />
     <Content Include="Views\validresume\XianXi.cshtml" />
-    <Content Include="Views\human_file_dig\Index.cshtml" />
+    <Content Include="Views\register\SC.cshtml" />
+    <Content Include="Views\interviewlist\Index.cshtml" />
+    <Content Include="Views\interviewlist\Like.cshtml" />
+    <Content Include="Views\interviewlist\MianShi.cshtml" />
+    <Content Include="Views\siftlist\Index.cshtml" />
+    <Content Include="Views\siftlist\Update.cshtml" />
+    <Content Include="Views\registerLY\Index.cshtml" />
+    <Content Include="Views\registerLY\Update.cshtml" />
+    <Content Include="Views\registerSP\Index.cshtml" />
+    <Content Include="Views\registerSP\Update.cshtml" />
+    <Content Include="Views\list\Index.cshtml" />
+    <Content Include="Views\list\Update.cshtml" />
+    <Content Include="Views\salarystandard_register\Index.cshtml" />
+    <Content Include="Views\salarystandard_check_list\Index.cshtml" />
+    <Content Include="Views\salarystandard_check_list\Update.cshtml" />
+    <Content Include="Views\salarystandardquerylocate\Index.cshtml" />
+    <Content Include="Views\salarystandardquerylocate\Select.cshtml" />
+    <Content Include="Views\salarystandardchangelocate\Index.cshtml" />
+    <Content Include="Views\salarystandardchangelocate\Select.cshtml" />
+    <Content Include="Views\salarystandardchangelocate\GengGai.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -398,6 +439,10 @@
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{87F5EA99-FF0D-4C27-8DA1-A6FF9AA488A6}</Project>
       <Name>Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tool\Tool.csproj">
+      <Project>{ef19c23e-7a12-4adc-95d8-2a6a6092839d}</Project>
+      <Name>Tool</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

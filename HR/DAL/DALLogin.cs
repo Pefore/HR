@@ -23,6 +23,21 @@ namespace DAL
             return (int)SqlDBHelper.DGZ(sql);
         }
 
+        public List<users> se()
+        {
+            List<user> list = SelectAll();
+            List<users> list1 = new List<users>();
+            foreach (user item in list)
+            {
+                users u = new users()
+                {
+                    user_true_name = item.user_true_name
+                };
+                list1.Add(u);
+            }
+            return list1;
+        }
+
         public users Select(users s)
         {
             List<user> list = SelectBy(e => e.user_name.Equals(s.user_name));

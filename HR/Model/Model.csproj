@@ -48,12 +48,14 @@
     <Compile Include="config_major_Model.cs" />
     <Compile Include="config_major_kind_Model.cs" />
     <Compile Include="engage_interviewModel.cs" />
+    <Compile Include="engage_interview_resume.cs" />
     <Compile Include="engage_major_release_Model.cs" />
     <Compile Include="engage_resume_Model.cs" />
     <Compile Include="Position_Name_Set_Model .cs" />
     <Compile Include="config_public_charModel.cs" />
-	<Compile Include="human_file_digModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="salaryCriterionModel\salary_standardModel.cs" />
+    <Compile Include="salaryCriterionModel\salary_standard_detailsModel.cs" />
     <Compile Include="users.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

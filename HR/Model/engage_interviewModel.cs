@@ -14,7 +14,7 @@ namespace Model
         public int ein_id { get; set; }
         public string human_name { get; set; }
         public int interview_amount { get; set; }
-        public int human_major_kind_id { get; set; }
+        public string human_major_kind_id { get; set; }
         public string human_major_kind_name { get; set; }
         public string human_major_id { get; set; }
         public string human_major_name { get; set; }

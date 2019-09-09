@@ -1,0 +1,256 @@
+﻿@using Model.CaoZuoLei;
+@using Model.salaryCriterionModel;
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>薪酬标准登记变更</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/table.css" rel="stylesheet" />
+    <script src="~/javascript/comm/comm.js"></script>
+    <script src="~/javascript/jquery-1.7.2.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <link href="~/Content/cwcalendar.css" rel="stylesheet" />
+    <script src="~/javascript/comm/list.js"></script>
+    <script src="~/javascript/calendar-ch.js"></script>
+    <script src="~/javascript/locate.js"></script>
+    <script src="~/javascript/comm/time.js"></script>
+    <script src="~/Scripts/vue.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/jquery.validate.js">
+    </script>
+</head>
+<body>
+
+    <form method="post" action="Update1">
+        <table width="100%">
+            <tr>
+                <td>
+                    <font color="black">
+                        您正在做的业务是：人力资源--薪酬标准管理--薪酬标准登记
+                    </font>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    <input type="button" value="重新提 交" onclick="check()" class="BUTTON_STYLE1">
+                    <input type="reset" value="返 回" class="BUTTON_STYLE1">
+
+                </td>
+            </tr>
+        </table>
+        @{
+            salary_standardModel list = ViewBag.pub as salary_standardModel;
+            List<salary_standard_detailsModel> list1 = ViewBag.pub1 as List<salary_standard_detailsModel>;
+        }
+        <table id="stable" width="100%" border="1" cellpadding=0 cellspacing=1
+               bordercolorlight=#848284 bordercolordark=#eeeeee
+               class="TABLE_STYLE1">
+            <tr>
+                <td width="74" class="TD_STYLE1">
+                    薪酬标准编号
+                </td>
+                <td width="168" class="TD_STYLE2">
+                    <input type="text" name="standardId" value="@list.standard_id" readonly="readonly" class="INPUT_STYLE2" id="standardId">
+                </td>
+                <td width="83" class="TD_STYLE1">
+                    薪酬标准名称
+                </td>
+                <td width="171" class="TD_STYLE2">
+                    <input type="text" name="standardName" id="standardName" class="INPUT_STYLE2" value="@list.standard_name" readonly>
+                </td>
+                <td width="170" class="TD_STYLE1">
+                    薪酬总额
+                </td>
+                <td width="138" class="TD_STYLE2">
+                    <input type="text" name="salarySum" id="sumSalary" value="@list.salary_sum" readonly class="INPUT_STYLE2" />
+                </td>
+
+            </tr>
+            <tr>
+                <td class="TD_STYLE1">
+                    制定人
+                </td>
+                <td class="TD_STYLE2">
+                    <input type="text" name="designer" value="@list.designer" readonly="readonly" class="INPUT_STYLE2" id="register">
+                </td>
+                <td class="TD_STYLE1">
+                    变更人
+                </td>
+                <td class="TD_STYLE2">
+                    @Html.DropDownList("changer", @ViewBag.user as IEnumerable<SelectListItem>, "--请选择变更人人--", new { @id = "designer", @class = "SELECT_STYLE1" })
+                </td>
+                <td class="TD_STYLE1">
+                    变更时间
+                </td>
+                <td class="TD_STYLE2">
+                    <input type="text" id="Tdate" name="change_time" readonly="readonly" class="INPUT_STYLE2">
+                </td>
+            </tr>
+            <tr>
+                <td class="TD_STYLE1">
+                    备注
+                </td>
+                <td colspan="7" class="TD_STYLE2">
+                    <textarea name="remark" rows="4" class="TEXTAREA_STYLE1" readonly>@list.remark</textarea>
+                </td>
+            </tr>
+            <tr class="TD_STYLE1">
+                <td align="center">
+                    序号
+                </td>
+                <td colspan="3">
+                    薪酬项目名称
+                </td>
+                <td>
+                    金额
+                </td>
+            </tr>
+            <tbody>
+                @{
+                    if (list1.Count != 0)
+                    {
+                        for (int i = 0; i < list1.Count; i++)
+                        {
+                            salary_standard_detailsModel item = list1[i];
+                            <tr class="TD_STYLE2">
+                                <td align="center">
+                                    @item.item_id
+                                    <input type="hidden" name="sdt_id" value="@item.sdt_id">
+                                    <input type="hidden" name="itemId1" value="@item.item_id">
+                                </td>
+                                <td colspan="3">
+                                    @item.standard_name
+                                    <input type="hidden" id="details1" name="attribute_name1" value="@item.standard_name">
+                                </td>
+                                <td>
+                                    <input type="text" value="@item.salary" name="mon" id="id-@i"
+                                           onkeyup="countMoney(this)" class="INPUT_STYLE2">
+                                </td>
+                            </tr>
+                        }
+                    }
+                }
+            </tbody>
+        </table>
+    </form>
+    <script type="text/javascript">
+        function cz() {
+            var fxZ = document.getElementsByName("checkboxFX");
+            for (var i = 0; i < fxZ.length; i++) {
+                var h = fxZ[i];
+                $(h).attr("checked", false)
+            }
+        }
+        function qx() {
+            var fxZ = document.getElementsByName("checkboxFX");
+            if ($("#QXAN").is(':checked')) {
+                for (var i = 0; i < fxZ.length; i++) {
+                    var h = fxZ[i];
+                    $(h).attr("checked",true)
+                }
+            } else {
+                for (var i = 0; i < fxZ.length; i++) {
+                    var h = fxZ[i];
+                    $(h).attr("checked", false)
+                }
+            }
+        };
+		function check(){
+
+				var designer=document.getElementById("designer");
+				var standardName=document.getElementById("standardName");
+				if(designer.value.length<=0){
+				alert("制定人不可为空!!!");
+						return ;
+				}
+				if(standardName.value.length<=0){
+				alert("薪酬标准名称不可为空!!!");
+					return ;
+				}
+			document.forms[0].submit();
+		}
+		function countMoney(obj) {
+		    var dq = $(obj).val();
+		    if (isNaN(dq) || dq< 0) {
+		        alert("金额填写错误!");
+		        $(obj).val("0.00");
+		        return;
+		    }
+		    var sum = 0;
+		    for (var i =0; i <@list1.Count; i++) {
+		        var salary =$("#id-"+i).val();
+		        if (salary == "") {
+		            salary = "0.00";
+		        }
+		        sum = Number(sum) + Number(salary);
+
+		    }
+		    $("#sumSalary").val(sum);
+		}
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            $("#register").val(localStorage.getItem("user"));
+            $("input").blur(function () {
+                if ($(this).val().trim()== "") {
+                    $(this).val("0.00");
+                }
+            });
+            $("#standardName").blur(function () {
+                if ($(this).val() == null || $(this).val() == "") {
+                    $(this).val("");
+                }
+            });
+            function time(){
+                var tdate=document.getElementById("Tdate");
+                var d=new Date();
+                var y=d.getFullYear();
+                var moth=d.getMonth()+1;
+                var date=d.getDate();
+                var h=d.getHours();
+                var m=d.getMinutes();
+                var s=d.getSeconds();
+                var hh=20-1-h;
+                var mm=60-1-m;
+                var ss=60-s;
+                if(hh>0){
+                    mm=mm+60*hh;
+                }
+                if(moth<10){
+                    moth="0"+moth;
+                }
+                if(date<10){
+                    date="0"+date;
+                }
+                if(h<10){
+                    h="0"+h;
+                }
+                if(m<10){
+                    m="0"+m;
+                }
+                if(s<10){
+                    s="0"+s;
+                }
+                if(mm<10){
+                    mm="0"+mm;
+                }
+                if(ss<10){
+                    ss="0"+ss;
+                }
+
+                tdate.value=y+"-"+moth+"-"+date+" "+h+":"+m+":"+s;
+
+            }
+            window.onload=time;
+            var out=window.setInterval(time, 1000);
+        })
+    </script>
+</body>
+</html>

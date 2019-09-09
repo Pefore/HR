@@ -55,7 +55,8 @@
     <Compile Include="Config\engage_interviewConfig.cs" />
     <Compile Include="Config\engage_major_releaseConfig.cs" />
     <Compile Include="Config\engage_resume_Config.cs" />
-    <Compile Include="Config\human_file_digConfig.cs" />
+    <Compile Include="Config\salary_standardConfig.cs" />
+    <Compile Include="Config\salary_standard_detailsConfig.cs" />
     <Compile Include="Config\UsersConfig.cs" />
     <Compile Include="config_file_first_kind.cs" />
     <Compile Include="config_file_second_kind.cs" />
@@ -63,7 +64,8 @@
     <Compile Include="position_register\engage_interview.cs" />
     <Compile Include="position_register\engage_major_release.cs" />
     <Compile Include="position_register\engage_resume.cs" />
-    <Compile Include="human_file_dig.cs" />
+    <Compile Include="salaryCriterion\salary_standard.cs" />
+    <Compile Include="salaryCriterion\salary_standard_details.cs" />
     <Compile Include="user.cs" />
     <Compile Include="Config\config_majorConfig.cs" />
     <Compile Include="Config\config_major_kindConfig.cs" />

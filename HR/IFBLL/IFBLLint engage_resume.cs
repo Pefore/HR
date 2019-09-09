@@ -16,5 +16,8 @@ namespace IFBLL
         engage_resume_Model SelectId(engage_resume_Model e);
         int engage_resumeUpdate(engage_resume_Model e);
         ArrayList engage_resumeYouXianFenYe(LikeFenYe l);
+        engage_interview_resume Selectengage_interview_resume(engage_interview_resume eir);
+        int engage_resumeDelete(engage_resume_Model e);
+        ArrayList engage_resumeYouXianFenYe6(LikeFenYe l);
     }
 }

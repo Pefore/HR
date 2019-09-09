@@ -31,7 +31,7 @@ namespace DAL
 
             return (exists);
         }
-        private static MyDbcontext CreateDbContext()
+        public static MyDbcontext CreateDbContext()
         {
             //从当前请求的线程取值
             db = CallContext.GetData("s") as MyDbcontext;

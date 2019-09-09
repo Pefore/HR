@@ -1,0 +1,195 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>薪酬标准登记复核</title>
+    <link href="~/Content/table.css" rel="stylesheet" />
+    <link href="~/Content/cwcalendar.css" rel="stylesheet" />
+    <script src="~/javascript/comm/comm.js"></script>
+    <script src="~/javascript/comm/list.js"></script>
+    <script src="~/javascript/calendar-ch.js"></script>
+    <script src="~/javascript/jquery-1.7.2.js"></script>
+    <script src="~/javascript/locate.js"></script>
+    <script src="~/javascript/select.js"></script>
+    <script src="~/Scripts/vue.js"></script>
+</head>
+<body>
+    <div id="div1">
+        <form name="fm">
+            <input type="hidden" name="utilBean.currPage" id="page" />
+            <table width="100%">
+                <tr>
+                    <td>
+                        <font color="black">
+                            您正在做的业务是:人力资源管理--薪酬标准管理--薪酬标准登记复核
+                        </font>
+                    </td>
+                </tr>
+
+            </table>
+            当前等待复核的薪酬标准总数:<span>{{rows}}</span>例
+            <table width="100%" border="1" cellpadding=0 cellspacing=1
+                   bordercolorlight=#848284 bordercolordark=#eeeeee
+                   class="TABLE_STYLE1" id="a">
+                <tr>
+                    <td width="15%" class="TD_STYLE1">
+                        薪酬标准编号
+                    </td>
+                    <td width="20%" class="TD_STYLE1">
+                        薪酬标准名称
+                    </td>
+                    <td width="10%" class="TD_STYLE1">
+                        制定人
+                    </td>
+                    <td width="20%" class="TD_STYLE1">
+                        登记时间
+                    </td>
+                    <td width="20%" class="TD_STYLE1">
+                        薪酬总额 
+                    </td>
+                    <td width="8%" class="TD_STYLE1">
+                        复核 
+                    </td>
+                </tr>
+                <tr v-for="(item,i) in datable">
+                    <td class="TD_STYLE2">
+                        {{item.standard_id}}
+                    </td>
+                    <td class="TD_STYLE2">
+                        {{item.standard_name}}
+                    </td>
+                    <td class="TD_STYLE2">
+                        {{item.designer}}
+                    </td>
+                    <td class="TD_STYLE2">
+                        {{item.regist_time}}
+                    </td>
+                    <td class="TD_STYLE2">
+                        {{item.salary_sum}}元
+                    </td>
+                    <td class="TD_STYLE2">
+                        <a href="#" v-on:click="Up([item.standard_id])">复核</a>
+                    </td>
+                </tr>
+            </table>
+            <p>
+                <div align="center" style="font-size: 18px;color: gray">
+                    &nbsp;&nbsp;总数：
+                    <font style="color: maroon;font-weight: bold;"><span>{{rows}}</span></font>
+                    例
+                    &nbsp;&nbsp;&nbsp;
+                    每页显示 <font style="color: maroon;font-weight: bold;"><span>{{pagesize}}</span></font>
+                    条
+                    &nbsp;&nbsp;&nbsp;
+                    当前第 <font style="color: maroon;font-weight: bold;"><span>{{currentPage}}</span></font>
+                    页
+                    &nbsp;&nbsp;&nbsp;共
+                    <font style="color: maroon;font-weight: bold;"><span>{{pages}}</span></font>
+                    页
+                    <a style="color: navy;font-weight: bold" href="#"  v-on:click="SY">首页</a>
+
+                    <a style="color: navy;font-weight: bold"
+                       href="#" v-on:click="SYY">上一页</a>
+
+                    <a style="color: navy;font-weight: bold"
+                       href="#" v-on:click="SYE">下一页</a>
+
+                    <a style="color: navy;font-weight: bold"
+                       href="#" v-on:click="MY">末页</a>
+                    &nbsp;&nbsp;&nbsp;跳到第
+                    <input id=page type=text value="1" class=input1 size=1 v-model="tzWHERE">
+                    页&nbsp;&nbsp;
+                    <input type="image" v-on:click="tz" src="../../images/go.bmp" width=18 height=18 border=0>
+                </div>
+                </p>
+        </form>
+    </div>
+    <script type="text/javascript">
+        var currentPage = 1;
+        var r = new Vue({
+            el:"#div1",
+            data: {
+                datable: null,
+                pages: 1,
+                rows: 1,
+                currentPage: currentPage,
+                pagesize:0,
+                tzWHERE:1,
+            },
+            methods: {
+                Up: function (s) {
+                    window.location.href = "/salarystandard_check_list/Update?id=" + s;
+                },
+                lode: function () {
+                    var s=this;
+                    $.ajax({
+                        url: "/salarystandard_check_list/Index",
+                        type:"post",
+                        data:"id="+currentPage,
+                        success:function(list){
+                            var ls=eval("("+list+")");
+                            r.datable=ls[0];
+                            r.rows=ls[1];
+                            r.currentPage=ls[2];
+                            r.pagesize=ls[3],
+                            r.pages=ls[4]
+                        }
+                    })
+                },
+                 SYY: function () {
+                    if (currentPage!=1) {
+                        currentPage--;
+                        this.lode();
+                    } else {
+                        alert("已经是第一页了");
+                    }
+                 },
+                 SY: function () {
+                     if (currentPage != 1) {
+                         currentPage = 1;
+                         this.lode();
+                     } else {
+                         alert("已经是第一页了");
+                     }
+                 },
+                 MY: function () {
+                     if (currentPage != r.pages) {
+                         currentPage = r.pages;
+                         this.lode();
+                     } else {
+                         alert("已经是最后一页了");
+                     }
+                 },
+                 SYE: function () {
+                    if (currentPage!=r.pages) {
+                        currentPage++;
+                        this.currentPage =currentPage;
+                        r.lode();
+                    } else {
+                        alert("已经是最后一页了");
+                    }
+                },
+                tz: function () {
+                    if (r.tzWHERE < 1 || r.tzWHERE > r.pages) {
+                        alert("您输入不合法")
+                    } else {
+                        currentPage=r.tzWHERE
+                        this.currentPage = currentPage;
+                        this.lode();
+                    }
+                },
+            },
+            created: function () {
+                this.lode();
+            }
+        })
+    </script>
+</body>
+</html>
+

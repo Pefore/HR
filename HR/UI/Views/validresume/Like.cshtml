@@ -10,7 +10,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Like</title>
+    <title>有效简历列表</title>
     <link href="~/Content/table.css" rel="stylesheet" />
     <link href="~/Content/cwcalendar.css" rel="stylesheet" />
     <script src="~/javascript/comm/comm.js"></script>
@@ -130,7 +130,7 @@
                 return;
             }else{
                 currPage--;
-                window.location.href = "/resumechoose/Like?" + $("form").serialize() + "&Dq=" + currPage;
+                window.location.href = "/validresume/Like?" + $("form").serialize() + "&Dq=" + currPage;
             }
         }
         function down(currPage,row){
@@ -139,7 +139,7 @@
                 return;
             }else{
                 currPage++;
-                window.location.href = "/resumechoose/Like?" + $("form").serialize() + "&Dq=" + currPage;
+                window.location.href = "/validresume/Like?" + $("form").serialize() + "&Dq=" + currPage;
             }
         }
         function tj(row) {
@@ -147,7 +147,7 @@
                 alert("最大页数为" + row + ",当前为第" + row + "页 ");
                 return false;
             } else {
-                window.location.href = "/resumechoose/Like?" + $("form").serialize() + "&Dq=" + $("#currPage").val();
+                window.location.href = "/validresume/Like?" + $("form").serialize() + "&Dq=" + $("#currPage").val();
             }
         }
     </script>

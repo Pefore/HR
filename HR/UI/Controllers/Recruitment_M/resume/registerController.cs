@@ -4,9 +4,11 @@ using Model;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Tool;
 
 namespace UI.Controllers.Recruitment_M.resume
 {
@@ -41,7 +43,7 @@ namespace UI.Controllers.Recruitment_M.resume
         //    string id = Request["id"];
         //    return Content(JsonConvert.SerializeObject(m.SelectwWhere(id)));
         //}
-        public ActionResult Add()
+        public ActionResult SC()
         {
             engage_resume_Model er = new engage_resume_Model();
             er.human_name = Request["humanname"];
@@ -76,20 +78,65 @@ namespace UI.Controllers.Recruitment_M.resume
             er.regist_time = DateTime.Parse(Request["registtime"]);
             er.human_educated_degree = Request["humaneducateddegree"];
             er.register = Request["register"];
-            er.check_status =1;
-            engage_major_release_Model erm = new engage_major_release_Model()
+            er.check_status = 1;
+            return View(er);
+        }
+        public ActionResult Sc2(HttpPostedFileBase file)
+        {
+            #region 获取从图片上传的数据
+            engage_resume_Model er = new engage_resume_Model();
+            er.human_name = Request["human_name"];
+            er.engage_type = Request["engage_type"];
+            er.human_address = Request["human_address"];
+            er.human_postcode = Request["human_postcode"];
+            er.human_major_kind_id = Request["human_major_kind_id"];
+            er.human_major_kind_name = Request["human_major_kind_name"];
+            er.human_major_id = Request["human_major_id"];
+            er.human_major_name = Request["human_major_name"];
+            er.human_telephone = Request["human_telephone"];
+            er.human_homephone = Request["human_homephone"];
+            er.human_mobilephone = Request["human_mobilephone"];
+            er.human_email = Request["human_email"];
+            er.human_hobby = Request["human_hobby"];
+            er.human_specility = Request["human_specility"];
+            er.human_sex = Request["human_sex"];
+            er.human_religion = Request["human_religion"];
+            er.human_party = Request["human_party"];
+            er.human_nationality = Request["human_nationality"];
+            er.human_race = Request["human_race"];
+            er.human_birthday = DateTime.Parse(Request["human_birthday"]);
+            er.human_age = int.Parse(Request["human_age"]);
+            er.human_educated_years = int.Parse(Request["human_educated_years"]);
+            er.human_educated_major = Request["human_educated_major"];
+            er.human_college = Request["human_college"];
+            er.human_idcard = Request["human_idcard"];
+            er.human_birthplace = Request["human_birthplace"];
+            er.demand_salary_standard = double.Parse(Request["demand_salary_standard"]);
+            er.human_history_records = Request["human_history_records"];
+            er.remark = Request["remark"];
+            er.regist_time = DateTime.Parse(Request["regist_time"]);
+            er.human_educated_degree = Request["human_educated_degree"];
+            er.register = Request["register"];
+            er.check_status = 1;
+            #endregion
+            string name = Md5String.Md5CreateName(file.InputStream);//文件名
+            string ext = Path.GetExtension(file.FileName);//后缀名
+            //1 获得上传文件的完整路径
+            string path = $"~/Phone/{DateTime.Now.ToString("yyyy/MM/dd")}/" + name + ext;
+            string fullPath = Server.MapPath(path);
+            new FileInfo(fullPath).Directory.Create();//创建文件夹
+            //2 调用file.SaveAs(完整路径)
+            file.SaveAs(fullPath);
+            er.human_picture =$"/Phone/{ DateTime.Now.ToString("yyyy/MM/dd")}/"+ name + ext;
+            //根据uid做表的修改
+            if (r.engage_resumeAdd(er) > 0)
             {
-                major_kind_id= Request["humanmajorkindid"],
-                major_id= Request["humanmajorid"],
-                engage_type= Request["engagetype"]
-        };
-            if (mr.engage_resumeAddSelect(erm)>0)
-            {
-                return Content(r.engage_resumeAdd(er).ToString());
+                return Content("<script>alert('登记成功');window.location.href ='/position_release_search/Index'</script>");
             }else
             {
-                return Content("3");
+                return View(er);
             }
+            
         }
         #region 下拉框绑定
         private List<SelectListItem> humanMajorKindName()

@@ -8,7 +8,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
+    <title>简历登记</title>
     <link href="~/Content/table.css" rel="stylesheet" />
     <link href="~/Content/cwcalendar.css" rel="stylesheet" />
     <script src="~/javascript/comm/comm.js"></script>
@@ -60,7 +60,7 @@
 		}
     </script>
     <script type="text/javascript">
- 		function mysubmit(){
+        function mysubmit() {
  		    if ($("#human_name").val() == "") {
  		alert("请填写姓名");
  		return false;
@@ -113,22 +113,8 @@
  		}
  		var humanMajorKindName = $("#humanMajorKindName option:selected").text();
  		var human_major_name = $("#humanMajorName option:selected").text();
- 		$.ajax({
- 		    url: "/register/Add",
- 		    type: "post",
- 		    data: $("form").serialize() + "&humanMajorKindName=" + humanMajorKindName + "&humanmajorname=" + human_major_name + "&register="+localStorage.getItem("user"),
- 		    success: function (msg) {
- 		        if (msg == 0) {
- 		            alert("新增失败");
- 		        } else if (msg == 3) {
-                    alert("暂时没有招聘该职位，查看简历是否填写错误")
- 		        }
- 		        else {
- 		            alert("新增成功");
- 		            window.location.href = "/position_release_search/Index";
- 		        }
- 		    }
- 		});
+ 		alert("操作——正跳转照片上传页面！！！！！");
+ 		window.location.href = "/register/SC?" + $("form").serialize() + "&humanMajorKindName=" + humanMajorKindName + "&humanmajorname=" + human_major_name + "&register=" + localStorage.getItem("user");
  		}
     </script>
 </head>
@@ -256,8 +242,8 @@
                 <td class="TD_STYLE1">
                     生日
                 </td>
-                <td width="13%" colspan="2" class="TD_STYLE2">
-                    @Html.TextBox("humanbirthday", null, new { @id = "humanBirthday", @class = "INPUT_STYLE2",@readonly= "readonly" })
+                <td width="13%" colspan="2" class="TD_STYLE2" onclick="qikj()">
+                    @Html.TextBox("humanbirthday", null, new { @id = "humanBirthday", @class = "INPUT_STYLE2", @onchange = "age(this)" })
                 </td>
 
             </tr>
@@ -389,18 +375,20 @@
             $("#humanAge").val(Age);
         };
         $(function () {
-            $("#humanIdcard").change(function () {
-               var sfz= $(this).val();
-               if (sfz.length == 18) {
-                   $("#humanBirthday").val($(this).val().substring(6,10) + "-" + $(this).val().substring(10, 12) + "-" + $(this).val().substring(12, 14));
-                   var date1 = new Date($("#humanBirthday").val());
-                   var date2 = new Date();
-                   var date3 = date2.getTime() - date1.getTime();
-                   var day = Math.floor(date3 / (24 * 3600 * 1000));
-                   var Age = parseInt(parseFloat(day) / 365);
-                   $("#humanAge").val(Age);
-               }
-        })
+            $("#humanIdcard").blur(function () {
+                var sfz = $(this).val();
+                if (sfz.length == 18) {
+                    $("#humanBirthday").val($(this).val().substring(6, 10) + "-" + $(this).val().substring(10, 12) + "-" + $(this).val().substring(12, 14));
+                    var date1 = new Date($("#humanBirthday").val());
+                    var date2 = new Date();
+                    var date3 = date2.getTime() - date1.getTime();
+                    var day = Math.floor(date3 / (24 * 3600 * 1000));
+                    var Age = parseInt(parseFloat(day) / 365);
+                    $("#humanAge").val(Age);
+                } else {
+                    alert("身份证格式不正确")
+                }
+            })
         })
     </script>
 </body>

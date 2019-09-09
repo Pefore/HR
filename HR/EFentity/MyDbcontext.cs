@@ -10,11 +10,11 @@ using EFentity.position_register;
 
 namespace EFentity
 {
-    public class MyDbcontext : DbContext
+   public class MyDbcontext:DbContext
     {
-        public MyDbcontext() : base("name=sql")
+        public MyDbcontext():base("name=sql")
         {
-          Database.SetInitializer<MyDbcontext>(null);
+          //Database.SetInitializer<MyDbcontext>(null);
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -33,6 +33,5 @@ namespace EFentity
         public DbSet<engage_major_release> engage_major_release { set; get; }
         public DbSet<engage_resume> engage_resume { set; get; }
         public DbSet<engage_interview> engage_interview { set; get; }
-        public DbSet<human_file_dig> human_file_dig { set; get; }
     }
 }

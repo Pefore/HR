@@ -12,7 +12,7 @@ using Unity;
 
 namespace IOC
 {
-    public class UserIOC
+   public class UserIOC
     {
         #region 用户ioc
         public static IFDALUser CreateStudenDAO()
@@ -80,13 +80,6 @@ namespace IOC
             UnityContainer ioc = GetBLLSeciton();
             return ioc.Resolve<IFBLLConfig_file_first_kind>("BLLconfig_file_first_kind");
         }
-        public static IFDALconfig_file_first_kind CreateConfig_file_first_kindDAO()
-        {
-            UnityContainer ioc = new UnityContainer();
-            ioc.RegisterType<IFDALconfig_file_first_kind, DALConfig_file_first_kind>();
-            return ioc.Resolve<IFDALconfig_file_first_kind>();
-        }
-
         /// <summary>
         /// config_file_second_kind
         /// </summary>
@@ -113,7 +106,12 @@ namespace IOC
             ioc.RegisterType<IFDALconfig_file_third_kind, DALConfig_file_third_kind>();
             return ioc.Resolve<IFDALconfig_file_third_kind>();
         }
-        
+        public static IFDALconfig_file_first_kind CreateConfig_file_first_kindDAO()
+        {
+            UnityContainer ioc = new UnityContainer();
+            ioc.RegisterType<IFDALconfig_file_first_kind, DALConfig_file_first_kind>();
+            return ioc.Resolve<IFDALconfig_file_first_kind>();
+        }
         public static IFBLLconfig_major config_majorBLL()
         {
             UnityContainer ioc = GetBLLSeciton();
@@ -125,7 +123,6 @@ namespace IOC
         {
             UnityContainer ioc = GetBLLSeciton();
             return ioc.Resolve<IFBLLConfig_file_third_kind>("BLLconfig_file_third_kind");
-
         }
         public static IFDALengage_major_release engage_major_releaseDAO()
         {
@@ -151,16 +148,45 @@ namespace IOC
             UnityContainer ioc = GetBLLSeciton();
             return ioc.Resolve<IFBLLint_engage_resume>("BLLint_engage_resume");
         }
-        public static IFBLLhuman_file_dig human_file_digBLL()
-        {
-            UnityContainer ioc = GetBLLSeciton();
-            return ioc.Resolve<IFBLLhuman_file_dig>("BLLhuman_file_dig");
-        }
-        public static IFDALhuman_file_dig Createhuman_file_digDAO()
+
+
+
+
+        public static IFDALengage_interview DALengage_interview()
         {
             UnityContainer ioc = new UnityContainer();
-            ioc.RegisterType<IFDALhuman_file_dig, DALhuman_file_dig>();
-            return ioc.Resolve<IFDALhuman_file_dig>();
+            ioc.RegisterType<IFDALengage_interview, DALengage_interview>();
+            return ioc.Resolve<IFDALengage_interview>();
+        }
+
+        public static IFBLLengage_interview BLLengage_interview()
+        {
+            UnityContainer ioc = GetBLLSeciton();
+            return ioc.Resolve<IFBLLengage_interview>("BLLengage_interview");
+        }
+        public static IFDALsalary_standard DALsalary_standard()
+        {
+            UnityContainer ioc = new UnityContainer();
+            ioc.RegisterType<IFDALsalary_standard, DALsalary_standard>();
+            return ioc.Resolve<IFDALsalary_standard>();
+        }
+
+        public static IFBLLsalary_standard BLLsalary_standard()
+        {
+            UnityContainer ioc = GetBLLSeciton();
+            return ioc.Resolve<IFBLLsalary_standard>("BLLsalary_standard");
+        }
+        public static IFDALsalary_standard_details DALsalary_standard_details()
+        {
+            UnityContainer ioc = new UnityContainer();
+            ioc.RegisterType<IFDALsalary_standard_details, DALsalary_standard_details>();
+            return ioc.Resolve<IFDALsalary_standard_details>();
+        }
+
+        public static IFBLLsalary_standard_details BLLsalary_standard_details()
+        {
+            UnityContainer ioc = GetBLLSeciton();
+            return ioc.Resolve<IFBLLsalary_standard_details>("BLLsalary_standard_details");
         }
         private static UnityContainer GetBLLSeciton()
         {

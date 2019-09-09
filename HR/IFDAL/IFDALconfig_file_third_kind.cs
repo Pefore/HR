@@ -16,6 +16,5 @@ namespace IFDAL
         string BH();
         config_file_third_kindModel XGCX(int id);
         List<config_file_third_kindModel> SelectIII(string id);
-        List<config_file_third_kindModel> cx(string id);
     }
 }

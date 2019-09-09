@@ -1,0 +1,169 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>录用审批 </title>
+    <link href="~/Content/table.css" rel="stylesheet" />
+    <link href="~/Content/cwcalendar.css" rel="stylesheet" />
+    <script src="~/javascript/comm/comm.js"></script>
+    <script src="~/javascript/comm/list.js"></script>
+    <script src="~/javascript/calendar-ch.js"></script>
+    <script src="~/javascript/jquery-1.7.2.js"></script>
+    <script src="~/javascript/locate.js"></script>
+    <script src="~/javascript/comm/time.js"></script>
+    <script src="~/Scripts/vue.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/jquery.validate.js">
+    </script>
+    <script src="~/Scripts/vue.js"></script>
+</head>
+<body>
+    <div id="div1">
+        <form name="fm">
+            <input type="hidden" name="utilBean.currPage" id="page" />
+            <table width="100%">
+                <tr>
+                    <td>
+                        <font color="black">
+                            您正在做的业务是：人力资源--招聘管理--录用管理--录用审批  
+                        </font>
+                    </td>
+                </tr>
+
+            </table>
+            当前可变更是职位发布总数：<span>{{rows}}</span>例
+            <table width="100%" border="1" cellpadding=0 cellspacing=1
+                   bordercolorlight=#848284 bordercolordark=#eeeeee
+                   class="TABLE_STYLE1" id="a">
+                <tr>
+                    <td width="15%" class="TD_STYLE1">
+                        姓名
+                    </td>
+                    <td width="20%" class="TD_STYLE1">
+                        年龄
+                    </td>
+                    <td width="10%" class="TD_STYLE1">
+                        性别 
+                    </td>
+                    <td width="20%" class="TD_STYLE1">
+                        职位分类名称
+                    </td>
+                    <td width="10%" class="TD_STYLE1">
+                        职位名称
+                    </td>
+                    <td width="10%" class="TD_STYLE1">
+                        毕业院校
+                    </td>
+                    <td width="10%" class="TD_STYLE1">
+                       学历专业
+                    </td>
+                    <td width="8%" class="TD_STYLE1">
+                        操作
+                    </td>
+                </tr>
+                <tr v-for="(item,i) in datable">
+                    <td class="TD_STYLE2">
+                        {{item.human_name}}
+                    </td>
+                    <td class="TD_STYLE2">
+                        {{item.human_age}}
+                    </td>
+                    <td class="TD_STYLE2">
+                        {{item.human_sex}}
+                    </td>
+                    <td class="TD_STYLE2">
+                        {{item.human_major_kind_name}}
+                    </td>
+                    <td class="TD_STYLE2">
+                        {{item.human_major_name}}
+                    </td>
+                    <td class="TD_STYLE2">
+                        {{item.human_college}}
+                    </td>
+                    <td class="TD_STYLE2">
+                        {{item.human_educated_major}}
+                    </td>
+                    <td class="TD_STYLE2">
+                        <a href="#" v-on:click="Up([item.res_id])">申请</a>
+                    </td>
+                </tr>
+            </table>
+            <p>
+                &nbsp;&nbsp;总数：<span>{{rows}}</span> 例 &nbsp;&nbsp;&nbsp;当前第 <span>{{currentPage}}</span> 页 /每页显示 <span>{{pagesize}}</span> 条 &nbsp;&nbsp;&nbsp;共 <span>{{pages}}</span> 页 &nbsp;&nbsp;&nbsp;
+                <a href="#" v-on:click="SYY">上一页</a> &nbsp;&nbsp;&nbsp;
+                <a href="#" v-on:click="SYE">下一页</a> &nbsp;&nbsp;&nbsp;跳到第 <input name=page type=text class=input1 id="currPage" size=1 v-model="tzWHERE"> 页&nbsp;&nbsp;<input type="button" style="background-image:url('../../../images/go.bmp')" v-on:click="tz" width=18 height=18 border=0>
+        </form>
+    </div>
+    <script type="text/javascript">
+        var currentPage = 1;
+        var r = new Vue({
+            el:"#div1",
+            data: {
+                datable: null,
+                pages: 1,
+                rows: 1,
+                currentPage: currentPage,
+                pagesize:0,
+                tzWHERE:1,
+            },
+            methods: {
+                Up: function (s) {
+                    window.location.href = "/registerSP/Update?id=" + s;
+                },
+                lode: function () {
+                    var s=this;
+                    $.ajax({
+                        url: "/registerSP/Index",
+                        type:"post",
+                        data:"id="+currentPage,
+                        success:function(list){
+                            var ls=eval("("+list+")");
+                            r.datable=ls[0];
+                            r.rows=ls[1];
+                            r.currentPage=ls[2];
+                            r.pagesize=ls[3],
+                            r.pages=ls[4]
+                        }
+                    })
+                },
+                 SYY: function () {
+                    if (currentPage!=1) {
+                        currentPage--;
+                        this.lode();
+                    } else {
+                        alert("已经是第一页了");
+                    }
+                },
+                 SYE: function () {
+                    if (currentPage!=r.pages) {
+                        currentPage++;
+                        this.currentPage =currentPage;
+                        r.lode();
+                    } else {
+                        alert("已经是最后一页了");
+                    }
+                },
+                tz: function () {
+                    if (r.tzWHERE < 1 || r.tzWHERE > r.pages) {
+                        alert("您输入不合法")
+                    } else {
+                        currentPage=r.tzWHERE
+                        this.currentPage = currentPage;
+                        this.lode();
+                    }
+                },
+            },
+            created: function () {
+                this.lode();
+            }
+        })
+    </script>
+</body>
+</html>

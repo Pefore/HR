@@ -24,11 +24,6 @@ namespace BLL
             return ist.BH();
         }
 
-        public List<config_file_third_kindModel> cx(string id)
-        {
-            return ist.cx(id);
-        }
-
         public int Del(config_file_third_kindModel st)
         {
             return ist.Del(st);

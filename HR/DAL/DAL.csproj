@@ -55,10 +55,12 @@
     <Compile Include="DALConfig_file_first_kind.cs" />
     <Compile Include="DALConfig_file_second_kind.cs" />
     <Compile Include="DALConfig_file_third_kind.cs" />
+    <Compile Include="DALengage_interview.cs" />
     <Compile Include="DALengage_resume.cs" />
-    <Compile Include="DALhuman_file_dig.cs" />
     <Compile Include="DALLogin.cs" />
     <Compile Include="DALPosition_Name_Set.cs" />
+    <Compile Include="DALsalary_standard.cs" />
+    <Compile Include="DALsalary_standard_details.cs" />
     <Compile Include="DaoBase.cs" />
     <Compile Include="DALengage_major_release.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

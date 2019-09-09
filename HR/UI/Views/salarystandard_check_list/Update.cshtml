@@ -1,0 +1,192 @@
+﻿
+@{
+    Layout = null;
+}
+@using Model.salaryCriterionModel;
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>薪酬标准登记复核</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/table.css" rel="stylesheet" />
+    <script src="~/javascript/comm/comm.js"></script>
+    <script src="~/javascript/jquery-1.7.2.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <link href="~/Content/cwcalendar.css" rel="stylesheet" />
+    <script src="~/javascript/comm/list.js"></script>
+    <script src="~/javascript/calendar-ch.js"></script>
+    <script src="~/javascript/locate.js"></script>
+    <script src="~/javascript/comm/time.js"></script>
+    <script src="~/Scripts/vue.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/jquery.validate.js">
+    </script>
+</head>
+<body>
+    @{ 
+        salary_standardModel s = ViewBag.salary_standard as salary_standardModel;
+        List<salary_standard_detailsModel> list = ViewBag.salary_standard_details as List<salary_standard_detailsModel>;
+    }
+    <form method="post" action="Update1">
+        <table width="100%">
+            <tr>
+                <td>
+                    <font color="black">
+                        您正在做的业务是:人力资源管理--薪酬标准管理--薪酬标准登记复核
+                    </font>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    <input type="submit" value="提 交"  class="BUTTON_STYLE1">
+                    <input type="reset" value="返 回" class="BUTTON_STYLE1">
+
+                </td>
+            </tr>
+        </table>
+        <table id="stable" width="100%" border="1" cellpadding=0 cellspacing=1
+               bordercolorlight=#848284 bordercolordark=#eeeeee
+               class="TABLE_STYLE1">
+            <tr>
+                <td width="74" class="TD_STYLE1">
+                    薪酬标准编号
+                </td>
+                <td width="168" class="TD_STYLE2">
+                    <input type="text" name="standardId" value="@s.standard_id" readonly="readonly" class="INPUT_STYLE2" id="standardId">
+                </td>
+                <td width="83" class="TD_STYLE1">
+                    薪酬标准名称
+                </td>
+                <td width="171" class="TD_STYLE2">
+                    <input type="text" name="standardName" id="standardName" class="INPUT_STYLE2" placeholder="请输入薪酬标准名称" readonly="readonly" value="@s.standard_name">
+                </td>
+                <td width="170" class="TD_STYLE1">
+                    薪酬总额
+                </td>
+                <td width="138" class="TD_STYLE2">
+                    <input type="text" name="salarySum" id="sumSalary" value="@s.salary_sum" readonly class="INPUT_STYLE2"  />
+                </td>
+
+            </tr>
+            <tr>
+                <td class="TD_STYLE1">
+                    制定人
+                </td>
+                <td class="TD_STYLE2">
+                    <input type="text" name="salarySum" id="sumSalary" value="@s.designer" readonly class="INPUT_STYLE2" />
+                </td>
+                <td class="TD_STYLE1">
+                    复核人
+                </td>
+                <td class="TD_STYLE2">
+                    @Html.DropDownList("checker", @ViewBag.user as IEnumerable<SelectListItem>, "--请选择制复核人--", new { @id = "designer", @class = "SELECT_STYLE1" })
+                </td>
+                <td class="TD_STYLE1">
+                    复核时间
+                </td>
+                <td class="TD_STYLE2">
+                    <input type="text" name="check_time" readonly="readonly" class="INPUT_STYLE2" id="Tdate">
+                </td>
+            </tr>
+            <tr>
+                <td class="TD_STYLE1">
+                    备注
+                </td>
+                <td colspan="7" class="TD_STYLE2">
+                    <textarea name="remark" rows="4" class="TEXTAREA_STYLE1" readonly>@s.remark</textarea>
+                </td>
+            </tr>
+            <tr>
+                <td class="TD_STYLE1">
+                    复核意见
+                </td>
+                <td colspan="7" class="TD_STYLE2">
+                    <textarea name="check_comment" rows="4" class="INPUT_STYLE2"></textarea>
+                </td>
+            </tr>
+            <tr class="TD_STYLE1">
+                <td align="center">
+                    序号
+                </td>
+                <td colspan="3">
+                    薪酬项目名称
+                </td>
+                <td>
+                    金额
+                </td>
+            </tr>
+            <tbody>
+                @{
+                    if (list.Count != 0)
+                    {
+                        for (int i = 0; i < list.Count; i++)
+                        {
+                            salary_standard_detailsModel item = list[i];
+                            <tr class="TD_STYLE2">
+                                <td align="center">
+                                    @item.item_id 
+                                </td>
+                                <td colspan="3">
+                                    @item.item_name 
+                                </td>
+                                <td>
+                                    <input type="text" value="@item.salary" name="mon" id="id-@i"  class="INPUT_STYLE2" readonly>
+                                </td>
+                            </tr>
+                        }
+                    }
+                }
+            </tbody>
+        </table>
+    </form>
+    <script type="text/javascript">
+        $(function () {
+            function time() {
+                var tdate = document.getElementById("Tdate");
+                var d = new Date();
+                var y = d.getFullYear();
+                var moth = d.getMonth() + 1;
+                var date = d.getDate();
+                var h = d.getHours();
+                var m = d.getMinutes();
+                var s = d.getSeconds();
+                var hh = 20 - 1 - h;
+                var mm = 60 - 1 - m;
+                var ss = 60 - s;
+                if (hh > 0) {
+                    mm = mm + 60 * hh;
+                }
+                if (moth < 10) {
+                    moth = "0" + moth;
+                }
+                if (date < 10) {
+                    date = "0" + date;
+                }
+                if (h < 10) {
+                    h = "0" + h;
+                }
+                if (m < 10) {
+                    m = "0" + m;
+                }
+                if (s < 10) {
+                    s = "0" + s;
+                }
+                if (mm < 10) {
+                    mm = "0" + mm;
+                }
+                if (ss < 10) {
+                    ss = "0" + ss;
+                }
+
+                tdate.value = y + "-" + moth + "-" + date + " " + h + ":" + m + ":" + s;
+
+            }
+            window.onload = time;
+            var out = window.setInterval(time, 1000);
+        })
+    </script>
+</body>
+</html>

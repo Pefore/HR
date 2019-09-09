@@ -1,0 +1,143 @@
+﻿
+@using Model;
+@using Model.CaoZuoLei;
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>有效简历列表</title>
+    <link href="~/Content/table.css" rel="stylesheet" />
+    <link href="~/Content/cwcalendar.css" rel="stylesheet" />
+    <script src="~/javascript/comm/comm.js"></script>
+    <script src="~/javascript/comm/list.js"></script>
+    <script src="~/javascript/calendar-ch.js"></script>
+    <script src="~/javascript/jquery-1.7.2.js"></script>
+    <script src="~/javascript/locate.js"></script>
+    <script src="~/javascript/comm/time.js"></script>
+    <script src="~/Scripts/vue.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/jquery.validate.js">
+    </script>
+</head>
+<body>
+    @using (Ajax.BeginForm("", new AjaxOptions { HttpMethod = "post" }))
+    {
+        <input type="hidden" name="utilBean.currPage" id="page" />
+        <table width="100%">
+            <tr>
+                <td>
+                    <font color="black">
+                        您正在做的业务是：人力资源--招聘管理--面试管理--面试结果登记--有效简历列表 
+                    </font>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    <input type="button" value="返回" class="BUTTON_STYLE1" onclick="history.back();">
+                </td>
+            </tr>
+        </table>
+        <table width="100%" border="1" cellpadding=0 cellspacing=1
+               bordercolorlight=#848284 bordercolordark=#eeeeee
+               class="TABLE_STYLE1">
+            <tr>
+                <td width="15%" class="TD_STYLE1">
+                    姓名
+                </td>
+                <td width="10%" class="TD_STYLE1">
+                    年龄
+                </td>
+                <td width="10%" class="TD_STYLE1">
+                    性别
+                </td>
+                <td width="15%" class="TD_STYLE1">
+                    职位分类
+                </td>
+                <td width="5%" class="TD_STYLE1">
+                    职位名称
+                </td>
+                <td width="5%" class="TD_STYLE1">
+                    电话号码
+                </td>
+                <td width="5%" class="TD_STYLE1">
+                    面试状态
+                </td>
+                <td width="5%" class="TD_STYLE1">
+                    登记
+                </td>
+            </tr>@{
+                LikeFenYe lk = ViewBag.ls[5] as @LikeFenYe;
+            }
+            @foreach (engage_resume_Model item in ViewBag.ls[0])
+            {
+                <tr>
+                    <td class="TD_STYLE2">
+                        @item.human_name
+                    </td>
+                    <td class="TD_STYLE2">
+                        @item.human_age
+                    </td>
+                    <td class="TD_STYLE2">
+                        @item.human_sex
+                    </td>
+                    <td class="TD_STYLE2">
+                        @item.human_major_kind_name
+                    </td>
+                    <td class="TD_STYLE2">
+                        @item.human_major_name
+                    </td>
+                    <td class="TD_STYLE2">
+                        @item.human_telephone
+                    </td>
+                    <td class="TD_STYLE2">
+                        @item.interview_status1
+                    </td>
+                    <td class="TD_STYLE2">
+                        <a href="/interviewlist/MianShi?id=@item.res_id">登记</a>
+                    </td>
+                </tr>
+            }
+        </table>
+        <p>
+            &nbsp;&nbsp;总数：1 例 &nbsp;&nbsp;&nbsp;当前第 @ViewBag.ls[2]页 /每页显示 @ViewBag.ls[3] 条 &nbsp;&nbsp;&nbsp;共 @ViewBag.ls[4] 页 &nbsp;&nbsp;&nbsp;
+            <a href="javascript:up(@ViewBag.ls[2])">上一页</a> &nbsp;&nbsp;&nbsp;
+            <a href="javascript:down(@ViewBag.ls[2],@ViewBag.ls[4])">下一页</a> &nbsp;&nbsp;&nbsp;跳到第 <input name=page type=text class=input1 id="currPage" size=1> 页&nbsp;&nbsp;<input type=image src="../../../images/go.bmp" onclick="tj(@ViewBag.ls[4])" width=18 height=18 border=0>
+        </p>
+                }
+    <script type="text/javascript">
+        function up(currPage){
+            if(currPage==1){
+                alert("已经是第一页了");
+                return;
+            }else{
+                currPage--;
+                window.location.href = "/interviewlist/Like?" + $("form").serialize() + "&Dq=" + currPage;
+            }
+        }
+        function down(currPage,row){
+            if(currPage==row){
+                alert("已经是最后一页了");
+                return;
+            }else{
+                currPage++;
+                window.location.href = "/interviewlist/Like?" + $("form").serialize() + "&Dq=" + currPage;
+            }
+        }
+        function tj(row) {
+            if ($("#currPage").val() > row) {
+                alert("最大页数为" + row + ",当前为第" + row + "页 ");
+                return false;
+            } else {
+                window.location.href = "/interviewlist/Like?" + $("form").serialize() + "&Dq=" + $("#currPage").val();
+            }
+        }
+    </script>
+</body>
+</html>
+

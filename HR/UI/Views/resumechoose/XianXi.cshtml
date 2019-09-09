@@ -8,7 +8,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>XianXi</title>
+    <title>简历筛选编辑</title>
     <link href="~/Content/table.css" rel="stylesheet" />
     <link href="~/Content/cwcalendar.css" rel="stylesheet" />
     <script src="~/javascript/comm/comm.js"></script>
@@ -104,7 +104,9 @@
                    @Html.EditorFor(model => model.engage_type, new { htmlAttributes = new { @class = "INPUT_STYLE2", @readonly = "readonly" } })
                 </td>
                 <td rowspan="6">
-                    &nbsp;
+                    <div style="border:1px solid #808080;width:260px;height:130px;margin-left:58px;">
+                        <img src="@Model.human_picture" height="125" width="255"/>
+                    </div>
                 </td>
             </tr>
             <tr>
