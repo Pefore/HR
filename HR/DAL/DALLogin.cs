@@ -44,9 +44,91 @@ namespace DAL
             user u= list[0];
             users u1 = new users()
             {
-                user_true_name = u.user_true_name
+                user_true_name = u.user_true_name,
+                right_id=u.right_id,
             };
             return u1;
+        }
+        public int Add(users st)
+        {
+            user est = new user()
+            {
+                Id = st.Id,
+                user_name = st.user_name,
+                user_true_name = st.user_true_name,
+                user_password = st.user_password,
+                right_id = st.right_id
+            };
+            return Add(est);
+        }
+
+        public int Del(users st)
+        {
+            user est = new user()
+            {
+                Id = st.Id
+
+            };
+            return Delete(est);
+        }
+        public List<users> Select()
+        {
+            List<user> list = SelectAll();
+            List<users> list2 = new List<users>();
+            foreach (user item in list)
+            {
+                users sm = new users()
+                {
+                    Id = item.Id,
+                    user_name = item.user_name,
+                    user_true_name = item.user_true_name,
+                    user_password = item.user_password,
+                    right_id = item.right_id
+                };
+                list2.Add(sm);
+            }
+            return list2;
+        }
+
+        public List<users> SelectBy(users st)
+        {
+            List<user> list = SelectBy(e => e.Id.Equals(st.Id));
+            List<users> list2 = new List<users>();
+            foreach (var item in list)
+            {
+                users sd = new users()
+                {
+                    Id = item.Id,
+                    user_name = item.user_name,
+                    user_true_name = item.user_true_name,
+                    user_password = item.user_password,
+                    right_id = item.right_id
+                };
+                list2.Add(sd);
+            }
+            return list2;
+        }
+
+        public int Update(users st)
+        {
+            user est = new user()
+            {
+                Id = st.Id,
+                user_name = st.user_name,
+                user_true_name = st.user_true_name,
+                user_password = st.user_password,
+                right_id = st.right_id
+            };
+            return Update(est);
+        }
+        /// <summary>
+        /// 查询全部
+        /// </summary>
+        /// <returns></returns>
+        public List<users> cxqb()
+        {
+            var values = db.Database.SqlQuery<users>($"select [Id],[user_name],[user_true_name],(select [right_name] from [dbo].[right] r where (r.[right_id]=u.[right_id]))as name,[user_password] from [dbo].[user] u").ToList();
+            return values;
         }
     }
 }

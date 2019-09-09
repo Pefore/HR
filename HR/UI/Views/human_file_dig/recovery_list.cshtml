@@ -1,0 +1,165 @@
+﻿@model Model.human_file_digModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>recovery_list</title>
+    <link href="~/Content/table.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/vue.js"></script>
+</head>
+<body>
+    <div id="diva">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.EditorFor(model => model.first_kind_id, new { htmlAttributes = new { @hidden = "hidden" } })
+            @Html.EditorFor(model => model.second_kind_id, new { htmlAttributes = new { @hidden = "hidden" } })
+            @Html.EditorFor(model => model.third_kind_id, new { htmlAttributes = new { @hidden = "hidden" } })
+            @Html.EditorFor(model => model.human_major_kind_id, new { htmlAttributes = new { @hidden = "hidden" } })
+            @Html.EditorFor(model => model.human_major_id, new { htmlAttributes = new { @hidden = "hidden" } })
+            @Html.EditorFor(model => model.human_nationality, new { htmlAttributes = new { @hidden = "hidden" } })
+            @Html.EditorFor(model => model.human_race, new { htmlAttributes = new { @hidden = "hidden" } })
+            @Html.EditorFor(model => model.human_hobby, new { htmlAttributes = new { @hidden = "hidden" } })
+            @Html.EditorFor(model => model.human_speciality, new { htmlAttributes = new { @hidden = "hidden" } })
+            <table width="100%">
+                <tr>
+                    <td>
+                        <font color="black">您正在做的业务是：人力资源--人力资源档案管理--人力资源档案恢复查询 </font>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        符合条件的人力资源档案总数：<span id="DAZS"></span>例
+                    </td>
+                </tr>
+            </table>
+            <table width="100%" border="1" cellpadding=5 cellspacing=1
+                   bordercolorlight=#848284 bordercolordark=#eeeeee
+                   class="TABLE_STYLE1">
+                <tr class="TR_STYLE1">
+                    <td width="16%" class="TD_STYLE1">
+                        档案编号
+                    </td>
+                    <td width="13%" class="TD_STYLE1">
+                        姓名
+                    </td>
+                    <td width="8%" class="TD_STYLE1">
+                        性别
+                    </td>
+                    <td width="14%" class="TD_STYLE1">
+                        I级机构
+                    </td>
+                    <td width="14%" class="TD_STYLE1">
+                        II级机构
+                    </td>
+                    <td width="14%" class="TD_STYLE1">
+                        III级机构
+                    </td>
+                    <td width="14%" class="TD_STYLE1">
+                        职位分类
+                    </td>
+                    <td width="7%" class="TD_STYLE1">
+                        职位名称
+                    </td>
+                </tr>
+                <tr v-for="(item,i) in rows" id="cxbd">
+                    <td class="TD_STYLE2"><a v-bind:href="['/human_file_dig/recovery_list_information/'+item.Id]">{{item.human_id}}</a></td>
+                    <td class="TD_STYLE2">{{item.human_name}}</td>
+                    <td class="TD_STYLE2">{{item.human_sex}}</td>
+                    <td class="TD_STYLE2">{{item.first_kind_name}}</td>
+                    <td class="TD_STYLE2">{{item.second_kind_name}}</td>
+                    <td class="TD_STYLE2">{{item.third_kind_name}}</td>
+                    <td class="TD_STYLE2">{{item.human_major_kind_name}}</td>
+                    <td class="TD_STYLE2">{{item.hunma_major_name}}</td>
+                </tr>
+            </table>
+            <p style="text-align: center;">
+
+                <a id="first" v-on:click="sy()" style="color:black;">首页</a>
+
+                <a id="prev" v-on:click="syy()" style="color:black;">上一页</a>
+
+                <font style="color:red;" id="DQYW"></font>
+
+                <a id="next" v-on:click="xyy()" style="color:black;">下一页</a>
+
+                <a id="last" v-on:click="wy()" style="color:black;">尾页</a>
+
+            </p>
+        }
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    var currentPage = 1;//当前页
+    var pages = 1;//总页数
+    var vm = new Vue({
+        el: "#diva",
+        data: {
+            rows: null
+        },
+        methods: {
+            load: function () {
+                var v = this;
+                var first_kind_id = $("#first_kind_id").val();
+                var second_kind_id = $("#second_kind_id").val();
+                var third_kind_id = $("#third_kind_id").val();
+                var human_major_kind_id = $("#human_major_kind_id").val();
+                var human_major_id = $("#human_major_id").val();
+                var human_nationality = $("#human_nationality").val();
+                var human_race = $("#human_race").val();
+                var human_hobby = $("#human_hobby").val();
+                var human_speciality = $("#human_speciality").val();
+                $.ajax({
+                    url: "/human_file_dig/FYCX",
+                    type: "post",
+                    data: { "currentPage": currentPage, "first_kind_id": first_kind_id, "second_kind_id": second_kind_id, "third_kind_id": third_kind_id, "human_major_kind_id": human_major_kind_id, "human_major_id": human_major_id, "human_nationality": human_nationality, "human_race": human_race, "human_hobby": human_hobby ,"human_speciality":human_speciality,"aaa":3},
+                    success: function (msg) {
+                        var data = eval("(" + msg + ")");
+                        v.rows = data.dt;
+                        var rows = data.rows;
+                        var dqy = data.dqy;
+                        pages = data.pages;
+                        //$("#leftPage").text("共有" + rows + "条记录，当前第" + currentPage + "/" + pages + "页");
+                        $("#DAZS").text(rows);
+                        $("#DQYW").text(dqy + "/" + pages);
+                    }
+                })
+            },
+            sy: function () {
+                currentPage = 1;
+                vm.load();
+            },
+            syy: function () {
+                if (currentPage > 1) {
+                    currentPage--;
+                } else {
+                    currentPage = 1;
+                }
+                vm.load();
+            },
+            xyy: function () {
+                if (currentPage < pages) {
+                    currentPage++;
+                } else {
+                    currentPage = pages;
+                }
+                vm.load();
+            },
+            wy: function () {
+                currentPage = pages;
+                vm.load();
+            },
+        },
+        created: function () {
+            this.load();
+        }
+    })
+</script>

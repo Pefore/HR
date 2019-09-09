@@ -49,7 +49,10 @@
     <Compile Include="IFDALengage_interview.cs" />
     <Compile Include="IFDALengage_major_release.cs" />
     <Compile Include="IFDALengage_resume.cs" />
+    <Compile Include="IFDALhuman_file_dig.cs" />
+    <Compile Include="IFDALMajor_change.cs" />
     <Compile Include="IFDALPosition_Name_Set.cs" />
+    <Compile Include="IFDALRight.cs" />
     <Compile Include="IFDALsalary_standard.cs" />
     <Compile Include="IFDALsalary_standard_details.cs" />
     <Compile Include="IFDALUser.cs" />

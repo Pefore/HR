@@ -46,9 +46,12 @@
     <Compile Include="BLLconfig_major.cs" />
     <Compile Include="BLLengage_interview.cs" />
     <Compile Include="BLLengage_major_release.cs" />
+    <Compile Include="BLLhuman_file_dig.cs" />
     <Compile Include="BLLint_engage_resume.cs" />
+    <Compile Include="BLLMajor_change.cs" />
     <Compile Include="BLLPosition_Name_Set.cs" />
     <Compile Include="BLLClient.cs" />
+    <Compile Include="BLLRight.cs" />
     <Compile Include="BLLsalary_standard.cs" />
     <Compile Include="BLLsalary_standard_details.cs" />
     <Compile Include="BLLUser.cs" />

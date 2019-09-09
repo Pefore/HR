@@ -148,10 +148,17 @@ namespace IOC
             UnityContainer ioc = GetBLLSeciton();
             return ioc.Resolve<IFBLLint_engage_resume>("BLLint_engage_resume");
         }
-
-
-
-
+        public static IFDALMajor_change CreateMajor_changeDAO()
+        {
+            UnityContainer ioc = new UnityContainer();
+            ioc.RegisterType<IFDALMajor_change, DALMajor_change>();
+            return ioc.Resolve<IFDALMajor_change>();
+        }
+        public static IFBLLMajor_change CreateMajor_changeBLL()
+        {
+            UnityContainer ioc = GetBLLSeciton();
+            return ioc.Resolve<IFBLLMajor_change>("BLLMajor_change");
+        }
         public static IFDALengage_interview DALengage_interview()
         {
             UnityContainer ioc = new UnityContainer();
@@ -188,6 +195,17 @@ namespace IOC
             UnityContainer ioc = GetBLLSeciton();
             return ioc.Resolve<IFBLLsalary_standard_details>("BLLsalary_standard_details");
         }
+        public static IFDALhuman_file_dig Createhuman_file_digDAO()
+        {
+            UnityContainer ioc = new UnityContainer();
+            ioc.RegisterType<IFDALhuman_file_dig, DALhuman_file_dig>();
+            return ioc.Resolve<IFDALhuman_file_dig>();
+        }
+        public static IFBLLhuman_file_dig human_file_digBLL()
+        {
+            UnityContainer ioc = GetBLLSeciton();
+            return ioc.Resolve<IFBLLhuman_file_dig>("BLLhuman_file_dig");
+        }
         private static UnityContainer GetBLLSeciton()
         {
             UnityContainer ioc = new UnityContainer();
@@ -197,6 +215,18 @@ namespace IOC
             UnityConfigurationSection cfs = cf.GetSection("unity") as UnityConfigurationSection;
             ioc.LoadConfiguration(cfs, "containerTwo");
             return ioc;
+        }
+        public static IFDALRight CreateRightDAO()
+        {
+            UnityContainer ioc = new UnityContainer();
+            ioc.RegisterType<IFDALRight, DALRight>();
+            return ioc.Resolve<IFDALRight>();
+        }
+
+        public static IFBLLRight CreateRightBLL()
+        {
+            UnityContainer ioc = GetBLLSeciton();
+            return ioc.Resolve<IFBLLRight>("BLLRight");
         }
     }
 }

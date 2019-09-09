@@ -12,5 +12,8 @@ namespace Model
         public string user_name { get; set; }
         public string user_true_name { get; set; }
         public string user_password { get; set; }
+        public int right_id { get; set; }
+        public string name { get; set; }
+        public string right_name { get; set; }
     }
 }

@@ -13,5 +13,11 @@ namespace IFBLL
         int ADDUser();
         users Select(users s);
         List<users> se();
+        List<users> SelectBy(users st);
+        int Add(users st);
+        int Del(users st);
+        List<users> Select();
+        int Update(users st);
+        List<users> cxqb();
     }
 }

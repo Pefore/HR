@@ -12,5 +12,7 @@ namespace EFentity
         public string user_name { get; set; }//用户名
         public string user_true_name { get; set; }//真实名字
         public string user_password { get; set; }//密码
+        public int right_id { get; set; }
+        public virtual ICollection<right> right { get; set; } = new List<right>();
     }
 }

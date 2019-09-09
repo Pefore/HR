@@ -241,7 +241,10 @@
     <Compile Include="Controllers\clientfirstkindController.cs" />
     <Compile Include="Controllers\configfilesecondkindController.cs" />
     <Compile Include="Controllers\configfilethirdkindController.cs" />
+    <Compile Include="Controllers\human_file_digController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\power\Right_listController.cs" />
+    <Compile Include="Controllers\power\User_listController.cs" />
     <Compile Include="Controllers\Public_charController.cs" />
     <Compile Include="Controllers\Recruitment_M\employ\listController.cs" />
     <Compile Include="Controllers\Recruitment_M\employ\registerLYController.cs" />
@@ -261,6 +264,7 @@
     <Compile Include="Controllers\Salary_itemController.cs" />
     <Compile Include="Controllers\MianController.cs" />
     <Compile Include="Controllers\Position\PositionController.cs" />
+    <Compile Include="Controllers\transfer\Register_locateController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -410,32 +414,42 @@
     <Content Include="Views\salarystandardchangelocate\Index.cshtml" />
     <Content Include="Views\salarystandardchangelocate\Select.cshtml" />
     <Content Include="Views\salarystandardchangelocate\GengGai.cshtml" />
+    <Content Include="Views\human_file_dig\delete_forever_list.cshtml" />
+    <Content Include="Views\human_file_dig\change_locate.cshtml" />
     <Content Include="Views\human_file_dig\Index.cshtml" />
+    <Content Include="Views\human_file_dig\change_listbg.cshtml" />
+    <Content Include="Views\human_file_dig\change_list.cshtml" />
     <Content Include="Views\human_file_dig\xzcg.cshtml" />
+    <Content Include="Views\human_file_dig\recovery_locate.cshtml" />
+    <Content Include="Views\human_file_dig\recovery_list_information.cshtml" />
+    <Content Include="Views\human_file_dig\recovery_keywords.cshtml" />
+    <Content Include="Views\human_file_dig\recovery_list.cshtml" />
+    <Content Include="Views\human_file_dig\query_keywords.cshtml" />
+    <Content Include="Views\human_file_dig\query_keywordsbg.cshtml" />
+    <Content Include="Views\human_file_dig\query_list_information.cshtml" />
+    <Content Include="Views\human_file_dig\query_list_informationbg.cshtml" />
+    <Content Include="Views\human_file_dig\query_locate.cshtml" />
     <Content Include="Views\human_file_dig\fhcx.cshtml" />
     <Content Include="Views\human_file_dig\Edit.cshtml" />
-    <Content Include="Views\human_file_dig\query_locate.cshtml" />
-    <Content Include="Views\human_file_dig\change_list.cshtml" />
-    <Content Include="Views\human_file_dig\query_keywords.cshtml" />
-    <Content Include="Views\human_file_dig\query_list_information.cshtml" />
-    <Content Include="Views\human_file_dig\change_locate.cshtml" />
-    <Content Include="Views\human_file_dig\change_listbg.cshtml" />
-    <Content Include="Views\human_file_dig\query_keywordsbg.cshtml" />
-    <Content Include="Views\human_file_dig\query_list_informationbg.cshtml" />
     <Content Include="Views\human_file_dig\delete_locate.cshtml" />
+    <Content Include="Views\human_file_dig\delete_list_information.cshtml" />
     <Content Include="Views\human_file_dig\delete_list.cshtml" />
     <Content Include="Views\human_file_dig\delete_keywords.cshtml" />
-    <Content Include="Views\human_file_dig\delete_list_information.cshtml" />
-    <Content Include="Views\human_file_dig\recovery_locate.cshtml" />
-    <Content Include="Views\human_file_dig\recovery_list.cshtml" />
-    <Content Include="Views\human_file_dig\recovery_keywords.cshtml" />
-    <Content Include="Views\human_file_dig\recovery_list_information.cshtml" />
-    <Content Include="Views\human_file_dig\delete_forever_list.cshtml" />
+    <Content Include="Views\Register_locate\Index.cshtml" />
+    <Content Include="Views\Register_locate\register_list.cshtml" />
+    <Content Include="Views\Right_list\Create.cshtml" />
+    <Content Include="Views\Right_list\Edit.cshtml" />
+    <Content Include="Views\Right_list\Index.cshtml" />
+    <Content Include="Views\User_list\Create.cshtml" />
+    <Content Include="Views\User_list\Edit.cshtml" />
+    <Content Include="Views\User_list\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DatePicker\" />
     <Folder Include="HTML\" />
     <Folder Include="images\" />
+    <Folder Include="jquery-easyui-1.3.5\" />
+    <Folder Include="Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -449,6 +463,10 @@
     <ProjectReference Include="..\BLL\BLL.csproj">
       <Project>{93d018f2-23ea-4038-95cc-7e9b1e2e4fab}</Project>
       <Name>BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{8FEA02ED-FFDA-48D7-B5C9-95B35350ABCA}</Project>
+      <Name>DAL</Name>
     </ProjectReference>
     <ProjectReference Include="..\EFentity\EFentity.csproj">
       <Project>{FCBBB9E0-1A8A-495B-BA40-1C909488D389}</Project>

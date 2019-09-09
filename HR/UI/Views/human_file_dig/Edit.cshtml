@@ -1,0 +1,383 @@
+﻿@model Model.human_file_digModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit</title>
+    <link href="~/Content/table.css" rel="stylesheet" />
+    <link href="~/Content/cwcalendar.css" rel="stylesheet" />
+    <link href="~/DatePicker/skin/WdatePicker.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/javascript/jquery.easyui.min.js"></script>
+    <script src="~/javascript/comm/comm.js"></script>
+    <script src="~/javascript/comm/select.js"></script>
+    <script src="~/javascript/calendar-ch.js"></script>
+    <script src="~/javascript/time.js"></script>
+    <script src="~/DatePicker/WdatePicker.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $(document).on("focus", "#sr", function () {
+                WdatePicker();
+            })
+            getTime("#create_time");
+            $("#create_time").mouseover(function () {
+                getTime("#create_time");
+            });
+        })
+     
+    </script>
+</head>
+<body>
+  
+    
+    
+    @using (Ajax.BeginForm("Edit", new AjaxOptions() { HttpMethod = "Post" }))
+    {
+
+            <table width="100%">
+                <tr>
+                    <td>
+                        <font color="black">您正在做的业务是：人力资源--人力资源档案管理--人力资源档案复核 </font>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        <input type="submit" value="复核通过" class="BUTTON_STYLE1" />
+                        <input type="reset" value="清除" class="BUTTON_STYLE1">
+                        @Html.ActionLink("返回", "fhcx", "", new { @class = "BUTTON_STYLE1" });
+                    </td>
+                </tr>
+            </table>
+            <table width="100%" border="1" cellpadding=3 cellspacing=1
+                   bordercolorlight=#848284 bordercolordark=#eeeeee
+                   class="TABLE_STYLE1">
+                <tr>
+                    <td class="TD_STYLE1" width="10%">
+                        档案编号
+                    </td>
+                    <td colspan="6" class="TD_STYLE2">
+                        @Html.EditorFor(model => model.Id, new { htmlAttributes = new { @class = "INPUT_STYLE2", @hidden = "hidden" } })
+                        @Html.EditorFor(model => model.human_id, new { htmlAttributes = new { @class = "INPUT_STYLE2",@readonly ="readonly"} })
+                        @Html.ValidationMessageFor(model => model.human_id, "", new { @class = "text-danger" })
+                    </td>
+                    <td rowspan="6" width="13%" style="text-align: center;">
+                       
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1" width="10%">
+                        I级机构
+                    </td>
+                    <td width="13%" class="TD_STYLE2">
+                        @Html.EditorFor(model => model.first_kind_id, new { htmlAttributes = new { @hidden = "hidden" } })
+                        @Html.ValidationMessageFor(model => model.first_kind_id, "", new { @class = "text-danger" })
+                        @Html.EditorFor(model => model.first_kind_name, new { htmlAttributes = new { @class = "INPUT_STYLE2", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.first_kind_name, "", new { @class = "text-danger" })
+                    </td>
+                    <td width="10%" class="TD_STYLE1">
+                        II级机构
+                    </td>
+                    <td width="13%" class="TD_STYLE2">
+                        @Html.EditorFor(model => model.second_kind_id, new { htmlAttributes = new { @hidden = "hidden" } })
+                        @Html.ValidationMessageFor(model => model.second_kind_id, "", new { @class = "text-danger" })
+                        @Html.EditorFor(model => model.second_kind_name, new { htmlAttributes = new { @class = "INPUT_STYLE2", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.second_kind_name, "", new { @class = "text-danger" })
+                    </td>
+                    <td width="10%" class="TD_STYLE1">
+                        III级机构
+                    </td>
+                    <td class="TD_STYLE2" colspan="2" width="2%">
+                        @Html.EditorFor(model => model.third_kind_id, new { htmlAttributes = new { @hidden = "hidden" } })
+                        @Html.ValidationMessageFor(model => model.third_kind_id, "", new { @class = "text-danger" })
+                        @Html.EditorFor(model => model.third_kind_name, new { htmlAttributes = new { @class = "INPUT_STYLE2", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.third_kind_name, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        职位分类
+                    </td>
+                    <td class="TD_STYLE2">
+                        @Html.EditorFor(model => model.human_major_kind_id, new { htmlAttributes = new { @hidden = "hidden" } })
+                        @Html.ValidationMessageFor(model => model.human_major_kind_id, "", new { @class = "text-danger" })
+                        @Html.EditorFor(model => model.human_major_kind_name, new { htmlAttributes = new { @class = "INPUT_STYLE2", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.human_major_kind_name, "", new { @class = "text-danger" })
+                    </td>
+                    <td class="TD_STYLE1">
+                        职位名称
+                    </td>
+                    <td class="TD_STYLE2">
+                        @Html.EditorFor(model => model.human_major_id, new { htmlAttributes = new { @hidden = "hidden" } })
+                        @Html.ValidationMessageFor(model => model.human_major_id, "", new { @class = "text-danger" })
+                        @Html.EditorFor(model => model.hunma_major_name, new { htmlAttributes = new { @class = "INPUT_STYLE2", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.hunma_major_name, "", new { @class = "text-danger" })
+                    </td>
+                    <td class="TD_STYLE1">
+                        职称
+                    </td>                    
+                    <td colspan="2" class="TD_STYLE2">
+                        @Html.DropDownListFor(model=>model.human_pro_designation, @ViewBag.zc as IEnumerable<SelectListItem>, new { @id = "ZC", @name = "ZC", @class = "INPUT_STYLE2" })
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        姓名
+                    </td>
+                    <td class="TD_STYLE2">
+                        @Html.EditorFor(model => model.human_name, new { htmlAttributes = new { @class = "INPUT_STYLE2" } })
+                        @Html.ValidationMessageFor(model => model.human_name, "", new { @class = "text-danger" })
+                    </td>
+                    <td class="TD_STYLE1">
+                        性别
+                    </td>
+                    <td class="TD_STYLE2">
+                        @Html.DropDownListFor(model => model.human_sex, @ViewBag.xb as IEnumerable<SelectListItem>, new { @id = "XB", @name = "XB", @class = "INPUT_STYLE2" })
+                    </td>
+                    <td class="TD_STYLE1">
+                        EMAIL
+                    </td>
+        
+                                <td colspan="2" class="TD_STYLE2">
+                        @Html.EditorFor(model => model.human_email, new { htmlAttributes = new { @class = "INPUT_STYLE2" } })
+                        @Html.ValidationMessageFor(model => model.human_email, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        电话
+                    </td>
+                    <td class="TD_STYLE2">
+                        @Html.EditorFor(model => model.human_telephone, new { htmlAttributes = new { @class = "INPUT_STYLE2" } })
+                        @Html.ValidationMessageFor(model => model.human_telephone, "", new { @class = "text-danger" })
+                    </td>
+                    <td class="TD_STYLE1">
+                        QQ
+                    </td>
+                    <td class="TD_STYLE2">
+                      @Html.EditorFor(model => model.human_qq, new { htmlAttributes = new { @class = "INPUT_STYLE2" } })
+                    @Html.ValidationMessageFor(model => model.human_qq, "", new { @class = "text-danger" })
+                    </td>
+                    <td class="TD_STYLE1">
+                        手机
+                    </td>
+                    <td colspan="2" class="TD_STYLE2">
+                        @Html.EditorFor(model => model.human_mobilephone, new { htmlAttributes = new { @class = "INPUT_STYLE2" } })
+                        @Html.ValidationMessageFor(model => model.human_mobilephone, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        住址
+                    </td>
+                    <td colspan="3" class="TD_STYLE2">
+                        @Html.EditorFor(model => model.human_address, new { htmlAttributes = new { @class = "INPUT_STYLE2" } })
+                        @Html.ValidationMessageFor(model => model.human_address, "", new { @class = "text-danger" })
+                    </td>
+                    <td class="TD_STYLE1">
+                        邮编
+                    </td>
+                    <td colspan="2" class="TD_STYLE2">
+                        @Html.EditorFor(model => model.human_postcode, new { htmlAttributes = new { @class = "INPUT_STYLE2" } })
+                        @Html.ValidationMessageFor(model => model.human_postcode, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        国籍
+                    </td>
+                    <td class="TD_STYLE2">
+                        @Html.DropDownListFor(model => model.human_nationality, @ViewBag.gj as IEnumerable<SelectListItem>, new { @id = "GJ", @name = "GJ", @class = "INPUT_STYLE2" })
+                    </td>
+                    <td class="TD_STYLE1">
+                        出生地
+                    </td>
+                    <td class="TD_STYLE2">
+                        @Html.EditorFor(model => model.human_birthplace, new { htmlAttributes = new { @class = "INPUT_STYLE2" } })
+                        @Html.ValidationMessageFor(model => model.human_birthplace, "", new { @class = "text-danger" })
+                    </td>
+                    <td class="TD_STYLE1">
+                        生日
+                    </td>
+                    <td width="13%" class="TD_STYLE2">
+                        @Html.EditorFor(model => model.human_birthday, new { htmlAttributes = new { @id = "sr", @class = "INPUT_STYLE2" } })
+                        @Html.ValidationMessageFor(model => model.human_birthday, "", new { @class = "text-danger" })
+                    </td>
+                    <td width="11%" class="TD_STYLE1">
+                        民族
+                    </td>
+                    <td class="TD_STYLE2" width="14%">
+                        @Html.DropDownListFor(model => model.human_race, @ViewBag.mz as IEnumerable<SelectListItem>, new { @id = "MZ", @name = "MZ", @class = "INPUT_STYLE2" })
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        宗教信仰
+                    </td>
+                    <td class="TD_STYLE2">
+                        @Html.DropDownListFor(model => model.human_religion, @ViewBag.zjxy as IEnumerable<SelectListItem>, new { @id = "ZJXY", @name = "ZJXY", @class = "INPUT_STYLE2" })
+                    </td>
+                    <td class="TD_STYLE1">
+                        政治面貌
+                    </td>
+                    <td class="TD_STYLE2">
+                        @Html.DropDownListFor(model => model.human_party, @ViewBag.zzmm as IEnumerable<SelectListItem>, new { @id = "ZZMM", @name = "ZZMM", @class = "INPUT_STYLE2" })
+                    </td>
+                    <td class="TD_STYLE1">
+                        身份证号码
+                    </td>
+                    <td class="TD_STYLE2">
+                        @Html.EditorFor(model => model.human_id_card, new { htmlAttributes = new { @class = "INPUT_STYLE2" } })
+                        @Html.ValidationMessageFor(model => model.human_id_card, "", new { @class = "text-danger" })
+                    </td>
+                    <td class="TD_STYLE1">
+                        社会保障号码
+                    </td>
+                    <td class="TD_STYLE2">
+                        @Html.EditorFor(model => model.human_society_security_id, new { htmlAttributes = new { @class = "INPUT_STYLE2" } })
+                        @Html.ValidationMessageFor(model => model.human_society_security_id, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        年龄
+                    </td>
+                    <td class="TD_STYLE2">
+                        @Html.EditorFor(model => model.human_age, new { htmlAttributes = new { @class = "INPUT_STYLE2" } })
+                        @Html.ValidationMessageFor(model => model.human_age, "", new { @class = "text-danger" })
+                    </td>
+                    <td class="TD_STYLE1">
+                        学历
+                    </td>
+                    <td class="TD_STYLE2">
+                        @Html.DropDownListFor(model => model.human_educated_degree, @ViewBag.xl as IEnumerable<SelectListItem>, new { @id = "XL", @name = "XL", @class = "SELECT_STYLE1" })
+                    </td>
+                    <td class="TD_STYLE1">
+                        教育年限
+                    </td>
+                    <td class="TD_STYLE2">
+                        @Html.DropDownListFor(model => model.human_educated_years, @ViewBag.jynx as IEnumerable<SelectListItem>, new { @id = "JYNX", @name = "JYNX", @class = "SELECT_STYLE1" })
+                    </td>
+                    <td class="TD_STYLE1">
+                        学历专业
+                    </td>
+                    <td class="TD_STYLE2">
+                        @Html.DropDownListFor(model => model.human_educated_major, @ViewBag.xlzy as IEnumerable<SelectListItem>, new { @id = "XLZY", @name = "XLZY", @class = "SELECT_STYLE1" })
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        薪酬标准
+                    </td>
+                    <td class="TD_STYLE2">
+                        @*<select name="humanFile.salaryStandardId" class="SELECT_STYLE1">
+                    <option>薪酬标准1</option>
+                    <option>薪酬标准2</option>
+                </select>*@
+                        @Html.DropDownListFor(model => model.salary_standard_name, @ViewBag.xcsz as IEnumerable<SelectListItem>, new { @id = "XCSZ", @name = "XCSZ", @class = "INPUT_STYLE2" })
+                    </td>
+                    <td class="TD_STYLE1">
+                        开户行
+                    </td>
+                    <td class="TD_STYLE2">
+                        @Html.EditorFor(model => model.human_bank, new { htmlAttributes = new { @class = "INPUT_STYLE2" } })
+                        @Html.ValidationMessageFor(model => model.human_bank, "", new { @class = "text-danger" })
+                    </td>
+                    <td class="TD_STYLE1">
+                        帐号
+                    </td>
+                    <td class="TD_STYLE2">
+                        @Html.EditorFor(model => model.human_account, new { htmlAttributes = new { @class = "INPUT_STYLE2" } })
+                        @Html.ValidationMessageFor(model => model.human_account, "", new { @class = "text-danger" })
+                    </td>
+                    <td class="TD_STYLE1">
+                        复核人
+                    </td>
+                    <td class="TD_STYLE2">
+                        @*<input type="text" name="humanFile.register" value="谢鹏"
+                readonly="readonly" class="INPUT_STYLE2">*@
+                        @Html.EditorFor(model => model.register, new { htmlAttributes = new { @class = "INPUT_STYLE2" ,@hidden="hidden"} })
+                        @Html.ValidationMessageFor(model => model.register, "", new { @class = "text-danger" })
+                        @Html.EditorFor(model => model.checker, new { htmlAttributes = new { @class = "INPUT_STYLE2" } })
+                        @Html.ValidationMessageFor(model => model.checker, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        复核时间
+                    </td>
+                    <td class="TD_STYLE2">
+                        @*<input type="text" name="humanFile.registTime" id="create_time" readonly="readonly"
+                class="INPUT_STYLE2">*@
+                        @Html.EditorFor(model => model.regist_time, new { htmlAttributes = new { @hidden="hidden"} })
+                        @Html.ValidationMessageFor(model => model.regist_time, "", new { @class = "text-danger" })
+                        @Html.EditorFor(model => model.check_time, new { htmlAttributes = new { @class = "INPUT_STYLE2", @Id = "create_time", @Name = "humanFile.registTime", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.check_time, "", new { @class = "text-danger" })
+                    </td>
+                    <td class="TD_STYLE1">
+                        特长
+                    </td>
+                    <td class="TD_STYLE2">
+                        @Html.DropDownListFor(model => model.human_speciality, @ViewBag.tc as IEnumerable<SelectListItem>, new { @id = "TC", @name = "TC", @class = "INPUT_STYLE2" })
+                    </td>
+                    <td class="TD_STYLE1">
+                        爱好
+                    </td>
+                    <td class="TD_STYLE2">
+                        @Html.DropDownListFor(model => model.human_hobby, @ViewBag.ah as IEnumerable<SelectListItem>, new { @id = "AH", @name = "AH", @class = "INPUT_STYLE2" })
+                    </td>
+                    <td class="TD_STYLE1">
+                        &nbsp;
+                    </td>
+                    <td class="TD_STYLE2">
+                        &nbsp;
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="TD_STYLE1">
+                        档案附件
+                    </td>
+                    <td colspan="7" class="TD_STYLE2">
+                        <a href="javascript:winopenm('query.jsp?filename=')">a.doc</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        个人履历
+                    </td>
+                    <td colspan="7" class="TD_STYLE2">
+                        @Html.TextAreaFor(model => model.human_histroy_records, new { @class = "TEXTAREA_STYLE1", @Rows = "4" })
+                        @Html.ValidationMessageFor(model => model.human_histroy_records, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        家庭关系信息
+                    </td>
+                    <td colspan="7" class="TD_STYLE2">
+                        @Html.TextAreaFor(model => model.human_family_membership, new { @class = "TEXTAREA_STYLE1", @Rows = "4" })
+                        @Html.ValidationMessageFor(model => model.human_family_membership, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        备注
+                    </td>
+                    <td colspan="7" class="TD_STYLE2">
+                        @Html.TextAreaFor(model => model.remark, new { @class = "TEXTAREA_STYLE1", @Rows = "4" })
+                        @Html.ValidationMessageFor(model => model.remark, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+            </table>
+
+       
+    }
+    
+</body>
+</html>

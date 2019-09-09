@@ -1,0 +1,55 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>query_keywords</title>
+    <link href="~/Content/table.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+</head>
+<body>
+    <div>
+        <form action="query_list.html" method="post">
+            <table width="100%">
+                <tr>
+                    <td>
+                        <font color="black">您正在做的业务是：人力资源--人力资源档案管理--人力资源档案变更查询</font>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        <span class="BUTTON_STYLE1" id="CX">开始</span>
+                        @Html.ActionLink("返回", "query_locatebg", "", new { @class = "BUTTON_STYLE1" });
+                    </td>
+                </tr>
+            </table>
+            <table width="100%" border="1" cellpadding=0 cellspacing=1
+                   bordercolorlight=#848284 bordercolordark=#eeeeee
+                   class="TABLE_STYLE1">
+                <tr class="TR_STYLE1">
+                    <td width="16%" class="TD_STYLE1">
+                        请输入关键字
+                    </td>
+                    <td width="84%" class="TD_STYLE2">
+                        <input type="text" name="utilBean.primarKey" class="INPUT_STYLE1" id="oo">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    $(function () {
+        $("#CX").click(function () {
+            var ss = $("#oo").val();
+            //alert(ss)
+            window.location.href = "change_listbg?id=" + 1 + "&ss=" + ss+"&aaa"+2;
+        })
+    })
+</script>

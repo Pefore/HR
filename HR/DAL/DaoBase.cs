@@ -14,7 +14,7 @@ namespace DAL
    public class DaoBase<T> where T : class
     {
 
-       static MyDbcontext db = CreateDbContext();
+      public static MyDbcontext db = CreateDbContext();
         private Boolean RemoveHoldingEntityInContext(T entity)
         {
             var objContext = ((IObjectContextAdapter)db).ObjectContext;
