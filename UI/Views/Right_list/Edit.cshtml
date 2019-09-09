@@ -1,0 +1,239 @@
+﻿@model Model.rightModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit</title>
+    <link href="~/css/table.css" rel="stylesheet" />
+    <script src="~/js/jquery-1.11.1.js"></script>
+    <script src="~/jquery-easyui-1.3.5/jquery.min.js"></script>
+    <script src="~/jquery-easyui-1.3.5/jquery.easyui.min.js"></script>
+    <link href="~/jquery-easyui-1.3.5/themes/default/easyui.css" rel="stylesheet" />
+    <link href="~/jquery-easyui-1.3.5/themes/icon.css" rel="stylesheet" />
+    <script src="~/jquery-easyui-1.3.5/locale/easyui-lang-zh_CN.js"></script>
+    <style>
+        .TD_STYLE2, .TD_STYLE3 {
+            background-color: #FFB;
+            border: 0px;
+        }
+
+        .TD_STYLE1 {
+            background-color: #FFDB6F;
+        }
+        .parent {
+            margin-left: 50px;
+        }
+        .children {
+            margin-left: 20%;
+        }
+        hr {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border: 1px;
+            border-top: 2px solid #200b0b;
+        }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            CreateTree();
+
+            var hidRadio = $("#hidSex").val();
+            var radios = document.getElementsByName("right_usable");
+            if (hidRadio == "是") {
+                radios[0].checked = true;
+            } else {
+                radios[1].checked = true;
+            }
+          
+            //$("#Button1").click(function () {
+            //    //alert($("#rid").text());
+            //    //alert($("#RoleName").val());
+            //    //alert($("#RoleState").val());
+            //    //alert($("input[name='RoleOK']:checked").val());
+            //    var right_id=$("#right_id").text();
+            //    var RoleManager={
+            //        right_id:$("#right_id").text(),
+            //        right_name:$("#right_name").val(),
+            //        right_explain:$("#right_explain").val(),
+            //        right_usable:$("input[name='right_usable']:checked").val()
+            //    }
+            //    //根据角色id修改角色表
+            //    $.ajax({
+            //        url: "/Right_list/Edit",
+            //        type: "post",
+            //        data: "RoleManager=" +JSON.stringify(RoleManager),
+            //        success: function (xgjg) {
+            //            var i = eval("(" + xgjg + ")");
+            //            if(i>0){
+            //                //根据角色id删除角色权限表
+            //                $.ajax({
+            //                    url: "/Right_list/PerPerDelete",
+            //                    type: "post",
+            //                    data: "right_id=" +right_id,
+            //                    success: function (scjg) {
+            //                        var b = eval("(" + scjg + ")");
+            //                        if(b>=0){
+            //                            //新增此角色下权限（角色权限表）
+            //                            var nodes = $('#tt').tree('getChecked');
+            //                            for(var i=0;i<nodes.length;i++){
+                                        
+            //                            }      
+            //                                $.ajax({
+            //                                    //先增父
+            //                                    url: "/Right_list/PerADD1",
+            //                                    type: "post",
+            //                                    data: "right_id=" + right_id+ "&dsd=" + nodes[i]["id"],
+                                                
+            //                                    success: function (xzjg1) {
+            //                                        var jg3 = eval("(" + xzjg1 + ")");
+            //                                        if (jg3 > 0) {
+
+            //                                        }
+            //                                    }
+            //                                    })
+                                       
+            //                            var nodes1 = $('#tt').tree('getChecked', 'indeterminate');
+            //                            for (var i = 0; i < nodes1.length; i++) {
+            //                                //增加子
+            //                                $.ajax({
+            //                                    url: "/Right_list/PerADD1",
+            //                                    type: "post",
+            //                                    data: "right_id=" +right_id + "&dsd=" + nodes1[i]["id"],
+            //                                    success: function (xzjg2) {
+            //                                        var jg4 = eval("(" + xzjg2 + ")");
+            //                                        if (jg4 > 0) {
+
+            //                                        }
+            //                                    }
+            //                                });
+
+            //                            }
+            //                            alert("修改成功!!!");
+            //                            window.location.href = '/Right_list/Index';
+            //                        }
+            //                    }
+            //                    })
+
+
+            //            }
+
+            //        }
+
+
+            //        })
+
+            //})
+
+            var obk = $("#obk").val();
+            $("#Button1").click(function (){
+                //修改角色权限表的数据
+                //关键点：获取所有的权限ID
+                var qid = "";
+                //获取打全勾
+                var nodes = $('#tt').tree('getChecked');
+                for (var i = 0; i < nodes.length; i++) {
+                    qid += nodes[i].id + ",";
+                }
+                //console.info(nodes);
+                //获取打半勾
+                var nodes1 = $('#tt').tree('getChecked', 'indeterminate');
+                for (var i = 0; i < nodes1.length; i++) {
+                    qid += nodes1[i].id + ",";
+                }
+
+                qid = qid.substring(0, qid.length - 1);
+                //发送aja
+                alert(obk);
+                alert(qid);
+                $.ajax({
+                    url: "/Right_list/PerADD1",
+                    type: "post",
+                    data: { "rid":obk,"qid":qid},
+                    success: function (msg) {
+                        //aler(msg)
+                        if (msg > 0) {
+                            alert("操作成功");
+                            window.location.href = '/Right_list/Index';
+                        }
+                    }
+                        
+                })
+            });
+        })
+        function CreateTree() {
+            $('#tt').tree({
+                url: '/Right_list/ShowQX?right_id=' + @ViewData["id"],
+                checkbox: true,
+                onLoadSuccess: function (node, data) {
+                    var t = $(this);//t代表的是树控件
+                    for (var i = 0; i < data.length; i++) {
+                        var d = data[i];
+
+                        if (d.state == "closed") {
+                            //根节点
+                            $(t).tree("expandAll");//展开所有节点
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <table width="100%">
+        <tbody>
+            <tr>
+                <td>
+                    <font color="black">您正在做的业务是：人力资源--权限管理--编辑角色</font>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    <input type="submit" id="Button1" value="保存" class="BUTTON_STYLE1">
+                    <input type="button" value="返回" class="BUTTON_STYLE1" onclick="history.back()">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table bordercolorlight="#848284" bordercolordark="#eeeeee" class="TABLE_STYLE1" width="100%" cellspacing="1" cellpadding="3" border="1">
+        <tbody>
+            <tr>
+                <td class="TD_STYLE1">角色编号</td>
+                <td class="TD_STYLE2">
+                    @*@Html.EditorFor(model => model.right_id, new { htmlAttributes = new { @class = "INPUT_STYLE1" , @id = "right_id" } })*@
+                    @Html.Label("right_id", ViewData["id"].ToString(), new { @readonly = "readonly", @id = "right_id" })
+                    @Html.EditorFor(model => model.right_id, new { htmlAttributes = new { @class = "INPUT_STYLE1",@hidden= "hidden" , @id = "obk",@name= "obk" } })
+                    @Html.ValidationMessageFor(model => model.right_id, "", new { @class = "text-danger"})
+
+                </td>
+                <td class="TD_STYLE1">角色名称</td>
+                <td class="TD_STYLE2">
+                    @Html.TextBoxFor(model => model.right_name, new { htmlAttributes = new { @class = "INPUT_STYLE1" ,@readonly= "readonly", @id = "right_name" } })
+                    @Html.ValidationMessageFor(model => model.right_name, "", new { @class = "text-danger"})
+                </td>
+            </tr>
+            <tr>
+                <td class="TD_STYLE1">角色说明</td>
+                <td class="TD_STYLE2">
+                    @Html.EditorFor(model => model.right_explain, new { htmlAttributes = new { @class = "INPUT_STYLE1", @id = "right_explain" } })
+                    @Html.ValidationMessageFor(model => model.right_explain, "", new { @class = "text-danger" })
+                </td>
+                <td class="TD_STYLE1">角色是否可用</td>
+                <td class="TD_STYLE2">
+                    @*@Html.DropDownListFor(model => model.right_usable,@ViewBag.sf as IEnumerable<SelectListItem>,new { @class = "text-danger" })*@
+                    <input type="hidden" id="hidSex" value="@Model.right_usable" />
+                    <input type="radio" name="right_usable" value="是" />是<input type="radio" name="right_usable" value="否" />否
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <ul id="tt"></ul>
+</body>
+</html>
