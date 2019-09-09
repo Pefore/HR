@@ -11,5 +11,6 @@ namespace IFBLL
     {
         int Login(users s);
         int ADDUser();
+        List<users> Select();
     }
 }

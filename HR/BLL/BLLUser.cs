@@ -23,5 +23,10 @@ namespace BLL
         {
             return u.Login(s);
         }
+
+        public List<users> Select()
+        {
+            return u.Select();
+        }
     }
 }

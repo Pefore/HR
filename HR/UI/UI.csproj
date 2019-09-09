@@ -290,8 +290,8 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Salary_item\Shared\Error.cshtml" />
+    <Content Include="Views\Salary_item\Shared\_Layout.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
@@ -304,15 +304,15 @@
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\SendCode.cshtml" />
     <Content Include="Views\Account\VerifyCode.cshtml" />
-    <Content Include="Views\Shared\Lockout.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Salary_item\Shared\Lockout.cshtml" />
+    <Content Include="Views\Salary_item\Shared\_LoginPartial.cshtml" />
     <Content Include="Unity.config" />
     <Content Include="Views\Login\Index.cshtml" />
-    <Content Include="Views\clientfirstkind\Index.cshtml" />
-    <Content Include="Views\clientfirstkind\Create.cshtml" />
-    <Content Include="Views\clientfirstkind\Edit.cshtml" />
-    <Content Include="Views\clientfirstkind\xgcg.cshtml" />
-    <Content Include="Views\clientfirstkind\xzcg.cshtml" />
+    <Content Include="App_Data\clientfirstkind\Index.cshtml" />
+    <Content Include="App_Data\clientfirstkind\Create.cshtml" />
+    <Content Include="App_Data\clientfirstkind\Edit.cshtml" />
+    <Content Include="App_Data\clientfirstkind\xgcg.cshtml" />
+    <Content Include="App_Data\clientfirstkind\xzcg.cshtml" />
     <Content Include="Views\configfilesecondkind\Index.cshtml" />
     <Content Include="Views\configfilesecondkind\Create.cshtml" />
     <Content Include="Views\configfilesecondkind\xzcg.cshtml" />
@@ -337,9 +337,28 @@
     <Content Include="Views\Public_char\Index.cshtml" />
     <Content Include="Views\Public_char\Create.cshtml" />
     <Content Include="Views\human_file_dig\Index.cshtml" />
+    <Content Include="Views\human_file_dig\xzcg.cshtml" />
+    <Content Include="Views\human_file_dig\fhcx.cshtml" />
+    <Content Include="Views\human_file_dig\Edit.cshtml" />
+    <Content Include="Views\human_file_dig\query_locate.cshtml" />
+    <Content Include="Views\human_file_dig\change_list.cshtml" />
+    <Content Include="Views\human_file_dig\query_keywords.cshtml" />
+    <Content Include="Views\human_file_dig\query_list_information.cshtml" />
+    <Content Include="Views\human_file_dig\change_locate.cshtml" />
+    <Content Include="Views\human_file_dig\change_listbg.cshtml" />
+    <Content Include="Views\human_file_dig\query_keywordsbg.cshtml" />
+    <Content Include="Views\human_file_dig\query_list_informationbg.cshtml" />
+    <Content Include="Views\human_file_dig\delete_locate.cshtml" />
+    <Content Include="Views\human_file_dig\delete_list.cshtml" />
+    <Content Include="Views\human_file_dig\delete_keywords.cshtml" />
+    <Content Include="Views\human_file_dig\delete_list_information.cshtml" />
+    <Content Include="Views\human_file_dig\recovery_locate.cshtml" />
+    <Content Include="Views\human_file_dig\recovery_list.cshtml" />
+    <Content Include="Views\human_file_dig\recovery_keywords.cshtml" />
+    <Content Include="Views\human_file_dig\recovery_list_information.cshtml" />
+    <Content Include="Views\human_file_dig\delete_forever_list.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="DatePicker\" />
     <Folder Include="HTML\" />
     <Folder Include="images\" />

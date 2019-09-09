@@ -32,6 +32,9 @@
                     success: function (msg) {
                         var dt = eval("(" + msg + ")");
                         var $select = $('<select name="EJJG" id="EJJG" class="INPUT_STYLE2" onchange="EJBSJ(this.value)"></select>');
+                        var $option1 = $("<option value=>请选择二级下拉框</option>")
+                        $select.append($option1);
+                        $("#td1").append($select);
                         for (var i = 0; i < dt.length; i++) {
                             var $option = $("<option value=" + dt[i].second_kind_id + ">" + dt[i].second_kind_name + "</option>")
                             $select.append($option);
@@ -65,15 +68,6 @@
             $("#create_time").mouseover(function () {
                 getTime("#create_time");
             });
-            //function showTime() {
-            //    nowtime = new Date();
-            //    year = nowtime.getFullYear();
-            //    month = nowtime.getMonth() + 1;
-            //    date = nowtime.getDate();
-            //    document.getElementById("create_time").innerText = year + "年" + month + "月" + date + " " + nowtime.toLocaleTimeString();
-            //}
-            //setInterval("showTime()", 1000);
-
         });
     </script>
 </head>

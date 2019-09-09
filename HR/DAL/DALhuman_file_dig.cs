@@ -325,10 +325,17 @@ namespace DAL
                 regist_time = st.regist_time,
                 check_time = st.check_time,
                 change_time = st.change_time,
-                lastly_change_time = st.lastly_change_time,
+                lastly_change_time =st.lastly_change_time,
                 delete_time = st.delete_time,
                 recovery_time = st.recovery_time,
                 human_file_status = st.human_file_status
+                //  regist_time = DateTime.Now,
+                //check_time = DateTime.Now,
+                //change_time = DateTime.Now,
+                //lastly_change_time = DateTime.Now,
+                //delete_time = DateTime.Now,
+                //recovery_time = DateTime.Now,
+                //human_file_status = st.human_file_status
             };
             return Update(est);
         }
@@ -425,6 +432,84 @@ namespace DAL
                 }
             }
             return zhi.ToString();
+        }
+        /// <summary>
+        /// 分页
+        /// </summary>
+        /// <param name="currentPage"></param>
+        /// <returns></returns>
+        public Dictionary<string, object> FenYe(int zt,int currentPage)
+        {
+            //Contains  包含
+            DaoBase<human_file_dig> db = new DaoBase<human_file_dig>();
+            int rows = 0;
+            List<human_file_dig> list = db.FenYe<int>(e => e.Id, e => e.human_file_status.Equals(zt), ref rows, currentPage, 3);
+            Dictionary<string, object> di = new Dictionary<string, object>();
+            //总页数=(总记录数+每页显示数-1)/每页显示数
+            int pages = (rows + 3 - 1) / 3;
+            di["dt"] = list;
+            //数据数
+            di["rows"] = rows;
+            //总页数
+            di["pages"] = pages;
+            //当前页
+            di["dqy"] = currentPage;
+            return di;
+        }
+        public Dictionary<string, object> FenYe(int zt,int currentPage,string first_kind_id,string second_kind_id,string third_kind_id,string human_major_kind_id,string human_major_id,string regist_timek,string regist_timej)
+        {
+            DaoBase<human_file_dig> db = new DaoBase<human_file_dig>();
+            int rows = 0;
+            List<human_file_dig> list = new List<human_file_dig>();
+            if (regist_timek == "" && regist_timej == "")
+            {
+                list = db.FenYe<int>(e => e.Id, e => e.human_file_status.Equals(zt) && e.first_kind_id.Contains(first_kind_id) && e.second_kind_id.Contains(second_kind_id) && e.third_kind_id.Contains(third_kind_id) && e.human_major_id.Contains(human_major_kind_id) && e.hunma_major_name.Contains(human_major_id), ref rows, currentPage, 3);
+            }
+            else if (regist_timek == "" && regist_timej != "")
+            {
+                DateTime timej = DateTime.Parse(regist_timej).AddDays(1);
+                list = db.FenYe<int>(e => e.Id, e => e.human_file_status.Equals(zt) && e.first_kind_id.Contains(first_kind_id) && e.second_kind_id.Contains(second_kind_id) && e.third_kind_id.Contains(third_kind_id) && e.human_major_id.Contains(human_major_kind_id) && e.hunma_major_name.Contains(human_major_id) && e.regist_time <= timej, ref rows, currentPage, 3);
+            }
+            else if (regist_timek != "" && regist_timej == "")
+            {
+                DateTime timek = DateTime.Parse(regist_timek);
+                list = db.FenYe<int>(e => e.Id, e => e.human_file_status.Equals(zt) && e.first_kind_id.Contains(first_kind_id) && e.second_kind_id.Contains(second_kind_id) && e.third_kind_id.Contains(third_kind_id) && e.human_major_id.Contains(human_major_kind_id) && e.hunma_major_name.Contains(human_major_id) && e.regist_time >= timek, ref rows, currentPage, 3);
+            }
+            else
+            {
+                DateTime timek = DateTime.Parse(regist_timek);
+                DateTime timej = DateTime.Parse(regist_timej).AddDays(1);
+                list = db.FenYe<int>(e => e.Id, e => e.human_file_status.Equals(zt) && e.first_kind_id.Contains(first_kind_id) && e.second_kind_id.Contains(second_kind_id) && e.third_kind_id.Contains(third_kind_id) && e.human_major_id.Contains(human_major_kind_id) && e.hunma_major_name.Contains(human_major_id) && e.regist_time >= timek && e.regist_time <= timej, ref rows, currentPage, 3);
+            }
+            Dictionary<string, object> di = new Dictionary<string, object>();
+            //总页数=(总记录数+每页显示数-1)/每页显示数
+            int pages = (rows + 3 - 1) / 3;
+            di["dt"] = list;
+            //数据数
+            di["rows"] = rows;
+            //总页数
+            di["pages"] = pages;
+            //当前页
+            di["dqy"] = currentPage;
+            return di;
+        }
+        public Dictionary<string, object> FenYe(int zt,int currentPage,string tj)
+        {
+            //Contains  包含
+            DaoBase<human_file_dig> db = new DaoBase<human_file_dig>();
+            int rows = 0;
+            List<human_file_dig> list = db.FenYe<int>(e => e.Id, e => e.human_file_status.Equals(zt)&& e.first_kind_name.Contains(tj) || e.second_kind_name.Contains(tj) || e.third_kind_name.Contains(tj) || e.human_major_kind_name.Contains(tj) || e.hunma_major_name.Contains(tj)||e.human_name.Contains(tj)|| e.human_id.Contains(tj), ref rows, currentPage, 3);
+            Dictionary<string, object> di = new Dictionary<string, object>();
+            //总页数=(总记录数+每页显示数-1)/每页显示数
+            int pages = (rows + 3 - 1) / 3;
+            di["dt"] = list;
+            //数据数
+            di["rows"] = rows;
+            //总页数
+            di["pages"] = pages;
+            //当前页
+            di["dqy"] = currentPage;
+            return di;
         }
     }
 }
