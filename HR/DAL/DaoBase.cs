@@ -21,7 +21,7 @@ namespace DAL
             var objSet = objContext.CreateObjectSet<T>();
             var entityKey = objContext.CreateEntityKey(objSet.EntitySet.Name, entity);
 
-            Object foundEntity;
+            Object foundEntity;   
             var exists = objContext.TryGetObjectByKey(entityKey, out foundEntity);
 
             if (exists)
