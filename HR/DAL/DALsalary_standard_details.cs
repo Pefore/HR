@@ -12,6 +12,44 @@ namespace DAL
 {
     public class DALsalary_standard_details : DaoBase<salary_standard_details>, IFDALsalary_standard_details
     {
+        public List<salary_standard_detailsModel> Select()
+        {
+            List<salary_standard_details> list = SelectAll();
+            List<salary_standard_detailsModel> list2 = new List<salary_standard_detailsModel>();
+            foreach (salary_standard_details st in list)
+            {
+                salary_standard_detailsModel sm = new salary_standard_detailsModel()
+                {
+                    sdt_id = st.sdt_id,
+                    standard_id = st.standard_id,
+                    standard_name = st.standard_name,
+                    item_id = st.item_id,
+                    item_name = st.item_name,
+                    salary = st.salary
+                };
+                list2.Add(sm);
+            }
+            return list2;
+        }
+        public List<salary_standard_detailsModel> cx(string id)
+        {
+            List<salary_standard_details> list = SelectBy(e => e.standard_id.Equals(id));
+            List<salary_standard_detailsModel> list2 = new List<salary_standard_detailsModel>();
+            foreach (salary_standard_details st in list)
+            {
+                salary_standard_detailsModel sm = new salary_standard_detailsModel()
+                {
+                    sdt_id = st.sdt_id,
+                    standard_id = st.standard_id,
+                    standard_name = st.standard_name,
+                    item_id = st.item_id,
+                    item_name = st.item_name,
+                    salary = st.salary
+                };
+                list2.Add(sm);
+            }
+            return list2;
+        }
         public int Addsalary_standard_details(salary_standard_detailsModel ASD)
         {
             salary_standard_details ssd = new salary_standard_details()
@@ -57,6 +95,24 @@ namespace DAL
                 sdt_id=ASD.sdt_id,
             };
             return Update(ssd);
+        }
+        public List<salary_standard_detailsModel> selectupdate(string id)
+        {
+            List<salary_standard_details> list = SelectBy(e => e.standard_id.Equals(id));
+
+
+            List<salary_standard_detailsModel> li = new List<salary_standard_detailsModel>();
+            foreach (salary_standard_details item in list)
+            {
+                salary_standard_detailsModel ko = new salary_standard_detailsModel();
+                ko.sdt_id = item.sdt_id;
+                ko.standard_id = item.standard_id;
+                ko.standard_name = item.standard_name;
+                ko.item_id = item.item_id;
+                ko.item_name = item.item_name;
+                ko.salary = item.salary; li.Add(ko);
+            }
+            return li;
         }
     }
 }

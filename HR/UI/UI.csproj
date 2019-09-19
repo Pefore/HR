@@ -45,10 +45,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CommonServiceLocator">
-      <HintPath>D:\。Net\复习课\三大模式\Unity\Unity.5.8.11\lib\net45\CommonServiceLocator.dll</HintPath>
+      <HintPath>..\..\..\..\..\工具\项目引用\UI\CommonServiceLocator.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\..\..\..\y2资料\Ant.net3MVC\hr\文件\EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -261,6 +261,9 @@
     <Compile Include="Controllers\salaryCriterion\salarystandardquerylocateController.cs" />
     <Compile Include="Controllers\salaryCriterion\salarystandard_check_listController.cs" />
     <Compile Include="Controllers\salaryCriterion\salarystandard_registerController.cs" />
+    <Compile Include="Controllers\salaryGrant\check_listController.cs" />
+    <Compile Include="Controllers\salaryGrant\query_locateController.cs" />
+    <Compile Include="Controllers\salaryGrant\register_locatesssController.cs" />
     <Compile Include="Controllers\Salary_itemController.cs" />
     <Compile Include="Controllers\MianController.cs" />
     <Compile Include="Controllers\Position\PositionController.cs" />
@@ -443,6 +446,17 @@
     <Content Include="Views\User_list\Create.cshtml" />
     <Content Include="Views\User_list\Edit.cshtml" />
     <Content Include="Views\User_list\Index.cshtml" />
+    <Content Include="Views\register_locatesss\Index.cshtml" />
+    <Content Include="Views\register_locatesss\CK.cshtml" />
+    <Content Include="Views\register_locatesss\Edit.cshtml" />
+    <Content Include="Views\register_locatesss\DJ.cshtml" />
+    <Content Include="Views\register_locatesss\register_locate.cshtml" />
+    <Content Include="Views\check_list\Index.cshtml" />
+    <Content Include="Views\check_list\Edit.cshtml" />
+    <Content Include="Views\check_list\check_success.cshtml" />
+    <Content Include="Views\query_locate\Index.cshtml" />
+    <Content Include="Views\query_locate\Index1.cshtml" />
+    <Content Include="Views\query_locate\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DatePicker\" />

@@ -18,9 +18,24 @@ namespace BLL
             return DSD.Addsalary_standard_details(ASD);
         }
 
+        public List<salary_standard_detailsModel> cx(string id)
+        {
+            return DSD.cx(id);
+        }
+
+        public List<salary_standard_detailsModel> Select()
+        {
+            return DSD.Select();
+        }
+
         public List<salary_standard_detailsModel> Selectsalary_standard_details(string id)
         {
             return DSD.Selectsalary_standard_details(id);
+        }
+
+        public List<salary_standard_detailsModel> selectupdate(string id)
+        {
+            return DSD.selectupdate(id);
         }
 
         public int Updatesalary_standard_details(salary_standard_detailsModel ASD)

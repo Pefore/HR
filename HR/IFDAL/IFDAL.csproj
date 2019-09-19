@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IFDALsalary_grant.cs" />
     <Compile Include="IFDALconfig_file_first_kind.cs" />
     <Compile Include="IFDALconfig_file_second_kind.cs" />
     <Compile Include="IFDALconfig_file_third_kind.cs" />
@@ -53,6 +54,7 @@
     <Compile Include="IFDALMajor_change.cs" />
     <Compile Include="IFDALPosition_Name_Set.cs" />
     <Compile Include="IFDALRight.cs" />
+    <Compile Include="IFDALsalary_grant_details.cs" />
     <Compile Include="IFDALsalary_standard.cs" />
     <Compile Include="IFDALsalary_standard_details.cs" />
     <Compile Include="IFDALUser.cs" />

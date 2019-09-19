@@ -9,8 +9,11 @@ namespace IFBLL
 {
    public interface IFBLLsalary_standard_details
     {
+        List<salary_standard_detailsModel> Select();
         int Addsalary_standard_details(salary_standard_detailsModel ASD);
         List<salary_standard_detailsModel> Selectsalary_standard_details(string id);
         int Updatesalary_standard_details(salary_standard_detailsModel ASD);
+        List<salary_standard_detailsModel> cx(string id);
+        List<salary_standard_detailsModel> selectupdate(string id);
     }
 }

@@ -52,6 +52,8 @@
     <Compile Include="BLLPosition_Name_Set.cs" />
     <Compile Include="BLLClient.cs" />
     <Compile Include="BLLRight.cs" />
+    <Compile Include="BLLsalary_grant.cs" />
+    <Compile Include="BLLsalary_grant_details.cs" />
     <Compile Include="BLLsalary_standard.cs" />
     <Compile Include="BLLsalary_standard_details.cs" />
     <Compile Include="BLLUser.cs" />

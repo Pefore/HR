@@ -39,5 +39,7 @@ namespace EFentity
         public DbSet<human_file_dig> human_file_dig { set; get; }
         public DbSet<right> right { get; set; }
         public DbSet<major_change> major_change { get; set; }
+        public DbSet<salary_grant> salary_grant { get; set; }
+        public DbSet<salary_grant_details> salary_grant_details { get; set; }
     }
 }

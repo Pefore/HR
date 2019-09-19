@@ -73,5 +73,10 @@ namespace BLL
         {
             return ist.FenYe(zt, currentPage, tj);
         }
+
+        public List<human_file_digModel> selectupdate(string id)
+        {
+            return ist.selectupdate(id);
+        }
     }
 }

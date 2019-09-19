@@ -31,11 +31,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\..\..\..\y2资料\Ant.net3MVC\hr\文件\EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\..\..\..\..\工具\项目引用\EF\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -72,6 +72,8 @@
     <Compile Include="right.cs" />
     <Compile Include="salaryCriterion\salary_standard.cs" />
     <Compile Include="salaryCriterion\salary_standard_details.cs" />
+    <Compile Include="salary_grant.cs" />
+    <Compile Include="salary_grant_details.cs" />
     <Compile Include="user.cs" />
     <Compile Include="Config\config_majorConfig.cs" />
     <Compile Include="Config\config_major_kindConfig.cs" />

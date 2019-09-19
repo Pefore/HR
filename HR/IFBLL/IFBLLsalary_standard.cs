@@ -17,5 +17,6 @@ namespace IFBLL
         int Update(salary_standardModel s);
         ArrayList LikeSelect(LikeFenYe l);
         ArrayList LikeSelect0(LikeFenYe l);
+        List<salary_standardModel> Select();
     }
 }

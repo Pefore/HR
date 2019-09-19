@@ -13,6 +13,38 @@ namespace DAL
 {
     public class DALsalary_standard : DaoBase<salary_standard>, IFDALsalary_standard
     {
+        /// <summary>
+        /// 查询
+        /// </summary>
+        /// <returns></returns>
+        public List<salary_standardModel> Select()
+        {
+            List<salary_standard> list = SelectAll();
+            List<salary_standardModel> list2 = new List<salary_standardModel>();
+            foreach (salary_standard s in list)
+            {
+                salary_standardModel sm = new salary_standardModel()
+                {
+                  ssd_id=s.ssd_id,
+                   standard_id=s.standard_id,
+                   standard_name=s.standard_name,
+                   salary_sum=s.salary_sum,
+                   change_status=s.change_status,
+                   check_status=s.check_status,
+                   changer=s.changer,
+                   change_time=s.change_time,
+                   checker=s.checker,
+                   check_comment=s.check_comment,
+                   check_time=s.check_time,
+                   designer=s.designer,
+                   register=s.register,
+                   regist_time=s.regist_time,
+                   remark=s.remark
+                };
+                list2.Add(sm);
+            }
+            return list2;
+        }
         public int AddLsalary_standard(salary_standardModel s)
         {
             salary_standard ss = new salary_standard()

@@ -41,6 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="bangzhu\Cansh.cs" />
+    <Compile Include="bangzhu\CXinCan.cs" />
+    <Compile Include="bangzhu\query_locateCan.cs" />
+    <Compile Include="bangzhu\salarystandard_query_locateCan.cs" />
+    <Compile Include="bangzhu\salary_grantCan.cs" />
+    <Compile Include="bangzhu\salary_grant_detailsASsalary_standard.cs" />
+    <Compile Include="bangzhu\salary_standardFenYe.cs" />
+    <Compile Include="bangzhu\XCcan.cs" />
     <Compile Include="CaoZuoLei\LikeFenYe.cs" />
     <Compile Include="config_file_first_kindModel.cs" />
     <Compile Include="config_file_second_kindModel.cs" />
@@ -59,8 +67,11 @@
     <Compile Include="rightModel.cs" />
     <Compile Include="salaryCriterionModel\salary_standardModel.cs" />
     <Compile Include="salaryCriterionModel\salary_standard_detailsModel.cs" />
+    <Compile Include="salary_grantModel.cs" />
+    <Compile Include="salary_grant_detailsModel.cs" />
     <Compile Include="users.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

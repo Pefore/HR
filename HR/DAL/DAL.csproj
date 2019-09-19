@@ -30,12 +30,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\Desktop\HR4\HR\DAL\bin\Debug\EntityFramework.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="EntityFramework">
+      <HintPath>..\..\..\..\y2资料\Ant.net3MVC\hr\文件\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\Desktop\HR\DAL\bin\Debug\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\..\..\..\..\工具\项目引用\EF\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -62,6 +61,8 @@
     <Compile Include="DALMajor_change.cs" />
     <Compile Include="DALPosition_Name_Set.cs" />
     <Compile Include="DALRight.cs" />
+    <Compile Include="DALsalary_grant.cs" />
+    <Compile Include="DALsalary_grant_details.cs" />
     <Compile Include="DALsalary_standard.cs" />
     <Compile Include="DALsalary_standard_details.cs" />
     <Compile Include="DaoBase.cs" />

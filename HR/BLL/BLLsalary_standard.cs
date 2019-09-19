@@ -36,6 +36,11 @@ namespace BLL
             return DS.Listsalary_standard(l);
         }
 
+        public List<salary_standardModel> Select()
+        {
+            return DS.Select();
+        }
+
         public salary_standardModel SelectID(string id)
         {
             return DS.SelectID(id);

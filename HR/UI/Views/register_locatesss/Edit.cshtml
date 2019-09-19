@@ -1,0 +1,378 @@
+﻿@model IEnumerable<Model.salary_grant_detailsModel>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/javascript/table.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/vue.js"></script>
+    <style type="text/css">
+        <!--
+        .style3 {
+            color: #0000CC;
+        }
+
+        td {
+            text-align: center;
+        }
+        -->
+    </style>
+    <script type="text/javascript">
+
+        function time() {
+            var tdate = document.getElementById("Tdate");
+            var d = new Date();
+            var y = d.getFullYear();
+            var moth = d.getMonth() + 1;
+            var date = d.getDate();
+            var h = d.getHours();
+            var m = d.getMinutes();
+            var s = d.getSeconds();
+            var hh = 20 - 1 - h;
+            var mm = 60 - 1 - m;
+            var ss = 60 - s;
+            if (hh > 0) {
+                mm = mm + 60 * hh;
+            }
+            if (moth < 10) {
+                moth = "0" + moth;
+            }
+            if (date < 10) {
+                date = "0" + date;
+            }
+            if (h < 10) {
+                h = "0" + h;
+            }
+            if (m < 10) {
+                m = "0" + m;
+            }
+            if (s < 10) {
+                s = "0" + s;
+            }
+            if (mm < 10) {
+                mm = "0" + mm;
+            }
+            if (ss < 10) {
+                ss = "0" + ss;
+            }
+
+            tdate.innerHTML = y + "-" + moth + "-" + date + " " + h + ":" + m + ":" + s;
+            document.getElementById("Tdate2").value = tdate.innerHTML;
+        }
+        window.onload = time;
+        var out = window.setInterval(time, 1000);
+
+    </script>
+</head>
+<body><table width="100%">
+    <tr>
+        <td colspan="2" style="text-align: left">
+            <font color="black">
+                您正在做的业务是：人力资源--薪酬标准管理--薪酬发放登记
+            </font>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" style="text-align: right;">
+            <input type="button" value="提交" class="BUTTON_STYLE1" id="qd">
+            <input type="button" value="返回" onclick="javascript:window.history.back();" class="BUTTON_STYLE1">
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" style="text-align: left">
+            薪酬单编号：<span id="bh"></span>
+            <input type="hidden" name="salaryGrant.salaryGrantId" value="HS1353753198460">
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" style="text-align: left">
+            机构：
+           III级结构
+        </td>
+    </tr>
+    <tr>
+        <td style="text-align: left">
+            本机构总人数:<span id="zrs"></span>
+            <input type="hidden" name="salaryGrant.humanAmount" value="5">
+            ，基本薪酬总数:<span id="zje"></span><input type="hidden" name="salaryGrant.salaryStandardSum" value="139823.0" />
+            ，实发总额:<span id="zje"></span><span id=""></span>
+            <input type="hidden" id="salaryPaidSum" name="salaryGrant.salaryPaidSum" value="139823.0" />
+        </td>
+        <td style="text-align: right;">
+            登记人:<input type="text" id="djr" readonly="readonly" />
+            @*<input type="text" name="salaryGrant.register" value="better_admin" size="8" readonly="readonly">*@
+            登记时间：<span id="Tdate"></span>
+            <input type="hidden" name="salaryGrant.registTime" id="Tdate2">
+        </td>
+    </tr>
+</table>
+    <div id="diva">
+
+        <table width="100%" border="1" cellpadding=0 cellspacing=1
+               bordercolorlight=#848284 bordercolordark=#eeeeee
+               class="TABLE_STYLE1">
+            <tr>
+                <td class="TD_STYLE1">
+                    <span>序号</span>
+                </td>
+                <td class="TD_STYLE1">
+                    <span>档案编号</span>
+                </td>
+                <td class="TD_STYLE1">
+                    <span>姓名</span>
+                </td>
+
+                @*<td class="TD_STYLE1">
+                        出差补助
+                    </td>
+
+                    <td class="TD_STYLE1">
+                        交通补贴
+                    </td>
+
+                    <td class="TD_STYLE1">
+                        住房补贴
+                    </td>
+
+                    <td class="TD_STYLE1">
+                        基本工资
+                    </td>
+
+                    <td class="TD_STYLE1">
+                        年终奖
+                    </td>
+
+                    <td class="TD_STYLE1">
+                        误餐补助
+                    </td>*@
+                <td class="TD_STYLE1">
+                    工资详情
+                </td>
+
+                <td class="TD_STYLE1" width="7%">
+                    奖励金额
+                </td>
+                <td class="TD_STYLE1" width="7%">
+                    销售绩效总额
+                </td>
+                <td class="TD_STYLE1" width="7%">
+                    应扣金额
+                </td>
+                <td class="TD_STYLE1" width="7%">
+                    实发金额
+                </td>
+            </tr>
+
+            @{
+            int rk = 0;
+            double jr = 0;
+            int xh = 0;
+            var sss="";
+            foreach (var item in Model)
+            {
+                xh++;
+                rk ++;
+                jr += double.Parse(item.salary_standard_sum);
+                sss=item.salary_grant_id;
+                    <tr class="TD_STYLE2">
+                        <td id=@Html.DisplayFor(modelItem => item.Id)>
+                            @Html.DisplayFor(modelItem => item.Id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.human_id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.human_name)
+                        </td>
+                        <td>
+                            <a id="xq" v-on:click="xq( @Html.DisplayFor(modelItem => item.salary_standard_sum))">工资详情</a>
+                            @Html.EditorFor(modelItem => item.salary_standard_sum,new { htmlAttributes = new { @hidden = "hidden" } })
+                        </td>
+                        <td>
+                            @Html.EditorFor(modelItem => item.bouns_sum, new { htmlAttributes = new { @Id = "bounsSum"+item.Id ,@onkeyup = "onKeyPress(" + @Html.DisplayFor(modelItem => item.Id) + ")", @class = "INPUT_STYLE2" } })
+                        </td>
+                        <td>
+                            @Html.EditorFor(modelItem => item.sale_sum, new { htmlAttributes = new { @Id = "saleSum" + item.Id, @onkeyup = "onKeyPress(" + @Html.DisplayFor(modelItem => item.Id) + ")", @class = "INPUT_STYLE2" } })
+                        </td>
+                        <td>
+                            @Html.EditorFor(modelItem => item.deduct_sum, new { htmlAttributes = new { @Id = "deductSum" + item.Id, @onkeyup = "onKeyPress(" + @Html.DisplayFor(modelItem => item.Id) + ")", @class = "INPUT_STYLE2" } })
+                        </td>
+                        <td>
+                            @Html.EditorFor(modelItem => item.salary_paid_sum, new { htmlAttributes = new { @Id = "salaryPaidSum" + item.Id, @onkeyup = "onKeyPress(" + @Html.DisplayFor(modelItem => item.Id) + ")", @readonly = "readonly",@class="INPUT_STYLE2"} })
+                        </td>
+                    </tr>
+            }
+            }
+        </table>
+        <div class="modal fade" id="aaa" tabindex="-1" role="dialog"
+             aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content" id="sbck">
+                    <table width="100%" border="1" cellpadding=0 cellspacing=1
+                           bordercolorlight=#848284 bordercolordark=#eeeeee
+                           class="TABLE_STYLE1">
+                        <tr>
+                            <td class="TD_STYLE1">
+                                出差补助
+                            </td>
+
+                            <td class="TD_STYLE1">
+                                交通补贴
+                            </td>
+
+                            <td class="TD_STYLE1">
+                                住房补贴
+                            </td>
+
+                            <td class="TD_STYLE1">
+                                基本工资
+                            </td>
+
+                            <td class="TD_STYLE1">
+                                年终奖
+                            </td>
+
+                            <td class="TD_STYLE1">
+                                误餐补助
+                            </td>
+                        </tr>
+                        <tr>
+                            <td v-for="(item,i) in rows" class="TD_STYLE1">{{item.salary}}</td>
+                        </tr>
+                    </table>
+                        <tfoot>
+                            <tr>
+                                <td colspan="999">
+                                    <input type="button" value="关闭" v-on:click="gb()" />
+                                </td>
+                            </tr>
+                        </tfoot>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    var ss="@sss.Trim(' ')";
+    $("#zje").text(@jr);
+    $("#zrs").text(@rk);
+    $("#xczs").text(@xh);
+    $("#bh").text(ss);
+    $("#djr").val(localStorage.getItem("user"));
+    var vm = new Vue({
+        el: "#diva",
+        data: {
+            rows: null
+        },
+        methods: {
+            xq: function (s) {
+                $('#aaa').modal("show");
+                vm.load(s);
+            },
+            gb: function () {
+                $("#aaa").modal("hide");
+            },
+            load: function (s) {
+                var v = this;
+                $.ajax({
+                    url: "/register_locatesss/GZCK",
+                    //type: "post",
+                    data: "id=" + s,
+                    success: function (msg) {
+                        var data = eval("(" + msg + ")");
+                        v.rows = data
+                    }
+                })
+            }
+        }
+    })
+</script>
+<script type="text/javascript">
+    function onKeyPress(i) {
+
+        var size = 5;
+        var bounsSum = document.getElementById("bounsSum" + i);
+        var saleSum = document.getElementById("saleSum" + i);
+        var deductSum = document.getElementById("deductSum" + i);
+        var salaryPaidSum = document.getElementById("salaryPaidSum" + i);
+        alert(salaryPaidSum.value)
+        if (isNaN(bounsSum.value) || bounsSum.value < 0) {
+            alert("金额填写错误!");
+            bounsSum.value = "0.00";
+            return;
+        }
+        if (isNaN(saleSum.value) || saleSum.value < 0) {
+            alert("金额填写错误!");
+            saleSum.value = "0.00";
+            return;
+        }
+        if (isNaN(deductSum.value) || deductSum.value < 0) {
+            alert("金额填写错误!");
+            deductSum.value = "0.00";
+            return;
+        }
+        salaryPaidSum.value= Number(bounsSum.value) + Number(saleSum.value) - Number(deductSum.value) + Number(document.getElementById("salaryStandardSum" + i).value);
+
+        var sum = 0;
+        for (var j = 1; j <= size; j++) {
+            sum = Number(sum) + Number(document.getElementById("salaryPaidSum" + j).value);
+        }
+        document.getElementById("salarySum_sum").innerHTML = sum;
+        document.getElementById("salaryPaidSum").value = sum;
+    }
+    //function onKeyPress(i) {
+    //    //var bounsSum = document.getElementById("bounsSum" + i);
+    //    //var saleSum = document.getElementById("saleSum" + i);
+    //    //var deductSum = document.getElementById("deductSum" + i);
+    //    //var salaryPaidSum = document.getElementById("salaryPaidSum" + i);
+
+    //    var size = 5;
+    //    var bounsSum = $("#bounsSum" + i).val();
+    //   // alert(bounsSum);
+    //    var saleSum = $("#saleSum" + i).val();
+    //   // alert(saleSum);
+    //    var deductSum = $("#deductSum" + i).val();
+    //   // alert(deductSum);
+    //    var salaryPaidSum = $("#salaryPaidSum" + i).val();
+    //    if (isNaN(bounsSum) || bounsSum < 0) {
+    //        alert("金额填写错误!");
+    //        $("#bounsSum" + i).val("0.00");
+    //        //bounsSum.value = "0.00";
+    //        return;
+    //    }
+    //    if (isNaN(saleSum) || saleSum < 0) {
+    //        alert("金额填写错误!");
+    //        $("#saleSum" + i).val("0.00");
+    //        //saleSum.value = "0.00";
+    //        return;
+    //    }
+    //    if (isNaN(deductSum) || deductSum < 0) {
+    //        alert("金额填写错误!");
+    //        $("#deductSum" + i).val("0.00");
+    //        //deductSum.value = "0.00";
+    //        return;
+    //    }
+    //    //alert(salaryPaidSum);
+    //    var ssss = Number(bounsSum) + Number(saleSum) - Number(deductSum) + Number(salaryPaidSum);
+    //    //alert(ssss);
+    //    var sum=0;
+    //    for(var j=1;j<=size;j++){
+    //        sum=Number(sum)+Number(document.getElementById("salaryPaidSum"+j).value);
+    //    }
+    //    document.getElementById("salarySum_sum").innerHTML=sum;
+    //    document.getElementById("salaryPaidSum").value=sum;	 
+		
+    //}
+     //   $("#salaryPaidSum" + i).val(ssss);
+    
+</script>

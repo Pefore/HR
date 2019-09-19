@@ -69,5 +69,6 @@ namespace IFBLL
         /// <returns></returns>
         Dictionary<string, object> FenYe(int zt,int currentPage, string first_kind_id, string second_kind_id, string third_kind_id, string human_major_kind_id, string human_major_id, string regist_timek, string regist_timej);
         Dictionary<string, object> FenYe(int zt, int currentPage, string tj);
+        List<human_file_digModel> selectupdate(string id);
     }
 }

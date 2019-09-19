@@ -2,6 +2,7 @@
 using IFBLL;
 using IOC;
 using Model;
+using Model.salaryCriterionModel;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -18,9 +19,11 @@ namespace UI.Controllers
         IFBLLConfig_file_third_kind ibt = UserIOC.CreateConfig_file_third_kindBLL();
         IFBLLconfig_major ibm = UserIOC.config_majorBLL();
         IFBLLconfig_major_kind ibmk = UserIOC.config_major_kindBLL();
-        //config_public_char
         IFBLLClient ibcl = UserIOC.CreateClientBLL();
         BLLhuman_file_dig ibhf = new BLLhuman_file_dig();
+        IFBLLsalary_standard ibss = UserIOC.BLLsalary_standard();
+        IFBLLsalary_grant ibsg = UserIOC.Createsalary_grantBLL();
+        IFBLLsalary_grant_details ibsgd = UserIOC.Createsalary_grant_detailsBLL();
         // GET: human_file_dig
         public ActionResult Index()
         {
@@ -283,19 +286,19 @@ namespace UI.Controllers
             return list;
         }
         /// <summary>
-        /// 薪酬标准下拉框(未有表 salary_standard_details,等有后要进行修改)
+        /// 薪酬标准下拉框
         /// </summary>
         /// <returns></returns>
         private List<SelectListItem> XCSZXlk()
         {
             List<SelectListItem> list = new List<SelectListItem>();
-            List<config_public_charModel> list2 = ibcl.SelectWhere("薪酬设置");
-            foreach (config_public_charModel item in list2)
+            List<salary_standardModel> list2 = ibss.Select();
+            foreach (salary_standardModel item in list2)
             {
                 SelectListItem sl = new SelectListItem()
                 {
-                    Text = item.attribute_name.ToString(),
-                    Value = item.attribute_name.ToString()
+                    Text = item.standard_name.ToString(),
+                    Value = item.standard_name.ToString()
                 };
                 list.Add(sl);
             }
@@ -340,10 +343,15 @@ namespace UI.Controllers
             return list;
         }
         // GET: human_file_dig/Details/5
+        /// <summary>
+        /// 新增
+        /// </summary>
+        /// <param name="form"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Tj(FormCollection form)
         {
-            #region 生成档案编号
+                #region 生成档案编号
             int num = 1000;
             string year = DateTime.Now.Year.ToString();
             string DayOfYear = DateTime.Now.DayOfYear.ToString();
@@ -360,7 +368,7 @@ namespace UI.Controllers
             }
             string human_id = "bt" + year + DayOfYear + num;
             #endregion
-            #region 一级机构
+                #region 一级机构
             string yjjgbh = form["YJJG"];
                 string yjjgmc = null;
                 List<config_file_first_kindModel> list = ibf.Select();
@@ -375,6 +383,13 @@ namespace UI.Controllers
                 #region 二级机构
                 string ejjgbh = form["EJJG"];
                 string ejjgmc = null;
+            if (ejjgbh == "" || ejjgbh == null)
+            {
+                ejjgbh = "";
+                ejjgmc = "";
+            }
+            else
+            {
                 List<config_file_second_kindModel> list2 = ibs.Select();
                 foreach (config_file_second_kindModel item in list2)
                 {
@@ -383,10 +398,18 @@ namespace UI.Controllers
                         ejjgmc = item.second_kind_name;
                     }
                 }
+            }
                 #endregion
                 #region 三级机构
                 string sjjgbh = form["SJJG"];
                 string sjjgmc = null;
+            if (sjjgbh == ""||sjjgbh==null)
+            {
+                sjjgbh = "";
+                sjjgmc = "";
+            }
+            else
+            {
                 List<config_file_third_kindModel> list3 = ibt.Select();
                 foreach (config_file_third_kindModel item in list3)
                 {
@@ -395,6 +418,7 @@ namespace UI.Controllers
                         sjjgmc = item.third_kind_name;
                     }
                 }
+            }
                 #endregion
                 #region 职位分类
                 string zwflbh = form["ZYFL"];
@@ -522,14 +546,14 @@ namespace UI.Controllers
             #endregion
                 #region 薪酬标准
             string xcszmc = form["XCSZ"];
-                int xcszbh = 1;
-                List<config_public_charModel> list14 = ibcl.SELECTClient();
-                foreach (config_public_charModel item in list14)
+            string xcszbh = "";
+                List<salary_standardModel> list14 = ibss.Select();
+                foreach (salary_standardModel item in list14)
                 {
-                    if (xcszmc.Equals(item.attribute_name))
+                    if (xcszmc.Equals(item.standard_name))
                     {
-                    xcszbh = item.Id;
-                    }
+                    xcszbh = item.standard_id;
+                }
                 }
                 #endregion
                 #region 特长
@@ -592,7 +616,7 @@ namespace UI.Controllers
             hm.human_educated_years =int.Parse(jynxmc);
             hm.human_educated_major =xlzymc;
             hm.salary_standard_name =xcszmc;
-            hm.salary_standard_id =xcszbh.ToString();
+            hm.salary_standard_id =xcszbh;
             hm.human_bank =form["human_bank"];
             hm.human_account =form["human_account"];
             hm.register =form["register"];
@@ -641,6 +665,11 @@ namespace UI.Controllers
             int zt = int.Parse(Request["zt"]);
             return Content(JsonConvert.SerializeObject(ibhf.FenYe(zt,int.Parse(currentPage))));
         }
+        /// <summary>
+        /// 修改查看
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult Edit(int id)
         {
             human_file_digModel list = ibhf.XGCX(id);
@@ -769,15 +798,42 @@ namespace UI.Controllers
             #endregion
             #region 薪酬标准
             string xcszmc = form["salary_standard_name"];
-            int xcszbh = 1;
-            List<config_public_charModel> list14 = ibcl.SELECTClient();
-            foreach (config_public_charModel item in list14)
+            string xcszbh = "";
+            string xcbzje = "";
+            List<salary_standardModel> list14 = ibss.Select();
+            foreach (salary_standardModel item in list14)
             {
-                if (xcszmc.Equals(item.attribute_name))
+                if (xcszmc.Equals(item.standard_name))
                 {
-                    xcszbh = item.Id;
+                    xcbzje = item.salary_sum.ToString();
+                    xcszbh = item.standard_id;
+                }
+            }//ibsg
+            string sj = form["third_kind_name"];
+            int ID = 0;
+            string salary_grant_id = "";
+            List<salary_grantModel> lists = ibsg.Select();
+            foreach (salary_grantModel item in lists)
+            {
+                if (sj.Equals(item.third_kind_name))
+                {
+                    ID = item.Id;
+                    salary_grant_id = item.salary_grant_id;
                 }
             }
+            salary_grantModel lists2 = ibsg.XGCX(ID);
+            lists2.human_amount += 1;
+            int zje = int.Parse(lists2.salary_standard_sum);
+            zje += int.Parse(xcbzje);
+            lists2.salary_standard_sum = zje.ToString();
+            salary_grant_detailsModel listx = new salary_grant_detailsModel();
+            listx.salary_grant_id = salary_grant_id;
+            listx.human_id = form["human_id"];
+            listx.human_name = form["human_name"];
+            listx.salary_standard_sum = xcbzje;
+            listx.salary_paid_sum = xcbzje;
+            ibsg.Update(lists2);
+            ibsgd.Add(listx);
             #endregion
             #region 特长
             string tcmc = form["human_speciality"];
@@ -838,7 +894,7 @@ namespace UI.Controllers
             hm.human_educated_years = int.Parse(jynxmc);
             hm.human_educated_major = xlzymc;
             hm.salary_standard_name = xcszmc;
-            hm.salary_standard_id = xcszbh.ToString();
+            hm.salary_standard_id = xcszbh;
             hm.human_bank = form["human_bank"];
             hm.human_account = form["human_account"];
             hm.register = form["register"];

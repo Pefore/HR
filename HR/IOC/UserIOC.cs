@@ -210,7 +210,7 @@ namespace IOC
         {
             UnityContainer ioc = new UnityContainer();
             ExeConfigurationFileMap ecf = new ExeConfigurationFileMap();
-            ecf.ExeConfigFilename = @"C:\Users\asus\Source\Repos\HR\HR\UI\Unity.config";
+            ecf.ExeConfigFilename = @"D:\ASP.NET\项目\HR项目\HR动态0909拉取合并\HR\UI\Unity.config";
             Configuration cf = ConfigurationManager.OpenMappedExeConfiguration(ecf, ConfigurationUserLevel.None);
             UnityConfigurationSection cfs = cf.GetSection("unity") as UnityConfigurationSection;
             ioc.LoadConfiguration(cfs, "containerTwo");
@@ -227,6 +227,32 @@ namespace IOC
         {
             UnityContainer ioc = GetBLLSeciton();
             return ioc.Resolve<IFBLLRight>("BLLRight");
+        }
+        //BLLsalary_grant
+        public static IFDALsalary_grant Createsalary_grantDAO()
+        {
+            UnityContainer ioc = new UnityContainer();
+            ioc.RegisterType<IFDALsalary_grant, DALsalary_grant>();
+            return ioc.Resolve<IFDALsalary_grant>();
+        }
+
+        public static IFBLLsalary_grant Createsalary_grantBLL()
+        {
+            UnityContainer ioc = GetBLLSeciton();
+            return ioc.Resolve<IFBLLsalary_grant>("BLLsalary_grant");
+        }
+        //salary_grant_details
+        public static IFDALsalary_grant_details Createsalary_grant_detailsDAO()
+        {
+            UnityContainer ioc = new UnityContainer();
+            ioc.RegisterType<IFDALsalary_grant_details, DALsalary_grant_details>();
+            return ioc.Resolve<IFDALsalary_grant_details>();
+        }
+
+        public static IFBLLsalary_grant_details Createsalary_grant_detailsBLL()
+        {
+            UnityContainer ioc = GetBLLSeciton();
+            return ioc.Resolve<IFBLLsalary_grant_details>("BLLsalary_grant_details");
         }
     }
 }
